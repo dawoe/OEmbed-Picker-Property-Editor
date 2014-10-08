@@ -12,7 +12,7 @@
         });
     };
 
-    $scope.RemoveEmbed = function () {
-        $scope.model.value = '';
+    $scope.RemoveEmbed = function (index) {
+        $scope.model.value.splice(index,1);
     }
 });
