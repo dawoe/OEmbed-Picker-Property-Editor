@@ -13,5 +13,15 @@
     [PropertyEditorAsset(ClientDependencyType.Javascript, "/App_Plugins/DawoeEmbedPropertyEditor/Resource/editor.controller.js")]
     public class EmbedPropertyEditor : PropertyEditor
     {
+        /// <summary>
+        /// Set the prevalue editor
+        /// </summary>
+        /// <returns>
+        /// The <see cref="PreValueEditor"/>.
+        /// </returns>
+        protected override PreValueEditor CreatePreValueEditor()
+        {
+            return new EmbedPrevalueEditor();
+        }
     }
 }
