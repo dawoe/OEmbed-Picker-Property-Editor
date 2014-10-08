@@ -7,7 +7,7 @@
     $scope.AddEmbed = function () {
         dialogService.embedDialog({
             callback: function (data) {
-                $scope.model.value = data;
+                $scope.model.value.push(data);
             }
         });
     };
