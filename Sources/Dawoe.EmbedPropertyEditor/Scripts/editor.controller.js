@@ -1,4 +1,4 @@
-﻿angular.module('umbraco').controller('Dawoe.EmbedPropertyEditor.Editor', function ($scope, dialogService) {
+﻿angular.module('umbraco').controller('Dawoe.EmbedPropertyEditor.Editor', function ($scope, dialogService, notificationsService) {
 
     if ($scope.model.value === undefined || $scope.model.value === '') {
         $scope.model.value = [];
@@ -7,7 +7,11 @@
     $scope.AddEmbed = function () {
         dialogService.embedDialog({
             callback: function (data) {
-                $scope.model.value.push(data);
+                if (_.indexOf($scope.model.value, data) == -1) {
+                    $scope.model.value.push(data);
+                } else {
+                    notificationsService.error('You all ready have selected this item');
+                }
             }
         });
     };
