@@ -1,13 +1,13 @@
 ﻿<div ng-controller="Dawoe.EmbedPropertyEditor.Editor">      
-    <div ng-show="model.value != ''" ng-bind-html-unsafe="model.value"></div>
-    <div ng-show="model.value != ''">
+    <div ng-show="model.value.length > 0" ng-bind-html-unsafe="model.value"></div>
+    <div ng-show="model.value.length > 0">
         <i class="icon icon-delete red"></i>
         <a href="#" ng-click="RemoveEmbed()" prevent-default="">
             <localize key="general_delete" class="ng-isolate-scope ng-scope">Remove</localize>
         </a>
     </div>
     
-     <div ng-show="model.value == '' || model.config.allowmultiple == '1'">
+     <div ng-show="model.value.length == 0 || model.config.allowmultiple == '1'">
         <i class="icon icon-add blue"></i>
         <a href="#" ng-click="AddEmbed()" prevent-default="">
             <localize key="general_add" class="ng-isolate-scope ng-scope">Add</localize>
