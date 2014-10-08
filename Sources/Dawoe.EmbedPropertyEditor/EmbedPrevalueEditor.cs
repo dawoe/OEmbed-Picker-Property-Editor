@@ -10,7 +10,7 @@
         /// <summary>
         /// Gets or sets a value indicating whether allow multiple.
         /// </summary>
-        [PreValueField("allowmultiple", "Allow multiple", "checkbox",
+        [PreValueField("allowmultiple", "Allow multiple", "boolean",
             Description = "Allow the editor pick multiple embeds")]
         public bool AllowMultiple { get; set; }
     }
