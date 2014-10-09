@@ -1,5 +1,5 @@
 ﻿<div ng-controller="Dawoe.EmbedPropertyEditor.Editor">
-    <div ui-sortable ng-model="model.value">
+    <div ui-sortable="sortableOptions" ng-model="model.value">
         <div class="header" ng-repeat="embed in model.value">
             <div ng-bind-html-unsafe="embed"></div>
             <div>
