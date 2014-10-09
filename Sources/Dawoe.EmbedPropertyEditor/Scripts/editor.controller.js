@@ -19,4 +19,11 @@
     $scope.RemoveEmbed = function (index) {
         $scope.model.value.splice(index,1);
     }
+
+    //defines the options for the jquery sortable    
+    $scope.sortableOptions = {
+        axis: 'y',
+        cursor: "move",
+        handle: ".handle"       
+    };
 });

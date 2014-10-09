@@ -1,11 +1,14 @@
 ﻿<div ng-controller="Dawoe.EmbedPropertyEditor.Editor">
-    <div ng-repeat="embed in model.value">
-        <div ng-bind-html-unsafe="embed"></div>
-        <div>
-            <i class="icon icon-delete red"></i>
-            <a href="#" ng-click="RemoveEmbed($index)" prevent-default="">
-                <localize key="general_delete" class="ng-isolate-scope ng-scope">Remove</localize>
-            </a>
+    <div ui-sortable="sortableOptions" ng-model="model.value">
+        <div class="header" ng-repeat="embed in model.value">
+            <div ng-bind-html-unsafe="embed"></div>
+            <div>
+                <i class="icon icon-navigation handle"></i>
+                <i class="icon icon-delete red"></i>
+                <a href="#" ng-click="RemoveEmbed($index)" prevent-default="">
+                    <localize key="general_delete" class="ng-isolate-scope ng-scope">Remove</localize>
+                </a>
+            </div>
         </div>
     </div>
     <div ng-show="model.value.length == 0 || model.config.allowmultiple == '1'">
