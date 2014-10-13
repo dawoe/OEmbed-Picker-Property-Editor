@@ -190,6 +190,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caching\CacheManager.cs" />
     <Compile Include="Controllers\EmbeddedResourceController.cs" />
     <Compile Include="EmbedPrevalueEditor.cs" />
     <Compile Include="EmbedPropertyEditor.cs" />
