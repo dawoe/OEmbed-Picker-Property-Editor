@@ -44,6 +44,17 @@
         }
 
         /// <summary>
+        /// Removes a entry from the cache
+        /// </summary>
+        /// <param name="key">
+        /// The key.
+        /// </param>
+        public static void Remove(string key)
+        {
+            HttpContext.Current.Cache.Remove(key);
+        }
+
+        /// <summary>
         /// Sets a item in the cache
         /// </summary>
         /// <param name="key">
