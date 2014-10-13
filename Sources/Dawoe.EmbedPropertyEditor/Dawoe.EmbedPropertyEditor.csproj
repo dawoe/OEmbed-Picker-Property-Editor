@@ -194,6 +194,7 @@
     <Compile Include="Controllers\EmbeddedResourceController.cs" />
     <Compile Include="EmbedPrevalueEditor.cs" />
     <Compile Include="EmbedPropertyEditor.cs" />
+    <Compile Include="Events\Caching.cs" />
     <Compile Include="Events\Registration.cs" />
     <Compile Include="Events\RouteConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
