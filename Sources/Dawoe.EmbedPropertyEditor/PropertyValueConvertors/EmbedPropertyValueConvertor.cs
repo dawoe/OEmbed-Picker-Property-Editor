@@ -5,6 +5,8 @@
     using System.Linq;
     using System.Web.Mvc;
 
+    using Dawoe.EmbedPropertyEditor.Caching;
+
     using Newtonsoft.Json;
 
     using Umbraco.Core;
@@ -156,13 +158,21 @@
         /// </returns>
         private bool IsMultipleDataType(int dataTypeId)
         {
-            var dts = ApplicationContext.Current.Services.DataTypeService;
-            var allowMultiplePrevalue =
-                dts.GetPreValuesCollectionByDataTypeId(dataTypeId)
-                    .PreValuesAsDictionary.FirstOrDefault(
-                        x => string.Equals(x.Key, "allowmultiple", StringComparison.InvariantCultureIgnoreCase)).Value;
 
-            return allowMultiplePrevalue != null && allowMultiplePrevalue.Value.TryConvertTo<bool>().Result;
+            return
+                CacheManager.GetOrExecute<bool>(
+                    string.Format("Dawoe.EmbedPropertyEditor.AllowMultiple_{0}", dataTypeId),
+                    () =>
+                        {
+                            var dts = ApplicationContext.Current.Services.DataTypeService;
+                            var allowMultiplePrevalue =
+                                dts.GetPreValuesCollectionByDataTypeId(dataTypeId)
+                                    .PreValuesAsDictionary.FirstOrDefault(
+                                        x => string.Equals(x.Key, "allowmultiple", StringComparison.InvariantCultureIgnoreCase)).Value;
+
+                            return allowMultiplePrevalue != null
+                                   && allowMultiplePrevalue.Value.TryConvertTo<bool>().Result;
+                        });
         }
     }
 }
