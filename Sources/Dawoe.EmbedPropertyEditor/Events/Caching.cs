@@ -21,7 +21,13 @@
         public static void RemoveFromDatatypesFromCache(IEnumerable<IDataTypeDefinition> entities)
         {
             entities.ForEach(
-                x => CacheManager.Remove(string.Format("Dawoe.EmbedPropertyEditor.AllowMultiple_{0}", x.Id)));
+                x =>
+                    {
+                        if (x.PropertyEditorAlias == "Dawoe.EmbedPropertyEditor")
+                        {
+                            CacheManager.Remove(string.Format("Dawoe.EmbedPropertyEditor.AllowMultiple_{0}", x.Id));
+                        }
+                    });
         }
     }
 }

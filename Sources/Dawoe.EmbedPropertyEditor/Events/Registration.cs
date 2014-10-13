@@ -36,7 +36,7 @@
         /// The e.
         /// </param>
         protected void DataTypeServiceDeleted(IDataTypeService sender, Umbraco.Core.Events.DeleteEventArgs<Umbraco.Core.Models.IDataTypeDefinition> e)
-        {
+        {            
             Caching.RemoveFromDatatypesFromCache(e.DeletedEntities);
         }
 
