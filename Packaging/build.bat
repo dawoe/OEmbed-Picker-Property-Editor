@@ -1,0 +1,1 @@
+Call ..\Sources\Dawoe.EmbedPropertyEditor\.nuget\Nuget.exe restore ..\Sources\Dawoe.EmbedPropertyEditor\Dawoe.EmbedPropertyEditor.sln
