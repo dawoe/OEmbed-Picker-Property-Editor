@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+	<info>
+		<package>
+			<name>Embed Picker Property Editor</name>
+			<version>0.0.0</version>
+			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+			<url>http://our.umbraco.org/projects/developer-tools/umbraco-core-property-value-converters</url>
+			<requirements>
+				<major>0</major>
+				<minor>0</minor>
+				<patch>0</patch>
+			</requirements>
+		</package>
+		<author>
+			<name>Dave Woestenborghs</name>
+			<website>https://bitbucket.org/dawoe/embed-property-editor</website>
+		</author>
+		<readme>
+      <![CDATA[
+		Visit https://bitbucket.org/dawoe/embed-property-editor for information on how to use this package
+		]]></readme>
+	</info>
+
+	<DocumentTypes />
+	<Templates />
+	<Stylesheets />
+	<Macros />
+	<DictionaryItems />
+	<Languages />
+	<DataTypes />
+
+	<Actions/>
+	
+	<control />
+
+	<files />
+
+</umbPackage>
