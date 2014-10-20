@@ -65,12 +65,12 @@
 	<Target Name="PrepairFiles" DependsOnTargets="Compile">
 		<ItemGroup>
 			<BinFiles Include="$(CoreProjectDir)\Bin\Release\Dawoe.EmbedPropertyEditor.dll" />
-			<!--<PackageFile Include="$(MSBuildProjectDirectory)\Package.xml" />
-			<NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />-->
+			<PackageFile Include="$(MSBuildProjectDirectory)\Package.xml" />
+			<!--<NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />-->
 		</ItemGroup>
 		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
-		<!--<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
-		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
+		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
+		<!--<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
 		<Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />-->
   </Target>
 </Project>
