@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Compile">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="PrepairFiles">
 	
 	<!-- IMPORTS -->
 	<PropertyGroup>
@@ -60,4 +60,17 @@
 	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
 		<MSBuild Projects="@(ProjectToBuild)" />
 	</Target>
+	
+	<!-- PREPARE FILES -->
+	<Target Name="PrepairFiles" DependsOnTargets="Compile">
+		<ItemGroup>
+			<BinFiles Include="$(CoreProjectDir)\Bin\Release\Dawoe.EmbedPropertyEditor.dll" />
+			<!--<PackageFile Include="$(MSBuildProjectDirectory)\Package.xml" />
+			<NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />-->
+		</ItemGroup>
+		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
+		<!--<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
+		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
+		<Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />-->
+  </Target>
 </Project>
