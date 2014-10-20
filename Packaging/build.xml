@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Clean">
+	<PropertyGroup>
+		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
+		<BuildDir>$(MSBuildProjectDirectory)\Build</BuildDir>
+		<PackageDir>$(MSBuildProjectDirectory)\Package</PackageDir>
+		<BuildNuGetDir>$(MSBuildProjectDirectory)\NugetBuild</BuildNuGetDir>
+		<CoreProjectDir>$(RootDir)\Sources\Dawoe.EmbedPropertyEditor</CoreProjectDir>
+	</PropertyGroup>
+	
+	<!-- CLEAN -->
+	<Target Name="Clean">
+		<RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
+		<RemoveDir Directories="$(PackageDir)" Condition="Exists('$(PackageDir)')" />
+		<MakeDir Directories="$(BuildDir)" />
+		<MakeDir Directories="$(PackageDir)" />
+		<MakeDir Directories="$(BuildNuGetDir)" />
+	</Target>
+</Project>
