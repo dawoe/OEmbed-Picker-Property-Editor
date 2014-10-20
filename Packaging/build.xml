@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="UpdateAssemblyInfo">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Compile">
 	
 	<!-- IMPORTS -->
 	<PropertyGroup>
@@ -28,6 +28,12 @@
 		<UmbracoVersion>7.1.0</UmbracoVersion>
 	</PropertyGroup>
 	
+	<ItemGroup>
+		<ProjectToBuild Include="$(CoreProjectDir)\Dawoe.EmbedPropertyEditor.csproj" >
+			<Properties>Configuration=Release</Properties>
+		</ProjectToBuild>
+	</ItemGroup>
+	
 	<!-- CLEAN -->
 	<Target Name="Clean">
 		<RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
@@ -48,5 +54,10 @@
 			AssemblyVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)"
 			AssemblyFileVersion="$(VersionMajor).$(VersionMinor).$(Build).$(Revision)"
 			AssemblyInformationalVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"/>
+	</Target>
+	
+	<!-- COMPILE -->
+	<Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
+		<MSBuild Projects="@(ProjectToBuild)" />
 	</Target>
 </Project>
