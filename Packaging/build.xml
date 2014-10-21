@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Manifest">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="ManifestNuGet">
 	
 	<!-- IMPORTS -->
 	<PropertyGroup>
@@ -75,7 +75,7 @@
   </Target>
   
   <!-- MANIFEST -->
-	<Target Name="Manifest" DependsOnTargets="PrepairFiles">
+	<Target Name="ManifestUmbraco" DependsOnTargets="PrepairFiles">
 		<ItemGroup>
 			<ManifestFiles Include="$(BuildDir)\**\*" Exclude="$(BuildDir)\Package.xml" />
 		</ItemGroup>
@@ -85,4 +85,18 @@
 			PackageVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
 			Files="@(ManifestFiles)" />
 	</Target>
+	
+	<!-- MANIFEST FOR NUGET PACKAGE -->
+  <Target Name="ManifestNuGet" DependsOnTargets="ManifestUmbraco">
+    <ItemGroup>
+      <ManifestFiles Include="$(BuildNuGetDir)\**\*" Exclude="$(BuildNuGetDir)\package.nuspec" />
+    </ItemGroup>
+    <MSBuild.NuGet.Tasks.ManifestUpdate
+				ManifestFile="$(BuildNuGetDir)\package.nuspec"
+				WorkingDirectory="$(BuildNuGetDir)"
+        Title="$(ProjectName)"
+        Description="@(Readme->'%(Identity)', '%0a%0d')"
+				Version="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
+				Files="@(ManifestFiles)" />
+  </Target>
 </Project>
