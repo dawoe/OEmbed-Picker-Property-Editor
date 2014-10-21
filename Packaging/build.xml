@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="PrepairFiles">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Manifest">
 	
 	<!-- IMPORTS -->
 	<PropertyGroup>
@@ -73,4 +73,16 @@
 		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
 		<Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />
   </Target>
+  
+  <!-- MANIFEST -->
+	<Target Name="Manifest" DependsOnTargets="PrepairFiles">
+		<ItemGroup>
+			<ManifestFiles Include="$(BuildDir)\**\*" Exclude="$(BuildDir)\Package.xml" />
+		</ItemGroup>
+		<ManifestUpdate ManifestFile="$(BuildDir)\package.xml"
+			WorkingDirectory="$(BuildDir)"
+			MinimumRequiredUmbracoVersion="$(UmbracoVersion)"
+			PackageVersion="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
+			Files="@(ManifestFiles)" />
+	</Target>
 </Project>
