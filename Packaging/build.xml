@@ -45,7 +45,7 @@
 	
 	<!-- UPDATE ASSEMBLEY VERSION -->
 	<Target Name="UpdateAssemblyInfo" DependsOnTargets="Clean">
-		<Version Major="$(VersionMajor)" Minor="$(VersionMinor)" BuildType="Automatic" RevisionType="Automatic" StartDate="20/10/2014">
+		<Version Major="$(VersionMajor)" Minor="$(VersionMinor)" BuildType="None" RevisionType="Automatic" StartDate="20/10/2014">
 			<Output TaskParameter="Build" PropertyName="Build" />
 			<Output TaskParameter="Revision" PropertyName="Revision" />
 		</Version>
@@ -66,11 +66,11 @@
 		<ItemGroup>
 			<BinFiles Include="$(CoreProjectDir)\Bin\Release\Dawoe.EmbedPropertyEditor.dll" />
 			<PackageFile Include="$(MSBuildProjectDirectory)\Package.xml" />
-			<!--<NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />-->
+			<NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />
 		</ItemGroup>
 		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildDir)\bin" />
 		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildDir)" />
-		<!--<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
-		<Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />-->
+		<Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
+		<Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />
   </Target>
 </Project>
