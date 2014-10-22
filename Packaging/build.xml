@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="ManifestNuGet">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Package">
 	
 	<!-- IMPORTS -->
 	<PropertyGroup>
@@ -98,5 +98,26 @@
         Description="@(Readme->'%(Identity)', '%0a%0d')"
 				Version="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
 				Files="@(ManifestFiles)" />
+  </Target>
+  
+  <!-- PACKAGE -->
+	<Target Name="Package" DependsOnTargets="ManifestNuGet">
+		<ItemGroup>
+			<PackageFiles Include="$(BuildDir)\**\*.*" />
+		</ItemGroup>
+		<Package ManifestFile="$(BuildDir)\Package.xml"
+			WorkingDirectory="$(BuildDir)"
+			OutputDirectory="$(PackageDir)"
+			Files="@(PackageFiles)" />
+
+    <MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\Sources\Dawoe.EmbedPropertyEditor\.nuget\Nuget.exe"
+          ManifestFile="$(BuildNuGetDir)\package.nuspec"
+          BasePath="$(BuildNuGetDir)"
+          Version="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
+          OutputDirectory="$(PackageDir)" />    
+    
+		<RemoveDir Directories="$(BuildDir)" Condition="Exists('$(BuildDir)')" />
+    <RemoveDir Directories="$(BuildNuGetDir)" Condition="Exists('$(BuildNuGetDir)')" />
+
   </Target>
 </Project>
