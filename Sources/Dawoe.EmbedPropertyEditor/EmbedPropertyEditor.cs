@@ -11,6 +11,7 @@
     [PropertyEditor("Dawoe.EmbedPropertyEditor", "Embed Picker",
         "/App_Plugins/DawoeEmbedPropertyEditor/Resource/editor.html", HideLabel = false, IsParameterEditor = false)]
     [PropertyEditorAsset(ClientDependencyType.Javascript, "/App_Plugins/DawoeEmbedPropertyEditor/Resource/editor.controller.js")]
+    [PropertyEditorAsset(ClientDependencyType.Css, "/App_Plugins/DawoeEmbedPropertyEditor/Resource/styles.css")]
     public class EmbedPropertyEditor : PropertyEditor
     {
         /// <summary>

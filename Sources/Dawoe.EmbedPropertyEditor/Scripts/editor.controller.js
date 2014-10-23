@@ -24,6 +24,6 @@
     $scope.sortableOptions = {
         axis: 'y',
         cursor: "move",
-        handle: ".handle"       
+        handle: ".sorthandle"       
     };
 });
