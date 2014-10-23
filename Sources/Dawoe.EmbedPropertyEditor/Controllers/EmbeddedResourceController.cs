@@ -50,7 +50,7 @@
 
             if (filename.EndsWith(".css"))
             {
-                return "text/stylesheet";
+                return "text/css";
             }
 
             return "text";
