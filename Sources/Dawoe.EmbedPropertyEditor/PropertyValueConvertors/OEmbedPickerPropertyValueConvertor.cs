@@ -1,23 +1,22 @@
-﻿namespace Dawoe.EmbedPropertyEditor.PropertyValueConvertors
+﻿namespace Dawoe.OEmbedPickerPropertyEditor.PropertyValueConvertors
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
 
-    using Dawoe.EmbedPropertyEditor.Caching;
+    using Dawoe.OEmbedPickerPropertyEditor.Caching;
 
     using Newtonsoft.Json;
 
     using Umbraco.Core;
-    using Umbraco.Core.Models;
     using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;
 
     /// <summary>
     /// The embed property value convertor.
     /// </summary>    
-    public class EmbedPropertyValueConvertor : PropertyValueConverterBase
+    public class OEmbedPickerPropertyValueConvertor : PropertyValueConverterBase
     {
         /// <summary>
         /// Checks if this is a convertor for the propety

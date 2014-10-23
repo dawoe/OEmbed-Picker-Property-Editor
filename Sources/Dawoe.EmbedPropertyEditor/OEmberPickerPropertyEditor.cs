@@ -1,4 +1,4 @@
-﻿namespace Dawoe.EmbedPropertyEditor
+﻿namespace Dawoe.OEmbedPickerPropertyEditor
 {
     using ClientDependency.Core;
 
@@ -8,11 +8,11 @@
     /// <summary>
     /// The embed property editor.
     /// </summary>
-    [PropertyEditor("Dawoe.EmbedPropertyEditor", "Embed Picker",
+    [PropertyEditor("Dawoe.EmbedPropertyEditor", "OEmbed Picker",
         "/App_Plugins/DawoeEmbedPropertyEditor/Resource/editor.html", HideLabel = false, IsParameterEditor = false)]
     [PropertyEditorAsset(ClientDependencyType.Javascript, "/App_Plugins/DawoeEmbedPropertyEditor/Resource/editor.controller.js")]
     [PropertyEditorAsset(ClientDependencyType.Css, "/App_Plugins/DawoeEmbedPropertyEditor/Resource/styles.css")]
-    public class EmbedPropertyEditor : PropertyEditor
+    public class OEmberPickerPropertyEditor : PropertyEditor
     {
         /// <summary>
         /// Set the prevalue editor
@@ -22,7 +22,7 @@
         /// </returns>
         protected override PreValueEditor CreatePreValueEditor()
         {
-            return new EmbedPrevalueEditor();
+            return new OEmbedPickerPrevalueEditor();
         }
     }
 }

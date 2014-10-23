@@ -1,11 +1,11 @@
-﻿namespace Dawoe.EmbedPropertyEditor
+﻿namespace Dawoe.OEmbedPickerPropertyEditor
 {
     using Umbraco.Core.PropertyEditors;
 
     /// <summary>
     /// The embed prevalue editor.
     /// </summary>
-    internal class EmbedPrevalueEditor : PreValueEditor
+    internal class OEmbedPickerPrevalueEditor : PreValueEditor
     {
         /// <summary>
         /// Gets or sets a value indicating whether allow multiple.

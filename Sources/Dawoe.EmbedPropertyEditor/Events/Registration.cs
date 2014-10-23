@@ -1,4 +1,4 @@
-﻿namespace Dawoe.EmbedPropertyEditor.Events
+﻿namespace Dawoe.OEmbedPickerPropertyEditor.Events
 {
     using System.Web.Routing;
 

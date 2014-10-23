@@ -1,4 +1,4 @@
-﻿namespace Dawoe.EmbedPropertyEditor.Controllers
+﻿namespace Dawoe.OEmbedPickerPropertyEditor.Controllers
 {
     using System.Linq;
     using System.Reflection;

@@ -1,4 +1,4 @@
-﻿namespace Dawoe.EmbedPropertyEditor.Caching
+﻿namespace Dawoe.OEmbedPickerPropertyEditor.Caching
 {
     using System;
     using System.Web;

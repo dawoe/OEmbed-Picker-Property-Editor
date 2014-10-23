@@ -1,8 +1,8 @@
-﻿namespace Dawoe.EmbedPropertyEditor.Events
+﻿namespace Dawoe.OEmbedPickerPropertyEditor.Events
 {
     using System.Collections.Generic;
 
-    using Dawoe.EmbedPropertyEditor.Caching;
+    using Dawoe.OEmbedPickerPropertyEditor.Caching;
 
     using Umbraco.Core;
     using Umbraco.Core.Models;
