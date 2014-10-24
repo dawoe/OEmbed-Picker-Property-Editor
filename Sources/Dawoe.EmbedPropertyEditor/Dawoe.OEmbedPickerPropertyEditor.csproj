@@ -191,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Caching\CacheManager.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Controllers\EmbeddedResourceController.cs" />
     <Compile Include="OEmbedPickerPrevalueEditor.cs" />
     <Compile Include="OEmberPickerPropertyEditor.cs" />
@@ -213,9 +214,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Css\styles.css" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Constants\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -17,7 +17,7 @@
         /// </param>
         /// <returns>
         /// The <see cref="FileStreamResult"/>.
-        /// </returns>
+        /// </returns>       
         public FileStreamResult Resource(string filename)
         {
             var resourceName = Assembly.GetExecutingAssembly().GetManifestResourceNames().ToList().FirstOrDefault(f => f.EndsWith(filename));

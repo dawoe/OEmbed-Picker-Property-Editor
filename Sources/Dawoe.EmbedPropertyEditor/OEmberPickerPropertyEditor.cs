@@ -8,10 +8,11 @@
     /// <summary>
     /// The embed property editor.
     /// </summary>
-    [PropertyEditor("Dawoe.EmbedPropertyEditor", "OEmbed Picker",
-        "/App_Plugins/DawoeEmbedPropertyEditor/Resource/editor.html", HideLabel = false, IsParameterEditor = false)]
-    [PropertyEditorAsset(ClientDependencyType.Javascript, "/App_Plugins/DawoeEmbedPropertyEditor/Resource/editor.controller.js")]
-    [PropertyEditorAsset(ClientDependencyType.Css, "/App_Plugins/DawoeEmbedPropertyEditor/Resource/styles.css")]
+    [PropertyEditor(Constants.PropertyEditorAlias, "OEmbed Picker",
+        "/" + Constants.ResourceFolder + "/Resource/editor.html", HideLabel = false, IsParameterEditor = false)]
+    [PropertyEditorAsset(ClientDependencyType.Javascript,
+       "/" + Constants.ResourceFolder + "/Resource/editor.controller.js")]
+    [PropertyEditorAsset(ClientDependencyType.Css, "/" + Constants.ResourceFolder + "/Resource/styles.css")]
     public class OEmberPickerPropertyEditor : PropertyEditor
     {
         /// <summary>

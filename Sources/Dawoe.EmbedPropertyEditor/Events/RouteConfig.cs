@@ -17,8 +17,8 @@
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.MapRoute(
-                name: "Dawoe.EmbedPropertyEditor",
-                url: "App_Plugins/DawoeEmbedPropertyEditor/{action}/{filename}",
+                name: Constants.PropertyEditorAlias,
+                url: string.Format("{0}/{{action}}/{{filename}}", Constants.ResourceFolder),
                 defaults: new { controller = "EmbeddedResource", action = "Resource", filename = UrlParameter.Optional });
         }
     }

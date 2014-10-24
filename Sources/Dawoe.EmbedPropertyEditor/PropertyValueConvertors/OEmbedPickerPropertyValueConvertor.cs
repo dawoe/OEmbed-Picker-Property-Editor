@@ -13,6 +13,8 @@
     using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;
 
+    using Constants = Dawoe.OEmbedPickerPropertyEditor.Constants;
+
     /// <summary>
     /// The embed property value convertor.
     /// </summary>    
@@ -29,7 +31,7 @@
         /// </returns>
         public override bool IsConverter(PublishedPropertyType propertyType)
         {
-            return propertyType.PropertyEditorAlias.Equals("Dawoe.EmbedPropertyEditor");
+            return propertyType.PropertyEditorAlias.Equals(Constants.PropertyEditorAlias);
         }
 
         /// <summary>
@@ -160,14 +162,14 @@
 
             return
                 CacheManager.GetOrExecute<bool>(
-                    string.Format("Dawoe.EmbedPropertyEditor.AllowMultiple_{0}", dataTypeId),
+                    string.Format(Constants.DataTypeCacheKey, dataTypeId),
                     () =>
                         {
                             var dts = ApplicationContext.Current.Services.DataTypeService;
                             var allowMultiplePrevalue =
                                 dts.GetPreValuesCollectionByDataTypeId(dataTypeId)
                                     .PreValuesAsDictionary.FirstOrDefault(
-                                        x => string.Equals(x.Key, "allowmultiple", StringComparison.InvariantCultureIgnoreCase)).Value;
+                                        x => string.Equals(x.Key, Constants.AllowMultiplePrevalue, StringComparison.InvariantCultureIgnoreCase)).Value;
 
                             return allowMultiplePrevalue != null
                                    && allowMultiplePrevalue.Value.TryConvertTo<bool>().Result;

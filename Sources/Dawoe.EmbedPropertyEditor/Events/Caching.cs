@@ -7,6 +7,8 @@
     using Umbraco.Core;
     using Umbraco.Core.Models;
 
+    using Constants = Dawoe.OEmbedPickerPropertyEditor.Constants;
+
     /// <summary>
     /// Caching events
     /// </summary>
@@ -23,7 +25,7 @@
             entities.ForEach(
                 x =>
                     {
-                        if (x.PropertyEditorAlias == "Dawoe.EmbedPropertyEditor")
+                        if (x.PropertyEditorAlias == Constants.PropertyEditorAlias)
                         {
                             CacheManager.Remove(string.Format("Dawoe.EmbedPropertyEditor.AllowMultiple_{0}", x.Id));
                         }
