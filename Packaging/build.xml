@@ -17,7 +17,7 @@
 		<BuildDir>$(MSBuildProjectDirectory)\Build</BuildDir>
 		<PackageDir>$(MSBuildProjectDirectory)\Package</PackageDir>
 		<BuildNuGetDir>$(MSBuildProjectDirectory)\NugetBuild</BuildNuGetDir>
-		<CoreProjectDir>$(RootDir)\Sources\Dawoe.EmbedPropertyEditor</CoreProjectDir>
+		<CoreProjectDir>$(RootDir)\Sources\Dawoe.OEmbedPickerPropertyEditor</CoreProjectDir>
 	</PropertyGroup>
 	
 	<PropertyGroup>
@@ -29,7 +29,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<ProjectToBuild Include="$(CoreProjectDir)\Dawoe.EmbedPropertyEditor.csproj" >
+		<ProjectToBuild Include="$(CoreProjectDir)\Dawoe.OEmbedPickerPropertyEditor.csproj" >
 			<Properties>Configuration=Release</Properties>
 		</ProjectToBuild>
 	</ItemGroup>
@@ -64,7 +64,7 @@
 	<!-- PREPARE FILES -->
 	<Target Name="PrepairFiles" DependsOnTargets="Compile">
 		<ItemGroup>
-			<BinFiles Include="$(CoreProjectDir)\Bin\Release\Dawoe.EmbedPropertyEditor.dll" />
+			<BinFiles Include="$(CoreProjectDir)\Bin\Release\Dawoe.OEmbedPickerPropertyEditor.dll" />
 			<PackageFile Include="$(MSBuildProjectDirectory)\Package.xml" />
 			<NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />
 		</ItemGroup>
@@ -110,7 +110,7 @@
 			OutputDirectory="$(PackageDir)"
 			Files="@(PackageFiles)" />
 
-    <MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\Sources\Dawoe.EmbedPropertyEditor\.nuget\Nuget.exe"
+    <MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\Sources\Dawoe.OEmbedPickerPropertyEditor\.nuget\Nuget.exe"
           ManifestFile="$(BuildNuGetDir)\package.nuspec"
           BasePath="$(BuildNuGetDir)"
           Version="$(VersionMajor).$(VersionMinor).$(VersionPatch)$(VersionSuffix)"
