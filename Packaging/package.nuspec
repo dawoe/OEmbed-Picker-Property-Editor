@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>Dawoe.EmbedPropertyEditor</id>
+        <id>Dawoe.OEmbedPickerPropertyEditor</id>
         <version>0.0.0</version>
-        <title>Embed picker property editor for Umbraco</title>
+        <title>OEmbed picker property editor for Umbraco</title>
         <authors>Dave Woestenborghs</authors>
         <owners>Dave Woestenborghs</owners>
         <projectUrl>https://bitbucket.org/dawoe/embed-property-editor</projectUrl>

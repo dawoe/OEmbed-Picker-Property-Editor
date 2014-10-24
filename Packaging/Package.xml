@@ -2,7 +2,7 @@
 <umbPackage>
 	<info>
 		<package>
-			<name>Embed Picker Property Editor</name>
+			<name>OEmbed Picker Property Editor</name>
 			<version>0.0.0</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
 			<url>http://our.umbraco.org/projects/developer-tools/umbraco-core-property-value-converters</url>

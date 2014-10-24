@@ -1,0 +1,20 @@
+﻿<div ng-controller="Dawoe.OEmbedPickerPropertyEditor.Editor">
+    <div ui-sortable="sortableOptions" ng-model="model.value">
+        <div class="embedrow" ng-repeat="embed in model.value">
+            <div ng-bind-html-unsafe="embed"></div>
+            <div>
+                <i class="icon icon-navigation black sorthandle" ng-show="model.config.allowmultiple == '1'"></i>
+                <i class="icon icon-delete red"></i>
+                <a href="#" ng-click="RemoveEmbed($index)" prevent-default="">
+                    <localize key="general_delete" class="ng-isolate-scope ng-scope">Remove</localize>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div ng-show="model.value.length == 0 || model.config.allowmultiple == '1'">
+        <i class="icon icon-add blue"></i>
+        <a href="#" ng-click="AddEmbed()" prevent-default="">
+            <localize key="general_add" class="ng-isolate-scope ng-scope">Add</localize>
+        </a>
+    </div>
+</div>
