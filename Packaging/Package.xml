@@ -5,7 +5,7 @@
 			<name>OEmbed Picker Property Editor</name>
 			<version>0.0.0</version>
 			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
-			<url>http://our.umbraco.org/projects/developer-tools/umbraco-core-property-value-converters</url>
+			<url>http://our.umbraco.org/projects/backoffice-extensions/oembed-picker-property-editor</url>
 			<requirements>
 				<major>0</major>
 				<minor>0</minor>
