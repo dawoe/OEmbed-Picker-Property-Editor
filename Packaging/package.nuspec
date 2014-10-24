@@ -7,7 +7,7 @@
         <authors>Dave Woestenborghs</authors>
         <owners>Dave Woestenborghs</owners>
         <projectUrl>https://bitbucket.org/dawoe/embed-property-editor</projectUrl>
-        <iconUrl>https://raw.githubusercontent.com/Jeavon/Umbraco-Core-Property-Value-Converters/master/PropertyValueConverters.png</iconUrl>
+        <iconUrl>https://dl.dropboxusercontent.com/u/23512436/embed-property-editor/icon.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>This package implements a property editor that allows you to easily insert items that support the oEmbed protocol</description>
         <summary>This package implements a property editor that allows you to easily insert items that support the oEmbed protocol</summary>
