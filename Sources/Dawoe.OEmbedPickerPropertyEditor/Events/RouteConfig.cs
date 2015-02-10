@@ -19,7 +19,11 @@
             routes.MapRoute(
                 name: Constants.PropertyEditorAlias,
                 url: string.Format("{0}/{{action}}/{{filename}}", Constants.ResourceFolder),
-                defaults: new { controller = "EmbeddedResource", action = "Resource", filename = UrlParameter.Optional });
+                defaults: new
+                              {
+                                  controller = "EmbeddedResource", action = "Resource", filename = UrlParameter.Optional,
+                              },
+                namespaces: new[] { "Dawoe.OEmbedPickerPropertyEditor.Controllers" });
         }
     }
 }
