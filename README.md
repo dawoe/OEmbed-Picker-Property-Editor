@@ -35,6 +35,9 @@ For multiple embeds :
 ### 1.0.0
 - Initial release
 
+### 1.0.1
+- Fix issue #1: Conflict with nuPickers
+
 ## Contact
 
 Feel free to contact me on twitter : @dawoe21
