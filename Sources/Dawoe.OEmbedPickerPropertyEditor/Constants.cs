@@ -28,7 +28,7 @@
         /// <summary>
         /// The plugin root path.
         /// </summary>
-        internal const string PluginPath = "/App_Plugins/Dawoe.LinkIntegrityChecker";       
+        internal const string PluginPath = "/App_Plugins/Dawoe.OEmbedPickerPropertyEditor";       
 
         /// <summary>
         /// The version path.
