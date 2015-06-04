@@ -63,6 +63,6 @@
         /// <summary>
         /// The version folder path
         /// </summary>
-        private const string Version = "/1_0_1";
+        private const string Version = "/2_0_0";
     }
 }

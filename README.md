@@ -32,11 +32,16 @@ For multiple embeds :
 
 ## Changelog
 
-### 1.0.0
-- Initial release
+### 2.0.0
+- Remove serving of clientside resources through handler. Now files are extracted on first run after installing.
 
 ### 1.0.1
 - Fix issue #1: Conflict with nuPickers
+
+### 1.0.0
+- Initial release
+
+
 
 ## Contact
 
