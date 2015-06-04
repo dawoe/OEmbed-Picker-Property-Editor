@@ -22,6 +22,8 @@
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            var clientSetup = new ClientSetup();
+            clientSetup.Configure();            
             DataTypeService.Saved += this.DataTypeServiceSaved;
             DataTypeService.Deleted += this.DataTypeServiceDeleted;
         }

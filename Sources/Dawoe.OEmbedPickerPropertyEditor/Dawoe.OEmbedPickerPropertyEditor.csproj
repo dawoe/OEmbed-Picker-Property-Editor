@@ -193,6 +193,7 @@
     <Compile Include="Caching\CacheManager.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\EmbeddedResourceController.cs" />
+    <Compile Include="Events\ClientSetup.cs" />
     <Compile Include="OEmbedPickerPrevalueEditor.cs" />
     <Compile Include="OEmberPickerPropertyEditor.cs" />
     <Compile Include="Events\Caching.cs" />
