@@ -24,5 +24,40 @@
         /// The resource folder.
         /// </summary>
         public const string ResourceFolder = "App_Plugins/DawoeOEmbedPickerPropertyEditor";
+
+        /// <summary>
+        /// The plugin root path.
+        /// </summary>
+        internal const string PluginPath = "/App_Plugins/Dawoe.LinkIntegrityChecker";       
+
+        /// <summary>
+        /// The version path.
+        /// </summary>
+        internal const string VersionPath = PluginPath + Version;
+
+        /// <summary>
+        /// The controller path.
+        /// </summary>
+        internal const string ControllerPath = VersionPath + "/controller.js";
+
+        /// <summary>
+        /// The view path.
+        /// </summary>
+        internal const string ViewPath = VersionPath + "/view.html";
+
+        /// <summary>
+        /// The namespace for client scripts the embedded resources can be found in
+        /// </summary>
+        internal const string ClientScriptsNameSpace = "Dawoe.OEmbedPickerPropertyEditor.Scripts";
+
+        /// <summary>
+        /// The namespace for client views the embedded resources can be found in
+        /// </summary>
+        internal const string ClientViewsNameSpace = "Dawoe.OEmbedPickerPropertyEditor.Views";
+
+        /// <summary>
+        /// The version folder path
+        /// </summary>
+        private const string Version = "/1_0_1";
     }
 }
