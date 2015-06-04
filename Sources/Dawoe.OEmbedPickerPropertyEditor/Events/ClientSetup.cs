@@ -26,6 +26,17 @@
         {
             this.SetupScriptFiles();
             this.SetupViewFiles();
+            this.SetupCssFiles();
+        }
+
+        /// <summary>
+        /// Sets up the css files
+        /// </summary>
+        private void SetupCssFiles()
+        {
+            var cssResourceName = string.Concat(Constants.ClientStylesNameSpace, ".styles.css");
+
+            this.ExtractEmbeddedResource(Constants.CssPath, cssResourceName);
         }
 
         /// <summary>

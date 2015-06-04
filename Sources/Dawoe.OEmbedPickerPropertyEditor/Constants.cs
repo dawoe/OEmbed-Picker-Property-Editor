@@ -46,9 +46,19 @@
         internal const string ViewPath = VersionPath + "/view.html";
 
         /// <summary>
+        /// The css path.
+        /// </summary>
+        internal const string CssPath = VersionPath + "/styles.css";
+
+        /// <summary>
         /// The namespace for client scripts the embedded resources can be found in
         /// </summary>
         internal const string ClientScriptsNameSpace = "Dawoe.OEmbedPickerPropertyEditor.Scripts";
+
+        /// <summary>
+        /// The namespace for client styles the embedded resources can be found in
+        /// </summary>
+        internal const string ClientStylesNameSpace = "Dawoe.OEmbedPickerPropertyEditor.Css";
 
         /// <summary>
         /// The namespace for client views the embedded resources can be found in
