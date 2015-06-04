@@ -1,7 +1,5 @@
 ﻿namespace Dawoe.OEmbedPickerPropertyEditor.Events
 {
-    using System.Web.Routing;
-
     using Umbraco.Core;
     using Umbraco.Core.Services;
 
@@ -20,8 +18,9 @@
         /// The application context.
         /// </param>
         protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
-        {
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+        {           
+            var clientSetup = new ClientSetup();
+            clientSetup.Configure();            
             DataTypeService.Saved += this.DataTypeServiceSaved;
             DataTypeService.Deleted += this.DataTypeServiceDeleted;
         }
