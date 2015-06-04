@@ -9,10 +9,10 @@
     /// The embed property editor.
     /// </summary>
     [PropertyEditor(Constants.PropertyEditorAlias, "OEmbed Picker",
-        "/" + Constants.ResourceFolder + "/Resource/editor.html", HideLabel = false, IsParameterEditor = false)]
+        Constants.ViewPath, HideLabel = false, IsParameterEditor = false)]
     [PropertyEditorAsset(ClientDependencyType.Javascript,
-       "/" + Constants.ResourceFolder + "/Resource/editor.controller.js")]
-    [PropertyEditorAsset(ClientDependencyType.Css, "/" + Constants.ResourceFolder + "/Resource/styles.css")]
+       Constants.ControllerPath)]
+    [PropertyEditorAsset(ClientDependencyType.Css, Constants.CssPath)]
     public class OEmberPickerPropertyEditor : PropertyEditor
     {
         /// <summary>
