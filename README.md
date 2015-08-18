@@ -32,6 +32,9 @@ For multiple embeds :
 
 ## Changelog
 
+### 2.0.1
+- Fix issue #2: Property editor doesn't work when used inside Leblender editor
+
 ### 2.0.0
 - Remove serving of clientside resources through handler. Now files are extracted on first run after installing.
 
