@@ -1,6 +1,6 @@
 ﻿angular.module('umbraco').controller('Dawoe.OEmbedPickerPropertyEditor.Editor', function ($scope, dialogService, notificationsService) {
 
-    if ($scope.model.value === undefined || $scope.model.value === '') {
+    if ($scope.model.value === undefined || $scope.model.value === '' || $scope.model.value == null) {
         $scope.model.value = [];
     }
 
