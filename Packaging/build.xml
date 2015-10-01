@@ -45,7 +45,7 @@
 	
 	<!-- UPDATE ASSEMBLEY VERSION -->
 	<Target Name="UpdateAssemblyInfo" DependsOnTargets="Clean">
-		<Version Major="$(VersionMajor)" Minor="$(VersionMinor)" BuildType="None" RevisionType="Automatic" StartDate="20/10/2014">
+		<Version Major="$(VersionMajor)" Minor="$(VersionMinor)" BuildType="None" RevisionType="Automatic" StartDate="01/01/2014">
 			<Output TaskParameter="Build" PropertyName="Build" />
 			<Output TaskParameter="Revision" PropertyName="Revision" />
 		</Version>
