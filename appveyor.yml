@@ -1,8 +1,10 @@
 # version format
 version: 2.0.1.{build}
 
-# Do not build on tags
-skip_tags: true
+branches:
+  only:
+  - master
+
 
 
 build_script:
