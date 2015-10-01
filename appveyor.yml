@@ -10,8 +10,8 @@ build_script:
   - build.bat
 
 artifacts:
-  - path: Packaging\Packages\*.nupkg
-  - path: Packaging\Packages\*.zip
+  - path: Packaging\Package\*.nupkg
+  - path: Packaging\Package\*.zip
  
  
 #deploy:
