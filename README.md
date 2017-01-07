@@ -32,6 +32,9 @@ For multiple embeds :
 
 ## Changelog
 
+### 2.0.2
+- Fix issue #3: Mandatory field not working
+
 ### 2.0.1
 - Fix issue #2: Property editor doesn't work when used inside Leblender editor
 
