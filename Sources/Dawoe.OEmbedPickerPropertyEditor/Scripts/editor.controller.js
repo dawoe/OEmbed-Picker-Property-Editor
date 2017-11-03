@@ -13,7 +13,7 @@
                 if (_.indexOf($scope.model.value, data) == -1) {
                     $scope.model.value.push(data);
                 } else {
-                    notificationsService.error('You all ready have selected this item');
+                    notificationsService.error('You have already selected this item');
                 }
             }
         });
