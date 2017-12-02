@@ -32,6 +32,10 @@ For multiple embeds :
 
 ## Changelog
 
+### 2.0.3
+
+- Fix typo
+
 ### 2.0.2
 - Fix issue #3: Mandatory field not working
 
