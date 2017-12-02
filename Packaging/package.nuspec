@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>Dawoe.OEmbedPickerPropertyEditor</id>
-        <version>0.0.0</version>
-        <title>OEmbed picker property editor for Umbraco</title>
-        <authors>Dave Woestenborghs</authors>
-        <owners>Dave Woestenborghs</owners>
-        <projectUrl>https://bitbucket.org/dawoe/embed-property-editor</projectUrl>
-        <iconUrl>https://dl.dropboxusercontent.com/u/23512436/embed-property-editor/icon.png</iconUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>This package implements a property editor that allows you to easily insert items that support the oEmbed protocol</description>
-        <summary>This package implements a property editor that allows you to easily insert items that support the oEmbed protocol</summary>
-        <copyright>Dave Woestenborghs</copyright>
-        <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
-        <language>en-GB</language>
-        <tags>umbraco</tags>
+    <id></id>
+    <version>0.0.0</version>
+    <title></title>
+    <authors></authors>
+    <owners></owners>
+    <projectUrl></projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance></requireLicenseAcceptance>
+    <description></description>
+    <summary></summary>
+    <copyright></copyright>
+    <licenseUrl></licenseUrl>
+    <language></language>
+    <tags></tags>
         <dependencies>
             <dependency id="UmbracoCms.Core" version="7.1.0" />
-        </dependencies>
-    </metadata>    
+        </dependencies>		
+    </metadata>    	
 </package>

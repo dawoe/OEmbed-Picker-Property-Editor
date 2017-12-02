@@ -32,3 +32,5 @@ Sources/Dawoe.EmbedPropertyEditor/App_Data/
 Packaging/NugetBuild/
 Packaging/Package/
 Sources/Dawoe.OEmbedPickerPropertyEditor/.vs/config/applicationhost.config
+artifacts/
+Packaging/UmbracoBuild/
