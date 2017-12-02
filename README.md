@@ -1,5 +1,19 @@
 # OEmbed Picker Property Editor for Umbraco  
 
+[![Build status](https://ci.appveyor.com/api/projects/status/glmu0g4euryf70o1?svg=true)](https://ci.appveyor.com/project/dawoe/oembed-picker-property-editor)
+
+
+
+|NuGet Packages    |Version           |
+|:-----------------|:-----------------|
+|**Release**|[![NuGet download](http://img.shields.io/nuget/v/Dawoe.OEmbedPickerPropertyEditor.svg)](https://www.nuget.org/packages/Dawoe.OEmbedPickerPropertyEditor)
+|**Pre-release**|[![MyGet Pre Release](https://img.shields.io/myget/dawoe-umbraco/vpre/Dawoe.OEmbedPickerPropertyEditor.svg)](https://www.myget.org/feed/dawoe-umbraco/package/nuget/Dawoe.OEmbedPickerPropertyEditor)
+
+|Umbraco Packages  |                  |
+|:-----------------|:-----------------|
+|**Release**|[![Our Umbraco project page](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.org/projects/backoffice-extensions/oembed-picker-property-editor/) 
+|**Pre-release**| [![AppVeyor Artifacts](https://img.shields.io/badge/appveyor-umbraco-orange.svg)](https://ci.appveyor.com/project/dawoe/oembed-picker-property-editor/build/artifacts)
+
 ## Installation
 
 ### Package
@@ -24,13 +38,22 @@ The package comes with a property value convertor for easy use in your views.
 
 For a single embed :
 
-@Model.Content.GetPropertyValue<MvcHtmlString>("yourpropertyalias")
+@Model.Content.GetPropertyValue<IHtmlstring>("yourpropertyalias")
 
 For multiple embeds : 
 
-@Model.Content.GetPropertyValue<List<MvcHtmlString>>("yourpropertyalias")
+@Model.Content.GetPropertyValue<IEnumerable<IHtmlstring>>("yourpropertyalias")
 
 ## Changelog
+
+### 3.0.0
+
+- Better support for modelsbuilder. It now returns IHtmlstring or IEnumerable<IHtmlstring> instead of object when generating models. 
+This is can be a potentially breaking changes because the models will be generated differently.
+
+### 2.0.3
+
+- Fix typo
 
 ### 2.0.2
 - Fix issue #3: Mandatory field not working
