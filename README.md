@@ -38,13 +38,18 @@ The package comes with a property value convertor for easy use in your views.
 
 For a single embed :
 
-@Model.Content.GetPropertyValue<MvcHtmlString>("yourpropertyalias")
+@Model.Content.GetPropertyValue<IHtmlstring>("yourpropertyalias")
 
 For multiple embeds : 
 
-@Model.Content.GetPropertyValue<List<MvcHtmlString>>("yourpropertyalias")
+@Model.Content.GetPropertyValue<IEnumerable<IHtmlstring>>("yourpropertyalias")
 
 ## Changelog
+
+### 3.0.0
+
+- Better support for modelsbuilder. It now returns IHtmlstring or IEnumerable<IHtmlstring> instead of object when generating models. 
+This is can be a potentially breaking changes because the models will be generated differently.
 
 ### 2.0.3
 
