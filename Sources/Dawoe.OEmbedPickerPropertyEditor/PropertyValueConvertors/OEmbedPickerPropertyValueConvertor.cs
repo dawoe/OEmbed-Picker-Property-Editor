@@ -6,8 +6,6 @@
     using System.Web;
     using System.Web.Mvc;
 
-    using Dawoe.OEmbedPickerPropertyEditor.Caching;
-
     using Newtonsoft.Json;
 
     using Umbraco.Core;
