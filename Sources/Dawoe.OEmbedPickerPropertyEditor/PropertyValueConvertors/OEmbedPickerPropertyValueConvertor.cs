@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
 
     using Dawoe.OEmbedPickerPropertyEditor.Caching;
@@ -10,16 +11,41 @@
     using Newtonsoft.Json;
 
     using Umbraco.Core;
+    using Umbraco.Core.Models;
     using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;
+    using Umbraco.Core.Services;
 
     using Constants = Dawoe.OEmbedPickerPropertyEditor.Constants;
 
     /// <summary>
     /// The embed property value convertor.
     /// </summary>    
-    public class OEmbedPickerPropertyValueConvertor : PropertyValueConverterBase
+    public class OEmbedPickerPropertyValueConvertor : PropertyValueConverterBase, IPropertyValueConverterMeta
     {
+        /// <summary>
+        /// The data type service.
+        /// </summary>
+        private readonly IDataTypeService dataTypeService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OEmbedPickerPropertyValueConvertor"/> class.
+        /// </summary>
+        /// <param name="dataTypeService">
+        /// The data type service.
+        /// </param>
+        public OEmbedPickerPropertyValueConvertor(IDataTypeService dataTypeService)
+        {
+            this.dataTypeService = dataTypeService;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OEmbedPickerPropertyValueConvertor"/> class.
+        /// </summary>
+        public OEmbedPickerPropertyValueConvertor() : this(ApplicationContext.Current.Services.DataTypeService)
+        {
+        }
+
         /// <summary>
         /// Checks if this is a convertor for the propety
         /// </summary>
@@ -145,7 +171,7 @@
         /// </returns>
         public Type GetPropertyValueType(PublishedPropertyType propertyType)
         {
-            return this.IsMultipleDataType(propertyType.DataTypeId) ? typeof(IEnumerable<MvcHtmlString>) : typeof(MvcHtmlString);
+            return this.IsMultipleDataType(propertyType.DataTypeId) ? typeof(IEnumerable<IHtmlString>) : typeof(IHtmlString);
         }
 
         /// <summary>
@@ -159,21 +185,19 @@
         /// </returns>
         private bool IsMultipleDataType(int dataTypeId)
         {
+            IDictionary<string, PreValue> preValues = this.dataTypeService
+                .GetPreValuesCollectionByDataTypeId(dataTypeId)
+                .PreValuesAsDictionary;
 
-            return
-                CacheManager.GetOrExecute<bool>(
-                    string.Format(Constants.DataTypeCacheKey, dataTypeId),
-                    () =>
-                        {
-                            var dts = ApplicationContext.Current.Services.DataTypeService;
-                            var allowMultiplePrevalue =
-                                dts.GetPreValuesCollectionByDataTypeId(dataTypeId)
-                                    .PreValuesAsDictionary.FirstOrDefault(
-                                        x => string.Equals(x.Key, Constants.AllowMultiplePrevalue, StringComparison.InvariantCultureIgnoreCase)).Value;
+            PreValue allowMultiplePrevalue = null;
 
-                            return allowMultiplePrevalue != null
-                                   && allowMultiplePrevalue.Value.TryConvertTo<bool>().Result;
-                        });
+            if (preValues.TryGetValue(Constants.AllowMultiplePrevalue, out allowMultiplePrevalue))
+            {
+                var attemptConvertToBool = allowMultiplePrevalue.Value.TryConvertTo<bool>();
+                return attemptConvertToBool.Success && attemptConvertToBool.Result;
+            }
+
+            return false;            
         }
     }
 }
