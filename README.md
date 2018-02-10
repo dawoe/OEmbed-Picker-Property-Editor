@@ -77,3 +77,10 @@ This is can be a potentially breaking changes because the models will be generat
 Feel free to contact me on twitter : @dawoe21
 
 
+## Buy me a beer ##
+
+If you like this package and use it in your website, consider giving me a small donation through paypal.me for maintaining this package.
+
+[![Donate](https://img.shields.io/badge/donate-paypal.me-blue.svg)](https://www.paypal.me/dawoe21)
+
+
