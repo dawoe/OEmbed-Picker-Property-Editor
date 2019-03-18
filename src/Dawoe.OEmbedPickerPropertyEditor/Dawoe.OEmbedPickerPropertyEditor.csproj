@@ -139,8 +139,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="OEmbedPickerConfiguration.cs" />
     <Compile Include="OEmbedPickerConfigurationEditor.cs" />
+    <Compile Include="OEmbedPickerDataEditor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
