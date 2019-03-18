@@ -36,3 +36,4 @@ artifacts/
 Packaging/UmbracoBuild/
 src/.vs/
 src/packages/
+testsites/
