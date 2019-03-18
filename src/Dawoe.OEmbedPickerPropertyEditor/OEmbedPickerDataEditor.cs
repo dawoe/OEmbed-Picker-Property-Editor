@@ -15,11 +15,8 @@
         /// <param name="logger">
         /// The logger.
         /// </param>
-        /// <param name="type">
-        /// The editor type type.
-        /// </param>
-        public OEmbedPickerDataEditor(ILogger logger, EditorType type = EditorType.PropertyValue)
-            : base(logger, type)
+        public OEmbedPickerDataEditor(ILogger logger)
+            : base(logger)
         {
         }
 
