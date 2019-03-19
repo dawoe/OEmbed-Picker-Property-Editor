@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\package.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,10 @@
       <Project>{7fb02755-b331-4068-b2ab-2ad341e08536}</Project>
       <Name>Dawoe.OEmbedPickerPropertyEditor</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\scripts\editor.controller.js" />
+    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\views\editor.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets" Condition="Exists('..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets')" />
