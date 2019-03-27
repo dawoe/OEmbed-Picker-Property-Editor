@@ -1,3 +1,27 @@
 ﻿<div ng-controller="Dawoe.OEmbedPickerEditorController as vm">
+    <div class="umb-table">
+        <div class="umb-table-body">
+            <div class="umb-table-row" ng-repeat="embed in vm.items">
+                <div class="umb-table-cell not-fixed">
+                    <span ng-bind-html="vm.trustHtml(embed.preview)"></span>
+                </div>
+                <div class="umb-table-cell">
+                    Url : {{embed.url}} <br/>
+                    Width : {{embed.width}} <br/>
+                    Height: {{embed.height}} <br/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="embedrow" ng-repeat="embed in vm.items">
+        <div ng-bind-html="embed.trustedPreview"></div>
+        <div>
+            <i class="icon icon-navigation black sorthandle" ng-show="model.config.allowmultiple == '1'"></i>
+            <i class="icon icon-delete red"></i>
+            <a href="#" ng-click="RemoveEmbed($index)" prevent-default="">
+                <localize key="general_delete" class="ng-isolate-scope ng-scope">Remove</localize>
+            </a>
+        </div>
+    </div>-->
     <umb-button action="vm.open()" type="button" button-style="action" label="Add item" add-ellipsis="true"></umb-button>
 </div>
