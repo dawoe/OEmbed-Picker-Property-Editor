@@ -1,7 +1,10 @@
 ﻿<div ng-controller="Dawoe.OEmbedPickerEditorController as vm">
     <div class="umb-table">
-        <div class="umb-table-body">
+        <div class="umb-table-body" ui-sortable="sortableOptions" ng-model="vm.items">
             <div class="umb-table-row" ng-repeat="embed in vm.items">
+                <div class="umb-table-cell">
+                    <i class="icon icon-navigation handle"></i>
+                </div>
                 <div class="umb-table-cell not-fixed">
                     <span ng-bind-html="vm.trustHtml(embed.preview)"></span>
                 </div>

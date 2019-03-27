@@ -32,6 +32,15 @@
         vm.open = openEmbedDialog;
         vm.trustHtml = trustHtml;
 
+        vm.sortableOptions = {
+            axis: 'y',
+            containment: 'parent',
+            cursor: 'move',
+            items: '> .umb-table-row',
+            handle: '.handle',
+            tolerance: 'pointer'
+        };
+
     }
 
     angular.module('umbraco').controller('Dawoe.OEmbedPickerEditorController',
