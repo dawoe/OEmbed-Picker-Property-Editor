@@ -34,9 +34,16 @@
                 (newEmbed) => {
                     vm.items.push(newEmbed);
                 });
-        }        
+        }    
 
-        vm.add = addEmbed;       
+        function removeEmbed(index, evt) {
+            evt.preventDefault();
+
+            vm.items.splice(index, 1);
+        }
+
+        vm.add = addEmbed;
+        vm.remove = removeEmbed;
         vm.trustHtml = trustHtml;
 
         vm.sortableOptions = {
