@@ -13,6 +13,10 @@
                     Width : {{embed.width}} <br/>
                     Height: {{embed.height}} <br/>
                 </div>
+                <div class="umb-table-cell">
+                    <a class="umb-node-preview__action" ng-click="edit(parameter, $event)"><localize key="general_edit">Edit</localize></a>
+                    <a class="umb-node-preview__action umb-node-preview__action--red" ng-click="remove(parameter, $event)"><localize key="general_remove">Remove</localize></a>
+                </div>
             </div>
         </div>
     </div>
