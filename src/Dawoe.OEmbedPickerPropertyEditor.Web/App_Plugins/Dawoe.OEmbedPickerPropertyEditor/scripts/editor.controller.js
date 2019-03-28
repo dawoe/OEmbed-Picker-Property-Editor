@@ -5,31 +5,38 @@
         var vm = this;
 
         vm.items = Array.isArray($scope.model) ? $scope.model : [];
-        
-        function openEmbedDialog() {
-            var editorOptions = {
+
+        function openEmbedDialog(embed, onSubmit) {
+
+            const embedDialog = {
+                embed: _.clone(embed),
                 submit: function (model) {
-                    console.log(model);
-
-                    var item = model.embed;
-
-                    vm.items.push(item);
-
+                    onSubmit(model.embed);
                     editorService.close();
                 },
                 close: function () {
                     editorService.close();
                 }
-            }
+            };
 
-            editorService.embed(editorOptions);
+            editorService.embed(embedDialog);
+
         }
 
         function trustHtml(html) {
             return $sce.trustAsHtml(html);
         }
 
-        vm.open = openEmbedDialog;
+        function addEmbed(evt) {
+            evt.preventDefault();
+
+            openEmbedDialog({},
+                (newEmbed) => {
+                    vm.items.push(newEmbed);
+                });
+        }
+
+        vm.add = addEmbed;
         vm.trustHtml = trustHtml;
 
         vm.sortableOptions = {

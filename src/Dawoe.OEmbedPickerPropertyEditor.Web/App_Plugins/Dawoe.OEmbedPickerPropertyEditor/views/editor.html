@@ -1,7 +1,7 @@
 ﻿<div ng-controller="Dawoe.OEmbedPickerEditorController as vm">
     <div class="umb-table">
         <div class="umb-table-body" ui-sortable="sortableOptions" ng-model="vm.items">
-            <div class="umb-table-row" ng-repeat="embed in vm.items">
+            <div class="umb-table-row" ng-repeat="embed in vm.items track by $index">
                 <div class="umb-table-cell">
                     <i class="icon icon-navigation handle"></i>
                 </div>
@@ -21,5 +21,5 @@
         </div>
     </div>
  
-    <umb-button action="vm.open()" type="button" button-style="action" label="Add item" add-ellipsis="true"></umb-button>
+    <umb-button action="vm.add($event)" type="button" button-style="action" label="Add item" add-ellipsis="true"></umb-button>
 </div>
