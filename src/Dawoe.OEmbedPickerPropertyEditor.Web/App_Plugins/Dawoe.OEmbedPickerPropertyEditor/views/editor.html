@@ -18,5 +18,5 @@
         </div>
     </div>
  
-    <umb-button action="vm.add($event)" type="button" button-style="action" label="Add item" add-ellipsis="true"></umb-button>
+    <umb-button action="vm.add($event)" type="button" button-style="action" label="Add item" add-ellipsis="true" ng-hide="vm.allowMultiple === false && vm.items.length == 1"></umb-button>
 </div>

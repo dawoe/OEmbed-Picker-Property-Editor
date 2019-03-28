@@ -4,6 +4,8 @@
     function EditorController($scope, $sce, editorService) {
         var vm = this;
 
+        vm.allowMultiple = $scope.model.config.allowmultiple;
+
         vm.items = Array.isArray($scope.model) ? $scope.model : [];
 
         function openEmbedDialog(embed, onSubmit) {
