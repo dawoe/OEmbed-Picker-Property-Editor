@@ -34,9 +34,9 @@
                 (newEmbed) => {
                     vm.items.push(newEmbed);
                 });
-        }
+        }        
 
-        vm.add = addEmbed;
+        vm.add = addEmbed;       
         vm.trustHtml = trustHtml;
 
         vm.sortableOptions = {
