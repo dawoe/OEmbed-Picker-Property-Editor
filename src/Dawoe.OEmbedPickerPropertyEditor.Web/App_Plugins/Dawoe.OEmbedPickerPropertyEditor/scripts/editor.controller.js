@@ -6,7 +6,7 @@
 
         vm.allowMultiple = $scope.model.config.allowmultiple;
 
-        vm.items = Array.isArray($scope.model) ? $scope.model : [];
+        vm.items = Array.isArray($scope.model.value) ? $scope.model.value : [];
 
         function openEmbedDialog(embed, onSubmit) {
 
@@ -40,6 +40,7 @@
                         'height': newEmbed.height,
                         'preview' : newEmbed.preview
                     });
+                    updateModelValue();
                 });
         }    
 
@@ -47,6 +48,12 @@
             evt.preventDefault();
 
             vm.items.splice(index, 1);
+
+            updateModelValue();
+        }
+
+        function updateModelValue() {
+            $scope.model.value = vm.items;
         }
 
         vm.add = addEmbed;
