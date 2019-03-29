@@ -34,7 +34,12 @@
 
             openEmbedDialog({},
                 (newEmbed) => {
-                    vm.items.push(newEmbed);
+                    vm.items.push({
+                        'url': newEmbed.url,
+                        'width': newEmbed.width,
+                        'height': newEmbed.height,
+                        'preview' : newEmbed.preview
+                    });
                 });
         }    
 
