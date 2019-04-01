@@ -1,4 +1,4 @@
-﻿namespace Dawoe.OEmbedPickerPropertyEditor
+﻿namespace Dawoe.OEmbedPickerPropertyEditor.Configuration
 {
     using Umbraco.Core.PropertyEditors;
 

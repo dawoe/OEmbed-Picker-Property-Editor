@@ -140,14 +140,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="OEmbedPickerConfiguration.cs" />
-    <Compile Include="OEmbedPickerConfigurationEditor.cs" />
-    <Compile Include="OEmbedPickerDataEditor.cs" />
+    <Compile Include="Configuration\OEmbedPickerConfiguration.cs" />
+    <Compile Include="Configuration\OEmbedPickerConfigurationEditor.cs" />
+    <Compile Include="Configuration\OEmbedPickerDataEditor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets" Condition="Exists('..\packages\Umbraco.SqlServerCE.4.0.0.1\build\Umbraco.SqlServerCE.targets')" />
