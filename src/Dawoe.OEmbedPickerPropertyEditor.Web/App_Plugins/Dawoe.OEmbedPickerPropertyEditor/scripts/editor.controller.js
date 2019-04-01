@@ -54,11 +54,29 @@
 
         function updateModelValue() {
             $scope.model.value = vm.items;
+            if (vm.oembedform && vm.oembedform.itemCount) {
+                vm.oembedform.itemCount.$setViewValue(vm.items.length);
+            }
+        }
+
+        function validate() {
+            var isValid = true;
+
+            if ($scope.model.validation.mandatory && (Array.isArray(vm.items) === false || vm.items.length === 0)) {
+                isValid = false;
+            } 
+
+            return {
+                isValid: isValid,
+                errorMsg: "Value cannot be empty",
+                errorKey: "required"
+            };
         }
 
         vm.add = addEmbed;
         vm.remove = removeEmbed;
         vm.trustHtml = trustHtml;
+        vm.validateMandatory = validate;
 
         vm.sortableOptions = {
             axis: 'y',
@@ -68,7 +86,6 @@
             handle: '.handle',
             tolerance: 'pointer'
         };
-
     }
 
     angular.module('umbraco').controller('Dawoe.OEmbedPickerEditorController',
