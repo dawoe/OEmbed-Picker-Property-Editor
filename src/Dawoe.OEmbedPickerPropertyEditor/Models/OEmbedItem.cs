@@ -2,8 +2,6 @@
 {
     using System.Web;
 
-    using Dawoe.OEmbedPickerPropertyEditor.Serialization;
-
     using Newtonsoft.Json;
 
     /// <summary>
@@ -40,5 +38,11 @@
         /// </summary>
         [JsonProperty(PropertyName = "preview")]
         internal string Preview { get; set; }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return this.Preview;
+        }
     }
 }
