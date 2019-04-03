@@ -2,6 +2,8 @@
 {
     using System.Web;
 
+    using Dawoe.OEmbedPickerPropertyEditor.Serialization;
+
     using Newtonsoft.Json;
 
     /// <summary>
@@ -28,9 +30,15 @@
         public int Height { get; set; }
 
         /// <summary>
+        /// Gets the embed code.
+        /// </summary>
+        [JsonIgnore]
+        public IHtmlString EmbedCode => new HtmlString(this.Preview);
+
+        /// <summary>
         /// Gets or sets the preview.
         /// </summary>
         [JsonProperty(PropertyName = "preview")]
-        public IHtmlString Preview { get; set; }
+        internal string Preview { get; set; }
     }
 }
