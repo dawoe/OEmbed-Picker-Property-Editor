@@ -17,7 +17,6 @@
         <tags></tags>
         <dependencies>
             <dependency id="UmbracoCms.Core" version="8.0.0" />
-            <dependency id="Dawoe.OEmbedPickerPropertyEditor.Core" version="4.0.0" />
         </dependencies>
     </metadata>
 </package>

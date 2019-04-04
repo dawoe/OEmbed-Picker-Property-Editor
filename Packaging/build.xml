@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Package">
-	
+
 	<!-- IMPORTS -->
 	<PropertyGroup>
 		<MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\Tools\MSBuildCommunityTasks</MSBuildCommunityTasksPath>
@@ -13,185 +13,172 @@
 	<Import Project="$(MSBuildUmbracoTasksPath)\MSBuild.Umbraco.Tasks.Targets" />
 	<Import Project="$(MSBuildNugetTasksPath)\MSBuild.NuGet.Tasks.Targets" />
 	<Import Project="$(AppVeyorUmbracoPath)\AppVeyorUmbraco.Targets" />
-	
-	 <!-- SHARED PROPERTIES -->
-	 <PropertyGroup>
+
+	<!-- SHARED PROPERTIES -->
+	<PropertyGroup>
 		<PackageName>Dawoe.OEmbedPickerPropertyEditor</PackageName>
-		<MinUmbracoVersion>7.1.0</MinUmbracoVersion>
+		<MinUmbracoVersion>8.0.0</MinUmbracoVersion>
 		<Readme><![CDATA[This package implements a property editor that allows you to easily insert items that support the oEmbed protocol]]></Readme>
 		<AuthorName>Dave Woestenborghs</AuthorName>
 		<AuthorUrl>https://github.com/dawoe/</AuthorUrl>
 		<PackageLicenseName>MIT license</PackageLicenseName>
 		<PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
 		<ProjectUrl>https://github.com/dawoe/OEmbed-Picker-Property-Editor</ProjectUrl>
-	 </PropertyGroup>
-	 
-	 <!-- NUGET ONLY PROPERTIES -->
-	  <PropertyGroup>
-		<PackageId>Dawoe.OEmbedPickerPropertyEditor</PackageId>		
+	</PropertyGroup>
+
+	<!-- NUGET ONLY PROPERTIES -->
+	<PropertyGroup>
+		<PackageId>Dawoe.OEmbedPickerPropertyEditor</PackageId>
 		<Copyright>Copyright &#169; Dave Woestenborghs and contributors.</Copyright>
 		<Owners>Dave Woestenborghs</Owners>
-		<Description>his package implements a property editor that allows you to easily insert items that support the oEmbed protocol</Description>
-		<IconUrl>https://github.com/dawoe/OEmbed-Picker-Property-Editor/raw/develop/Images/icon.png</IconUrl>
+		<Description>This package implements a property editor that allows you to easily insert items that support the oEmbed protocol</Description>
+		<IconUrl>https://raw.githubusercontent.com/dawoe/OEmbed-Picker-Property-Editor/develop/Images/icon.png</IconUrl>
 		<Tags>umbraco</Tags>
 		<Language>en-GB</Language>
 		<RequireLicenseAcceptance>false</RequireLicenseAcceptance>
-	  </PropertyGroup>
-	  
+	</PropertyGroup>
+
 	<!-- APPVEYOR PROPERTIES -->
-	  <PropertyGroup>
+	<PropertyGroup>
 		<FileVersion>$(APPVEYOR_BUILD_VERSION)</FileVersion>
-	  </PropertyGroup>
-	  <Choose>
+	</PropertyGroup>
+	<Choose>
 		<When Condition="$(APPVEYOR_BUILD_NUMBER) != '' And $(APPVEYOR_REPO_TAG) != 'true' ">
-		  <PropertyGroup>
-			<Release>false</Release>
-		  </PropertyGroup>
+			<PropertyGroup>
+				<Release>false</Release>
+			</PropertyGroup>
 		</When>
 		<Otherwise>
-		  <PropertyGroup>
-			<Release>true</Release>
-		  </PropertyGroup>
+			<PropertyGroup>
+				<Release>true</Release>
+			</PropertyGroup>
 		</Otherwise>
-	  </Choose>
+	</Choose>
+	<Choose>
+		<When Condition="$(BuildConfig) != ''">
+			<PropertyGroup>
+				<BuildConfiguration>$(BuildConfig)</BuildConfiguration>
+			</PropertyGroup>
+		</When>
+		<Otherwise>
+			<PropertyGroup>
+				<BuildConfiguration>Release</BuildConfiguration>
+			</PropertyGroup>
+		</Otherwise>
+	</Choose>
 
-    <!-- PATHS -->	  
+	<!-- PATHS -->
 	<PropertyGroup>
-		<BuildConfig>Release</BuildConfig>
+		<BuildConfig>$(BuildConfiguration)</BuildConfig>
 		<RootDir>$(MSBuildProjectDirectory)\..</RootDir>
 		<BuildUmbDir>$(MSBuildProjectDirectory)\UmbracoBuild</BuildUmbDir>
+		<BuildNuGetCoreDir>$(MSBuildProjectDirectory)\NugetCoreBuild</BuildNuGetCoreDir>
 		<BuildNuGetDir>$(MSBuildProjectDirectory)\NugetBuild</BuildNuGetDir>
 		<ArtifactsDir>$(RootDir)\artifacts</ArtifactsDir>
-		<CoreProjectDir>$(RootDir)\Sources\Dawoe.OEmbedPickerPropertyEditor</CoreProjectDir>		
+		<CoreProjectDir>$(RootDir)\src\Dawoe.OEmbedPickerPropertyEditor</CoreProjectDir>
+		<PackageProjectDir>$(RootDir)\src\Dawoe.OEmbedPickerPropertyEditor.Web</PackageProjectDir>
 	</PropertyGroup>
-	
-	<!-- PROJECTS TO BUILD -->
-	<ItemGroup>
-		<ProjectToBuild Include="$(CoreProjectDir)\Dawoe.OEmbedPickerPropertyEditor.csproj" >
-			<Properties>Configuration=Release</Properties>
-		</ProjectToBuild>		
-	</ItemGroup>
-	
+
+
 	<!-- TARGETS -->
-	  <Target Name="GetProductVersion">		
+	<Target Name="GetProductVersion">
 		<GetProductVersion BuildVersion="$(APPVEYOR_BUILD_VERSION)" BuildSuffix="$(UMBRACO_PACKAGE_PRERELEASE_SUFFIX)" Release="$(Release)">
-		  <Output TaskParameter="ProductVersion" PropertyName="ProductVersion"/>
+			<Output TaskParameter="ProductVersion" PropertyName="ProductVersion"/>
 		</GetProductVersion>
-	  </Target>
-	  
+	</Target>
+
 	<!-- CLEAN -->
-	  <Target Name="Clean" DependsOnTargets="GetProductVersion">
+	<Target Name="Clean" DependsOnTargets="GetProductVersion">
 		<RemoveDir Directories="$(BuildUmbDir)" Condition="Exists('$(BuildUmbDir)')" />
 		<RemoveDir Directories="$(BuildNuGetDir)" Condition="Exists('$(BuildNuGetDir)')" />
-		<RemoveDir Directories="$(ArtifactsDir)" Condition="Exists('$(ArtifactsDir)')" />		
+		<RemoveDir Directories="$(BuildNuGetCoreDir)" Condition="Exists('$(BuildNuGetCoreDir)')" />
+		<RemoveDir Directories="$(ArtifactsDir)" Condition="Exists('$(ArtifactsDir)')" />
 		<MakeDir Directories="$(BuildUmbDir)" />
-		<MakeDir Directories="$(BuildNuGetDir)" />		
+		<MakeDir Directories="$(BuildNuGetDir)" />
 		<MakeDir Directories="$(ArtifactsDir)" />
-	  </Target>
-	  
-	<!-- UPDATE PROJECT ASSEMBLEY VERSION -->
-	  <Target Name="UpdateAssemblyInfo" DependsOnTargets="Clean">
-		  <FileUpdate Encoding="ASCII" Files="$(CoreProjectDir)\Properties\VersionInfo.cs" Regex="AssemblyVersion\(&quot;.*&quot;\)\]" ReplacementText="AssemblyVersion(&quot;$(FileVersion)&quot;)]" />
-		  <FileUpdate Encoding="ASCII" Files="$(CoreProjectDir)\Properties\VersionInfo.cs" Regex="AssemblyFileVersion\(&quot;.*&quot;\)\]" ReplacementText="AssemblyFileVersion(&quot;$(FileVersion)&quot;)]" />
-		  <FileUpdate Encoding="ASCII" Files="$(CoreProjectDir)\Properties\VersionInfo.cs" Regex="AssemblyInformationalVersion\(&quot;.*&quot;\)\]" ReplacementText="AssemblyInformationalVersion(&quot;$(ProductVersion)&quot;)]" />		   
-	  </Target>
-	  
-	  <!-- COMPILE -->
-	  <Target Name="Compile" DependsOnTargets="UpdateAssemblyInfo">
-		<MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=$(BuildConfig)"/>
-	  </Target>
-	  
-	    <!-- PREPARE FILES -->
-  <Target Name="PrepareFiles" DependsOnTargets="Compile">
-    <ItemGroup>
-      <!-- Shared -->
-      <BinFiles Include="$(CoreProjectDir)\bin\$(BuildConfig)\Dawoe.OEmbedPickerPropertyEditor.dll" />
-      <PdbFiles Include="$(CoreProjectDir)\bin\$(BuildConfig)\Dawoe.OEmbedPickerPropertyEditor.pdb" />
-	 
-      <!-- Umbraco specific -->
-      <PackageFile Include="$(MSBuildProjectDirectory)\package.xml" />      
+		<MakeDir Directories="$(BuildNuGetCoreDir)" />
+	</Target>
 
-      <!-- NuGet specific -->
-      <NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />
-    </ItemGroup>
+	<!-- PREPARE FILES -->
+	<Target Name="PrepareFiles" DependsOnTargets="Clean">
+		<ItemGroup>
+			<!-- Shared -->
+			<CoreBinFiles Include="$(CoreProjectDir)\bin\$(BuildConfig)\Dawoe.OEmbedPickerPropertyEditor.dll" />
+			<CorePdbFiles Include="$(CoreProjectDir)\bin\$(BuildConfig)\Dawoe.OEmbedPickerPropertyEditor.pdb" />
+			<PackageBinFiles Include="$(PackageProjectDir)\bin\$(BuildConfig)\Dawoe.OEmbedPickerPropertyEditor.Web.dll" />
+			<PackagePdbFiles Include="$(PackageProjectDir)\bin\$(BuildConfig)\Dawoe.OEmbedPickerPropertyEditor.Web.pdb" />
+			<AppPluginFiles Include="$(PackageProjectDir)\App_Plugins\**\*.*" />
 
-	  <!-- Umbraco -->
-	  <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildUmbDir)\bin" />
-	  <Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildUmbDir)" />
-	  
+			<!-- Umbraco specific -->
+			<PackageFile Include="$(MSBuildProjectDirectory)\package.xml" />
+
+			<!-- NuGet specific -->
+			<CoreNuSpecFile Include="$(MSBuildProjectDirectory)\package.core.nuspec" />
+			<NuSpecFile Include="$(MSBuildProjectDirectory)\package.nuspec" />
+		</ItemGroup>
+
+		<!-- Umbraco -->
+		<Copy SourceFiles="@(PackageBinFiles)" DestinationFolder="$(BuildUmbDir)\bin" />
+		<Copy SourceFiles="@(CoreBinFiles)" DestinationFolder="$(BuildUmbDir)\bin" />
+		<Copy SourceFiles="@(PackageFile)" DestinationFolder="$(BuildUmbDir)" />
+
+		<Copy SourceFiles="@(AppPluginFiles)" DestinationFiles="@(AppPluginFiles->'$(BuildUmbDir)\App_Plugins\%(RecursiveDir)%(Filename)%(Extension)')" />
+
 
 		<!--NuGet -->
-	  <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
-	  <Copy SourceFiles="@(PdbFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />	 
-	  <Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />
+		<Copy SourceFiles="@(CoreBinFiles)" DestinationFolder="$(BuildNuGetCoreDir)\lib\net45" />
+		<Copy SourceFiles="@(CorePdbFiles)" DestinationFolder="$(BuildNuGetCoreDir)\lib\net45" />
+		<!-- <Copy SourceFiles="@(AppPluginFiles)" DestinationFiles="@(AppPluginFiles->'$(BuildNuGetDir)\Content\App_Plugins\%(RecursiveDir)%(Filename)%(Extension)')" /> -->
+		<Copy SourceFiles="@(CoreNuSpecFile)" DestinationFiles="$(BuildNuGetCoreDir)\package.nuspec" />
 
-  </Target>
-  
-  <!-- MANIFEST UMBRACO -->
-  <Target Name="ManifestUmbraco" DependsOnTargets="PrepareFiles">
-    <ItemGroup>
-      <ManifestFiles Include="$(BuildUmbDir)\**\*" Exclude="$(BuildUmbDir)\package.xml" />
-    </ItemGroup>
-    <ManifestUpdate
-      ManifestFile="$(BuildUmbDir)\package.xml"
-      WorkingDirectory="$(BuildUmbDir)"
-      MinimumRequiredUmbracoVersion="$(MinUmbracoVersion)"
-      PackageName="$(PackageName)"
-      PackageVersion="$(ProductVersion)"
-      AuthorName="$(AuthorName)"
-      AuthorUrl="$(AuthorUrl)"
-      Readme="$(Readme)"
-      PackageLicenseName="$(PackageLicenseName)"
-      PackageLicenseUrl="$(PackageLicenseUrl)"
-      PackageUrl="$(ProjectUrl)"
-      Files="@(ManifestFiles)"
-      IconUrl="$(IconUrl)"/>
-  </Target>
-  
-  <!-- MANIFEST FOR NUGET PACKAGE -->
-  <Target Name="ManifestNuGet" DependsOnTargets="PrepareFiles">
-    <ItemGroup>
-      <ManifestFiles Include="$(BuildNuGetDir)\**\*" Exclude="$(BuildNuGetDir)\package.nuspec" />
-    </ItemGroup>
-    <MSBuild.NuGet.Tasks.ManifestUpdate
-      ManifestFile="$(BuildNuGetDir)\package.nuspec"
-      WorkingDirectory="$(BuildNuGetDir)"
-      Title="$(PackageName)"
-      Description="$(Description)"
-      Summary="$(Readme)"
-      Version="$(ProductVersion)"
-      MinimumRequiredUmbracoVersion ="$(MinUmbracoVersion)"
-      Authors="$(AuthorName)"
-      Owners="$(Owners)"
-      Copyright="$(Copyright)"
-      LicenseUrl="$(PackageLicenseUrl)"
-      ProjectUrl="$(ProjectUrl)"
-      Id="$(PackageId)"
-      IconUrl="$(IconUrl)"
-      Language="$(Language)"
-      RequireLicenseAcceptance="$(RequireLicenseAcceptance)"
-      Tags="$(Tags)"
-      Files="@(ManifestFiles)" />
-  </Target>
-  
-  <!-- PACKAGE -->
-  <Target Name="Package" DependsOnTargets="ManifestUmbraco; ManifestNuGet;">
-    <ItemGroup>
-      <PackageFiles Include="$(BuildUmbDir)\**\*.*" />
-    </ItemGroup>
+		<Copy SourceFiles="@(PackageBinFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
+		<Copy SourceFiles="@(PackagePdbFiles)" DestinationFolder="$(BuildNuGetDir)\lib\net45" />
+		<Copy SourceFiles="@(AppPluginFiles)" DestinationFiles="@(AppPluginFiles->'$(BuildNuGetDir)\Content\App_Plugins\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Copy SourceFiles="@(NuSpecFile)" DestinationFolder="$(BuildNuGetDir)" />
 
-    <Package ManifestFile="$(BuildUmbDir)\package.xml"
-      WorkingDirectory="$(BuildUmbDir)"
-      OutputDirectory="$(ArtifactsDir)"
-      Files="@(PackageFiles)" />
+	</Target>
 
-    <MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\Packaging\tools\NuGet.exe"
-      ManifestFile="$(BuildNuGetDir)\package.nuspec"
-      BasePath="$(BuildNuGetDir)"
-      Version="$(ProductVersion)"
-      OutputDirectory="$(ArtifactsDir)"
-      Symbols="false" />    
+	<!-- MANIFEST UMBRACO -->
+	<Target Name="ManifestUmbraco" DependsOnTargets="PrepareFiles">
+		<ItemGroup>
+			<ManifestFiles Include="$(BuildUmbDir)\**\*" Exclude="$(BuildUmbDir)\package.xml" />
+		</ItemGroup>
+		<ManifestUpdate ManifestFile="$(BuildUmbDir)\package.xml" WorkingDirectory="$(BuildUmbDir)" MinimumRequiredUmbracoVersion="$(MinUmbracoVersion)" PackageName="$(PackageName)" PackageVersion="$(ProductVersion)" AuthorName="$(AuthorName)" AuthorUrl="$(AuthorUrl)" Readme="$(Readme)" PackageLicenseName="$(PackageLicenseName)" PackageLicenseUrl="$(PackageLicenseUrl)" PackageUrl="$(ProjectUrl)" Files="@(ManifestFiles)" IconUrl="$(IconUrl)"/>
+	</Target>
 
-  </Target>
-	
+	<!-- MANIFEST FOR NUGET PACKAGE Core-->
+	<Target Name="ManifestNuGetCore" DependsOnTargets="PrepareFiles">
+		<ItemGroup>
+			<ManifestFiles Include="$(BuildNuGetCoreDir)\**\*" Exclude="$(BuildNuGetCoreDir)\package.nuspec" />
+		</ItemGroup>
+		<MSBuild.NuGet.Tasks.ManifestUpdate ManifestFile="$(BuildNuGetCoreDir)\package.nuspec" WorkingDirectory="$(BuildNuGetCoreDir)" Title="$(PackageName).Core" Description="$(Description)" Summary="$(Readme)" Version="$(ProductVersion)"
+      MinimumRequiredUmbracoVersion ="$(MinUmbracoVersion)" Authors="$(AuthorName)" Owners="$(Owners)" Copyright="$(Copyright)" LicenseUrl="$(PackageLicenseUrl)" ProjectUrl="$(ProjectUrl)" Id="$(PackageId).Core" IconUrl="$(IconUrl)" Language="$(Language)" RequireLicenseAcceptance="$(RequireLicenseAcceptance)" Tags="$(Tags)" Files="@(ManifestFiles)" />
+	</Target>
+
+	<!-- MANIFEST FOR NUGET PACKAGE -->
+	<Target Name="ManifestNuGet" DependsOnTargets="PrepareFiles">
+		<ItemGroup>
+			<ManifestFiles Include="$(BuildNuGetDir)\**\*" Exclude="$(BuildNuGetDir)\package.nuspec" />
+		</ItemGroup>
+		<MSBuild.NuGet.Tasks.ManifestUpdate ManifestFile="$(BuildNuGetDir)\package.nuspec" WorkingDirectory="$(BuildNuGetDir)" Title="$(PackageName)" Description="$(Description)" Summary="$(Readme)" Version="$(ProductVersion)"
+      MinimumRequiredUmbracoVersion ="$(MinUmbracoVersion)" Authors="$(AuthorName)" Owners="$(Owners)" Copyright="$(Copyright)" LicenseUrl="$(PackageLicenseUrl)" ProjectUrl="$(ProjectUrl)" Id="$(PackageId)" IconUrl="$(IconUrl)" Language="$(Language)" RequireLicenseAcceptance="$(RequireLicenseAcceptance)" Tags="$(Tags)" Files="@(ManifestFiles)" />
+		<XmlUpdate Prefix="nu" Namespace="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd" XmlFileName="$(BuildNuGetDir)\package.nuspec" XPath="/nu:package/nu:metadata/nu:dependencies/nu:dependency[@id='$(PackageId).Core']/@version" Value="$(ProductVersion)" />
+	</Target>
+
+	<!-- PACKAGE -->
+	<Target Name="Package" DependsOnTargets="ManifestUmbraco;ManifestNuGetCore; ManifestNuGet;">
+		<ItemGroup>
+			<PackageFiles Include="$(BuildUmbDir)\**\*.*" />
+		</ItemGroup>
+
+		<Package ManifestFile="$(BuildUmbDir)\package.xml" WorkingDirectory="$(BuildUmbDir)" OutputDirectory="$(ArtifactsDir)" Files="@(PackageFiles)" />
+
+		<MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\Packaging\tools\NuGet.exe" ManifestFile="$(BuildNuGetCoreDir)\package.nuspec" BasePath="$(BuildNuGetCoreDir)" Version="$(ProductVersion)" OutputDirectory="$(ArtifactsDir)" Symbols="false" />
+
+		<MSBuild.NuGet.Tasks.Pack NuGetExePath="$(RootDir)\Packaging\tools\NuGet.exe" ManifestFile="$(BuildNuGetDir)\package.nuspec" BasePath="$(BuildNuGetDir)" Version="$(ProductVersion)" OutputDirectory="$(ArtifactsDir)" Symbols="false" />
+
+
+
+	</Target>
+
 </Project>

@@ -22,11 +22,15 @@ Download and install the package from : [http://our.umbraco.org/projects/backoff
 
 ### Nuget
 
-Install-Package Dawoe.OEmbedPickerPropertyEditor
+`Install-Package Dawoe.OEmbedPickerPropertyEditor`
+
+If you only need the binaries you can install
+
+`Install-Package Dawoe.OEmbedPickerPropertyEditor.Core`
 
 ## Usage
 
-### Backend
+### CMS Configuration
 
 1.  In Umbraco create a datatype and choose OEmbed Picker as your property editor
 2.  If you want to allow embedding of multiple items check the box "Allow Multiple"
@@ -34,17 +38,37 @@ Install-Package Dawoe.OEmbedPickerPropertyEditor
 
 ### Templates/Views
 
-The package comes with a property value convertor for easy use in your views.
+The package comes with a property value convertor for easy use in your views. The property editor returns a object containing the following properties 
+
+- Url : The url of the embedded item
+- EmbedCode : the embed code 
+- Width : the width set by the editor
+- Height : the height set by the editor
 
 For a single embed :
 
-@Model.Content.GetPropertyValue<IHtmlstring>("yourpropertyalias")
+ ```
+ @using Dawoe.OEmbedPickerPropertyEditor.Models;
+ @Model.Value<OEmbedItem>("propalias").EmbedCode
+ ```
 
 For multiple embeds : 
 
-@Model.Content.GetPropertyValue<IEnumerable<IHtmlstring>>("yourpropertyalias")
+ ```
+ @using Dawoe.OEmbedPickerPropertyEditor.Models;
+ @for(var item in Model.Value<IEnumerable<OEmbedItem>>("propalias")) 
+ {
+     <div>@item.EmbedCode</div>
+ }
+ ```
 
 ## Changelog
+
+### 4.0.0
+
+- V8 support
+- Different return type from value converter
+- Macro Parameter editor support
 
 ### 3.0.0
 
@@ -75,5 +99,12 @@ This is can be a potentially breaking changes because the models will be generat
 ## Contact
 
 Feel free to contact me on twitter : @dawoe21
+
+
+## Support this package ##
+
+If you like this package and use it in your website, consider becoming a patreon to support ongoing maintenance
+
+[https://www.patreon.com/dawoe](https://t.co/TBsvTMnOLB)
 
 

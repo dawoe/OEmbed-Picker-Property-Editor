@@ -1,0 +1,6 @@
+{
+  "$schema": "http://json.schemastore.org/package.manifest",
+  "javascript": [
+    "~/App_Plugins/Dawoe.OEmbedPickerPropertyEditor/scripts/editor.controller.js"
+  ]
+}

@@ -1,0 +1,67 @@
+﻿namespace Dawoe.OEmbedPickerPropertyEditor.ValueConverters
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using Dawoe.OEmbedPickerPropertyEditor.Configuration;
+    using Dawoe.OEmbedPickerPropertyEditor.Models;
+
+    using Newtonsoft.Json;
+
+    using Umbraco.Core.Models.PublishedContent;
+    using Umbraco.Core.PropertyEditors;
+
+    /// <summary>
+    /// Represents a the property value converter for the OEmbed picker
+    /// </summary>
+    public class OEmbedPickerValueConverter : PropertyValueConverterBase
+    {
+        /// <inheritdoc />
+        public override bool IsConverter(PublishedPropertyType propertyType) =>
+            Constants.DataEditorAlias.Equals(propertyType.EditorAlias);
+
+        /// <inheritdoc />
+        public override Type GetPropertyValueType(PublishedPropertyType propertyType) =>
+            propertyType.DataType.ConfigurationAs<OEmbedPickerConfiguration>().AllowMultiple
+                ? typeof(IEnumerable<OEmbedItem>)
+                : typeof(OEmbedItem);
+
+        /// <inheritdoc />
+        public override bool? IsValue(object value, PropertyValueLevel level) => value?.ToString() != "[]";
+
+        /// <inheritdoc />
+        public override object ConvertSourceToIntermediate(
+            IPublishedElement owner,
+            PublishedPropertyType propertyType,
+            object source,
+            bool preview) =>
+            source?.ToString();
+
+        public override object ConvertIntermediateToObject(
+            IPublishedElement owner,
+            PublishedPropertyType propertyType,
+            PropertyCacheLevel referenceCacheLevel,
+            object inter,
+            bool preview)
+        {
+            var allowMultipe = propertyType.DataType.ConfigurationAs<OEmbedPickerConfiguration>().AllowMultiple;
+
+            if (inter == null)
+            {
+                return allowMultipe ? Enumerable.Empty<OEmbedItem>() : null;
+            }
+
+            var items = new List<OEmbedItem>();
+
+            items = JsonConvert.DeserializeObject<List<OEmbedItem>>(inter.ToString());
+
+            if (allowMultipe)
+            {
+                return items;
+            }
+
+            return items.FirstOrDefault();
+        }
+    }
+}

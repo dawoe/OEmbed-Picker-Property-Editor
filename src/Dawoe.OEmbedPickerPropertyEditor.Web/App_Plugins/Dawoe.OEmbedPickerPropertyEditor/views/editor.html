@@ -1,0 +1,26 @@
+﻿<div ng-controller="Dawoe.OEmbedPickerEditorController as vm">
+    <ng-form name="vm.oembedform">
+        <div class="umb-table">
+            <div class="umb-table-body" ui-sortable="sortableOptions" ng-model="vm.items">
+                <div class="umb-table-row" ng-repeat="embed in vm.items track by $index">
+                    <div class="umb-table-cell">
+                        <i class="icon icon-navigation handle"></i>
+                    </div>
+                    <div class="umb-table-cell umb-table-cell--auto-width">
+
+                        <span ng-bind-html="vm.trustHtml(embed.preview)"></span>
+
+                    </div>
+
+                    <div class="umb-table-cell">
+                        <a class="umb-node-preview__action umb-node-preview__action--red" ng-click="vm.remove($index, $event)"><localize key="general_remove">Remove</localize></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <umb-button action="vm.add($event)" type="button" button-style="action" label="Add item" label_key="general_add" add-ellipsis="true" ng-hide="vm.allowMultiple === false && vm.items.length == 1"></umb-button>
+
+        <input type="hidden" name="itemCount" ng-model="vm.items.length" val-property-validator="vm.validateMandatory" />
+    </ng-form>
+</div>
