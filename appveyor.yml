@@ -26,7 +26,7 @@ platform: Any CPU
 configuration: Release
 
 before_build:
-    - nuget restore Source
+    - nuget restore src
 
 build:
   parallel: true                  
