@@ -32,7 +32,7 @@
 		<Copyright>Copyright &#169; Dave Woestenborghs and contributors.</Copyright>
 		<Owners>Dave Woestenborghs</Owners>
 		<Description>This package implements a property editor that allows you to easily insert items that support the oEmbed protocol</Description>
-		<IconUrl>https://github.com/dawoe/umbraco-tour-editor/raw/develop/Images/icon.png</IconUrl>
+		<IconUrl>https://github.com/dawoe/OEmbed-Picker-Property-Editor/blob/develop/Images/icon.png</IconUrl>
 		<Tags>umbraco</Tags>
 		<Language>en-GB</Language>
 		<RequireLicenseAcceptance>false</RequireLicenseAcceptance>
