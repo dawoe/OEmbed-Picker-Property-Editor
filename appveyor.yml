@@ -1,22 +1,39 @@
-os: Visual Studio 2015
+image: Visual Studio 2017
 
 # Version format
-version: 3.0.1.{build}
-
-cache:
-  - Sources\Dawoe.OEmbedPickerPropertyEditor\packages -> **\packages.config   # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+version: 4.0.0.{build}
 
 branches:
   only:
     - develop
     - master
-    
-# UMBRACO_PACKAGE_PRERELEASE_SUFFIX if a rtm release build this should be blank, otherwise if empty will default to alpha
-# example UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta
-init:
-  - set UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta   
 
-build_script:
+init:
+  - set UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta 
+
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+
+cache:
+  - src\packages -> **\packages.config   # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+
+platform: Any CPU
+
+configuration: Release
+
+before_build:
+    - nuget restore Source
+
+build:
+  parallel: true                  
+  project: src\Dawoe.OEmbedPickerPropertyEditor.sln
+  verbosity: minimal
+
+after_build:
   - cd Packaging
   - build-appveyor.bat
 

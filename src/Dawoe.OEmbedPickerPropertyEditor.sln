@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dawoe.OEmbedPickerPropertyEditor.Web", "Dawoe.OEmbedPickerPropertyEditor.Web\Dawoe.OEmbedPickerPropertyEditor.Web.csproj", "{209C4CE7-6A8B-4773-AD86-D7B22199C980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dawoe.OEmbedPickerPropertyEditor", "Dawoe.OEmbedPickerPropertyEditor\Dawoe.OEmbedPickerPropertyEditor.csproj", "{7FB02755-B331-4068-B2AB-2AD341E08536}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{209C4CE7-6A8B-4773-AD86-D7B22199C980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{209C4CE7-6A8B-4773-AD86-D7B22199C980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{209C4CE7-6A8B-4773-AD86-D7B22199C980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{209C4CE7-6A8B-4773-AD86-D7B22199C980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FB02755-B331-4068-B2AB-2AD341E08536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FB02755-B331-4068-B2AB-2AD341E08536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FB02755-B331-4068-B2AB-2AD341E08536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FB02755-B331-4068-B2AB-2AD341E08536}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3BCB0C24-5B53-4CC2-81D5-C2721108CB39}
+	EndGlobalSection
+EndGlobal
