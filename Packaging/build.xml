@@ -23,7 +23,7 @@
 		<AuthorUrl>https://github.com/dawoe/</AuthorUrl>
 		<PackageLicenseName>MIT license</PackageLicenseName>
 		<PackageLicenseUrl>http://www.opensource.org/licenses/mit-license.php</PackageLicenseUrl>
-		<ProjectUrl>https://github.com/dawoe/umbraco-placeholder-text</ProjectUrl>
+		<ProjectUrl>https://github.com/dawoe/OEmbed-Picker-Property-Editor</ProjectUrl>
 	</PropertyGroup>
 
 	<!-- NUGET ONLY PROPERTIES -->
