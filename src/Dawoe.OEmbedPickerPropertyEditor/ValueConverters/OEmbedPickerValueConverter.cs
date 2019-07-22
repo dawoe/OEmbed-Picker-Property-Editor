@@ -18,11 +18,11 @@
     public class OEmbedPickerValueConverter : PropertyValueConverterBase
     {
         /// <inheritdoc />
-        public override bool IsConverter(PublishedPropertyType propertyType) =>
+        public override bool IsConverter(IPublishedPropertyType propertyType) =>
             Constants.DataEditorAlias.Equals(propertyType.EditorAlias);
 
         /// <inheritdoc />
-        public override Type GetPropertyValueType(PublishedPropertyType propertyType) =>
+        public override Type GetPropertyValueType(IPublishedPropertyType propertyType) =>
             propertyType.DataType.ConfigurationAs<OEmbedPickerConfiguration>().AllowMultiple
                 ? typeof(IEnumerable<OEmbedItem>)
                 : typeof(OEmbedItem);
@@ -33,14 +33,15 @@
         /// <inheritdoc />
         public override object ConvertSourceToIntermediate(
             IPublishedElement owner,
-            PublishedPropertyType propertyType,
+            IPublishedPropertyType propertyType,
             object source,
             bool preview) =>
             source?.ToString();
 
+        /// <inheritdoc />
         public override object ConvertIntermediateToObject(
             IPublishedElement owner,
-            PublishedPropertyType propertyType,
+            IPublishedPropertyType propertyType,
             PropertyCacheLevel referenceCacheLevel,
             object inter,
             bool preview)

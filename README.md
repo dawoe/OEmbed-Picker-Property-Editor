@@ -56,7 +56,7 @@ For multiple embeds :
 
  ```
  @using Dawoe.OEmbedPickerPropertyEditor.Models;
- @for(var item in Model.Value<IEnumerable<OEmbedItem>>("propalias")) 
+ @foreach(var item in Model.Value<IEnumerable<OEmbedItem>>("propalias")) 
  {
      <div>@item.EmbedCode</div>
  }
