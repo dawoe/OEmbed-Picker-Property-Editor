@@ -17,7 +17,7 @@
 	<!-- SHARED PROPERTIES -->
 	<PropertyGroup>
 		<PackageName>Dawoe.OEmbedPickerPropertyEditor</PackageName>
-		<MinUmbracoVersion>8.0.0</MinUmbracoVersion>
+		<MinUmbracoVersion>8.1.0</MinUmbracoVersion>
 		<Readme><![CDATA[This package implements a property editor that allows you to easily insert items that support the oEmbed protocol]]></Readme>
 		<AuthorName>Dave Woestenborghs</AuthorName>
 		<AuthorUrl>https://github.com/dawoe/</AuthorUrl>
