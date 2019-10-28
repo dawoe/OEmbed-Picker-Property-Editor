@@ -1,17 +1,18 @@
-﻿(function() {
+﻿(function () {
     'use strict';
 
     function EditorController($scope, $sce, editorService) {
         var vm = this;
 
         vm.allowMultiple = $scope.model.config.allowmultiple;
+        vm.hideDimensions = $scope.model.config.hidedimensions;
 
         vm.items = Array.isArray($scope.model.value) ? $scope.model.value : [];
 
-        function openEmbedDialog(embed, onSubmit) {
-
-            const embedDialog = {
-                embed: _.clone(embed),
+        function openEmbedDialog(onSubmit) {
+            const options = {
+                view: '/App_Plugins/Dawoe.OEmbedPickerPropertyEditor/views/embed.html',
+                hideDimensions: vm.hideDimensions,
                 submit: function (model) {
                     onSubmit(model.embed);
                     editorService.close();
@@ -21,8 +22,7 @@
                 }
             };
 
-            editorService.embed(embedDialog);
-
+            editorService.open(options);
         }
 
         function trustHtml(html) {
@@ -32,17 +32,16 @@
         function addEmbed(evt) {
             evt.preventDefault();
 
-            openEmbedDialog({},
-                (newEmbed) => {
+            openEmbedDialog((newEmbed) => {
                     vm.items.push({
                         'url': newEmbed.url,
                         'width': newEmbed.width,
                         'height': newEmbed.height,
-                        'preview' : newEmbed.preview
+                        'preview': newEmbed.preview
                     });
                     updateModelValue();
                 });
-        }    
+        }
 
         function removeEmbed(index, evt) {
             evt.preventDefault();

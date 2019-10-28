@@ -12,5 +12,11 @@
         /// </summary>
         [ConfigurationField("allowmultiple", "Allow picking of multiple items", "boolean")]
         public bool AllowMultiple { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to hide the dimensions in the embed view
+        /// </summary>
+        [ConfigurationField("hidedimensions", "Hide dimensions", "boolean")]
+        public bool HideDimensions { get; set; }
     }
 }

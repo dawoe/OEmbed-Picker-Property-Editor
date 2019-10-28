@@ -3,7 +3,7 @@
         <div class="umb-table">
             <div class="umb-table-body" ui-sortable="sortableOptions" ng-model="vm.items">
                 <div class="umb-table-row" ng-repeat="embed in vm.items track by $index">
-                    <div class="umb-table-cell">
+                    <div class="umb-table-cell" ng-show="vm.allowMultiple === true && vm.items.length > 1">
                         <i class="icon icon-navigation handle"></i>
                     </div>
                     <div class="umb-table-cell umb-table-cell--auto-width">
