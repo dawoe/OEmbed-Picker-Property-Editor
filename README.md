@@ -64,6 +64,15 @@ For multiple embeds :
 
 ## Changelog
 
+### 4.2.0
+
+- Make classes for configuration public (#4)
+- UI Improvements thanks to @TRexStark (#5)
+
+### 4.1.0
+
+- Make compatible with Umbraco 8.1.0 and up
+
 ### 4.0.0
 
 - V8 support

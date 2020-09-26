@@ -5,7 +5,7 @@
     /// <summary>
     /// Represents the configuration for the OEmbed picker
     /// </summary>
-    internal class OEmbedPickerConfiguration
+    public class OEmbedPickerConfiguration
     {
         /// <summary>
         /// Gets or sets a value indicating whether multiple items are allowed to be picked

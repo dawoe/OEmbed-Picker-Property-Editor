@@ -1,26 +1,17 @@
-﻿<div ng-controller="Dawoe.OEmbedPickerEditorController as vm">
-    <ng-form name="vm.oembedform">
-        <div class="umb-table">
-            <div class="umb-table-body" ui-sortable="sortableOptions" ng-model="vm.items">
-                <div class="umb-table-row" ng-repeat="embed in vm.items track by $index">
-                    <div class="umb-table-cell">
-                        <i class="icon icon-navigation handle"></i>
-                    </div>
-                    <div class="umb-table-cell umb-table-cell--auto-width">
-
-                        <span ng-bind-html="vm.trustHtml(embed.preview)"></span>
-
-                    </div>
-
-                    <div class="umb-table-cell">
-                        <a class="umb-node-preview__action umb-node-preview__action--red" ng-click="vm.remove($index, $event)"><localize key="general_remove">Remove</localize></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <umb-button action="vm.add($event)" type="button" button-style="action" label="Add item" label_key="general_add" add-ellipsis="true" ng-hide="vm.allowMultiple === false && vm.items.length == 1"></umb-button>
-
-        <input type="hidden" name="itemCount" ng-model="vm.items.length" val-property-validator="vm.validateMandatory" />
-    </ng-form>
+﻿<div ng-controller="Dawoe.OEmbedPickerEditorController as vm" class="Dawoe-OEmbedPicker umb-property-editor umb-mediapicker umb-mediapicker-multiple">
+	<ng-form name="vm.oembedform">
+		<div ui-sortable="sortableOptions" ng-model="vm.items" class="items-container" ng-hide="!model.value">
+			<div class="umb-sortable-thumbnails umb-table-row" ng-repeat="embed in vm.items track by $index">
+				<div class="sort-icon" ng-if="vm.allowMultiple === true && vm.items.length > 1"><i class="icon icon-navigation handle"></i></div>
+				<div class="preview-item">
+					<span ng-bind-html="vm.trustHtml(embed.preview)"></span>
+				</div>
+				<a class="umb-node-preview__action umb-node-preview__action--red" ng-click="vm.remove($index, $event)"><i class="icon icon-delete"></i></a>
+			</div>
+		</div>
+		<div class="picker-btn" ng-hide="vm.allowMultiple === false && vm.items.length == 1">
+			<button type="button" class="add-link btn-reset umb-outline umb-outline--surrounding add-link-square" ng-click="vm.add($event)"><i class="icon icon-add large"></i></button>
+		</div>
+		<input type="hidden" name="itemCount" ng-model="vm.items.length" val-property-validator="vm.validateMandatory" />
+	</ng-form>
 </div>
