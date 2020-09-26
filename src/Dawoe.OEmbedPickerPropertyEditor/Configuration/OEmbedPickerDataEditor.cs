@@ -7,7 +7,7 @@
     /// Represents the OEmbed picker data editor
     /// </summary>
     [DataEditor(Constants.DataEditorAlias, "OEmbed Picker", "~/App_Plugins/Dawoe.OEmbedPickerPropertyEditor/views/editor.html", ValueType = "JSON", Group = "pickers", Icon = "icon-tv")]
-    internal class OEmbedPickerDataEditor : DataEditor
+    public class OEmbedPickerDataEditor : DataEditor
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OEmbedPickerDataEditor"/> class.

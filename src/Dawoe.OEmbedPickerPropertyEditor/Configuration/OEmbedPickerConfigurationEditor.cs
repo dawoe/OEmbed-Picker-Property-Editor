@@ -5,7 +5,7 @@
     /// <summary>
     /// Represents the configuration editor for the OEmbed picker
     /// </summary>
-    internal class OEmbedPickerConfigurationEditor : ConfigurationEditor<OEmbedPickerConfiguration>
+    public class OEmbedPickerConfigurationEditor : ConfigurationEditor<OEmbedPickerConfiguration>
     {
         /// <summary>
         /// Gets the default configuration object.
