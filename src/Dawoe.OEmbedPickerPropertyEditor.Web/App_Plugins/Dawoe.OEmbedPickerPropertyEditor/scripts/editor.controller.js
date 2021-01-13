@@ -22,7 +22,6 @@
             };
 
             editorService.embed(embedDialog);
-
         }
 
         function trustHtml(html) {
@@ -43,6 +42,23 @@
                     updateModelValue();
                 });
         }    
+
+        function editEmbed(index, evt) {
+            evt.preventDefault();
+
+            var embed = vm.items[index];
+
+            openEmbedDialog(embed,
+                (newEmbed) => {
+                    vm.items.push({
+                        'url': newEmbed.url,
+                        'width': newEmbed.width,
+                        'height': newEmbed.height,
+                        'preview': newEmbed.preview
+                    });
+                    updateModelValue();
+                });
+        }
 
         function removeEmbed(index, evt) {
             evt.preventDefault();
@@ -74,6 +90,7 @@
         }
 
         vm.add = addEmbed;
+        vm.edit = editEmbed;
         vm.remove = removeEmbed;
         vm.trustHtml = trustHtml;
         vm.validateMandatory = validate;

@@ -8,6 +8,9 @@
 				<div class="preview-item">
 					<span ng-bind-html="vm.trustHtml(embed.preview)"></span>
 				</div>
+				<button type="button" class="umb-node-preview__action" ng-click="vm.edit($index, $event)">
+					<i class="icon icon-edit" aria-hidden="true"></i>
+				</button>
 				<button type="button" class="umb-node-preview__action umb-node-preview__action--red" ng-click="vm.remove($index, $event)">
 					<i class="icon icon-delete" aria-hidden="true"></i>
 				</button>
