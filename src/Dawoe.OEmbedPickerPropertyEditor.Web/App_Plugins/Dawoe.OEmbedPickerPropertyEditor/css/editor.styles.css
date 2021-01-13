@@ -50,20 +50,27 @@
 	top: 0
 }
 
+.Dawoe-OEmbedPicker .umb-sortable-thumbnails__actions {
+	position: absolute;
+	right: -18px;
+	top: -12px;
+}
+
 .Dawoe-OEmbedPicker .umb-node-preview__action {
 	background: #fff;
 	border-radius: 100%;
 	box-shadow: 0 1px 2px rgba(0,0,0,.25);
 	color: #d42054;
 	font-size: 16px;
-    height: 25px;
-    line-height: 26px;
-	position: absolute;
-	right: -18px;
+	height: 25px;
+	line-height: 26px;
 	text-align: center;
 	text-decoration: none;
-	top: -12px;
-    width: 25px
+	width: 25px;
+}
+
+.Dawoe-OEmbedPicker .umb-node-preview__action.umb-node-preview__action--red {
+	color: #d42054;
 }
 
 /* Overwrite default margin */
