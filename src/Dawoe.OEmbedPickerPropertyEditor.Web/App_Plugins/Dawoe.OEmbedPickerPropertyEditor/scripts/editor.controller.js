@@ -10,8 +10,13 @@
 
         function openEmbedDialog(embed, onSubmit) {
 
+            // Pass in a clone of embed object to embed infinite editor.
+            // We set both "orignal" and "modify" properties as it changed in Umbraco v8.2
+            const clone = _.clone(embed);
+
             const embedDialog = {
-                embed: _.clone(embed),
+                modify: clone,
+                original: clone,
                 submit: function (model) {
                     onSubmit(model.embed);
                     editorService.close();
@@ -50,12 +55,14 @@
 
             openEmbedDialog(embed,
                 (newEmbed) => {
-                    vm.items.push({
+
+                    vm.items[index] = {
                         'url': newEmbed.url,
                         'width': newEmbed.width,
                         'height': newEmbed.height,
                         'preview': newEmbed.preview
-                    });
+                    };
+
                     updateModelValue();
                 });
         }
