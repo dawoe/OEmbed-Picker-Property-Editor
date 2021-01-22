@@ -46,18 +46,16 @@
             object inter,
             bool preview)
         {
-            var allowMultipe = propertyType.DataType.ConfigurationAs<OEmbedPickerConfiguration>().AllowMultiple;
+            var allowMultiple = propertyType.DataType.ConfigurationAs<OEmbedPickerConfiguration>().AllowMultiple;
 
-            if (inter == null)
+            if (string.IsNullOrWhiteSpace(inter?.ToString()))
             {
-                return allowMultipe ? Enumerable.Empty<OEmbedItem>() : null;
+                return allowMultiple ? Enumerable.Empty<OEmbedItem>() : null;
             }
 
-            var items = new List<OEmbedItem>();
+            var items = JsonConvert.DeserializeObject<List<OEmbedItem>>(inter.ToString());
 
-            items = JsonConvert.DeserializeObject<List<OEmbedItem>>(inter.ToString());
-
-            if (allowMultipe)
+            if (allowMultiple)
             {
                 return items;
             }
