@@ -159,6 +159,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\css\editor.styles.css" />
     <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\scripts\editor.controller.js" />
     <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\views\editor.html" />
   </ItemGroup>
