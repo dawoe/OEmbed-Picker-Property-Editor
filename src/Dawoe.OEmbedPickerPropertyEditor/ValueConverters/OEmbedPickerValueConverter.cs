@@ -48,7 +48,7 @@
         {
             var allowMultiple = propertyType.DataType.ConfigurationAs<OEmbedPickerConfiguration>().AllowMultiple;
 
-            if (string.IsNullOrWhiteSpace(inter.ToString()))
+            if (string.IsNullOrWhiteSpace(inter?.ToString()))
             {
                 return allowMultiple ? Enumerable.Empty<OEmbedItem>() : null;
             }
