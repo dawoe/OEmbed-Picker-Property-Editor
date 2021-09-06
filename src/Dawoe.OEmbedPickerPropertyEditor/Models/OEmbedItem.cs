@@ -1,11 +1,14 @@
-﻿namespace Dawoe.OEmbedPickerPropertyEditor.Models
+// <copyright file="OEmbedItem.cs" company="Umbraco community">
+// Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
+// </copyright>
+
+using System.Web;
+using Newtonsoft.Json;
+
+namespace Dawoe.OEmbedPickerPropertyEditor.Models
 {
-    using System.Web;
-
-    using Newtonsoft.Json;
-
     /// <summary>
-    /// Represents a item picked in the editor
+    /// Represents a item picked in the editor.
     /// </summary>
     public class OEmbedItem
     {
@@ -40,9 +43,6 @@
         internal string Preview { get; set; }
 
         /// <inheritdoc />
-        public override string ToString()
-        {
-            return this.Preview;
-        }
+        public override string ToString() => this.Preview;
     }
 }

@@ -1,19 +1,20 @@
-﻿namespace Dawoe.OEmbedPickerPropertyEditor.ValueConverters
+// <copyright file="OEmbedPickerValueConverter.cs" company="Umbraco community">
+// Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
+// </copyright>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Dawoe.OEmbedPickerPropertyEditor.Configuration;
+using Dawoe.OEmbedPickerPropertyEditor.Models;
+using Newtonsoft.Json;
+using Umbraco.Core.Models.PublishedContent;
+using Umbraco.Core.PropertyEditors;
+
+namespace Dawoe.OEmbedPickerPropertyEditor.ValueConverters
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Dawoe.OEmbedPickerPropertyEditor.Configuration;
-    using Dawoe.OEmbedPickerPropertyEditor.Models;
-
-    using Newtonsoft.Json;
-
-    using Umbraco.Core.Models.PublishedContent;
-    using Umbraco.Core.PropertyEditors;
-
     /// <summary>
-    /// Represents a the property value converter for the OEmbed picker
+    /// Represents a the property value converter for the OEmbed picker.
     /// </summary>
     public class OEmbedPickerValueConverter : PropertyValueConverterBase
     {
