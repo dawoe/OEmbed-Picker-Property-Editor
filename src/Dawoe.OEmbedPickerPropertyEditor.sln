@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dawoe.OEmbedPickerPropertyEditor.Web", "Dawoe.OEmbedPickerPropertyEditor.Web\Dawoe.OEmbedPickerPropertyEditor.Web.csproj", "{209C4CE7-6A8B-4773-AD86-D7B22199C980}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dawoe.OEmbedPickerPropertyEditor.Web", "Dawoe.OEmbedPickerPropertyEditor.Web\Dawoe.OEmbedPickerPropertyEditor.Web.csproj", "{209C4CE7-6A8B-4773-AD86-D7B22199C980}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dawoe.OEmbedPickerPropertyEditor", "Dawoe.OEmbedPickerPropertyEditor\Dawoe.OEmbedPickerPropertyEditor.csproj", "{7FB02755-B331-4068-B2AB-2AD341E08536}"
 EndProject
@@ -11,6 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		stylecop.json = stylecop.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{45071A92-DB5C-4CEF-BAF5-8E428FBD5F27}"
+	ProjectSection(SolutionItems) = preProject
+		..\Utitlities\SetupTestSite.ps1 = ..\Utitlities\SetupTestSite.ps1
+		..\Utitlities\StartTestSite.ps1 = ..\Utitlities\StartTestSite.ps1
 	EndProjectSection
 EndProject
 Global
@@ -30,6 +36,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45071A92-DB5C-4CEF-BAF5-8E428FBD5F27} = {BADEFC53-AC3A-4D50-BB15-8DFE7AF383D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3BCB0C24-5B53-4CC2-81D5-C2721108CB39}
