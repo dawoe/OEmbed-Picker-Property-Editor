@@ -30,7 +30,7 @@ Invoke-WebRequest -Uri $Url -OutFile $ZipFile
  
 Write-Host "Extracting downloaded zip file to $Destination"
 
-Expand-Archive -LiteralPath $ZipFile -DestinationPath $Destination -Force
+Expand-Archive -LiteralPath $ZipFile -DestinationPath "$Destination\v8" -Force
 
 Write-Host "Cleaning up downloaded files"
 
@@ -69,4 +69,4 @@ if (-NOT $?) {
     throw 'The MSBuild process returned an error code.';
 }
 
-#Invoke-Expression "$currentDir\StartTestSite.ps1"
+Invoke-Expression "$currentDir\StartTestSite.ps1"
