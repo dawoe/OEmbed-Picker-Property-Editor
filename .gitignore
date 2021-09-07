@@ -38,3 +38,4 @@ src/.vs/
 src/packages/
 testsites/
 Packaging/NugetCoreBuild/
+tools/
