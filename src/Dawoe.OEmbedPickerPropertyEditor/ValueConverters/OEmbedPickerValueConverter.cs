@@ -8,8 +8,14 @@ using System.Linq;
 using Dawoe.OEmbedPickerPropertyEditor.Configuration;
 using Dawoe.OEmbedPickerPropertyEditor.Models;
 using Newtonsoft.Json;
+
+#if NET472
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
+#else
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PropertyEditors;
+#endif
 
 namespace Dawoe.OEmbedPickerPropertyEditor.ValueConverters
 {
@@ -54,14 +60,14 @@ namespace Dawoe.OEmbedPickerPropertyEditor.ValueConverters
                 return allowMultiple ? Enumerable.Empty<OEmbedItem>() : null;
             }
 
-            var items = JsonConvert.DeserializeObject<List<OEmbedItem>>(inter.ToString());
+            var items = JsonConvert.DeserializeObject<List<OEmbedItem>>(inter.ToString() ?? string.Empty);
 
             if (allowMultiple)
             {
                 return items;
             }
 
-            return items.FirstOrDefault();
+            return items?.FirstOrDefault();
         }
     }
 }
