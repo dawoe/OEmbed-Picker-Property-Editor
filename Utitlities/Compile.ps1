@@ -5,7 +5,7 @@ function Compile-Solution {
 		[string] $RootDir,
         
         [Parameter()]
-		[string] $Configuration
+		[string] $Configuration = 'Debug'
 	)
 
     $projectDir = "$RootDir\src\Dawoe.OEmbedPickerPropertyEditor"
