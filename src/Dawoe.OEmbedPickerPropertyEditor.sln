@@ -16,7 +16,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{45071A92-DB5C-4CEF-BAF5-8E428FBD5F27}"
 	ProjectSection(SolutionItems) = preProject
 		..\Utitlities\SetupTestSite.ps1 = ..\Utitlities\SetupTestSite.ps1
-		..\Utitlities\StartTestSite.ps1 = ..\Utitlities\StartTestSite.ps1
+		..\Utitlities\StartTestSiteV8.ps1 = ..\Utitlities\StartTestSiteV8.ps1
+		..\Utitlities\StartTestSiteV9.ps1 = ..\Utitlities\StartTestSiteV9.ps1
 	EndProjectSection
 EndProject
 Global

@@ -95,13 +95,15 @@ function Create-V9-Site {
     Write-Host $CurrentDir
 
     Write-Host "Installing Umbraco 9 templates"
-    dotnet new --install Umbraco.Templates::9.0.0-rc002
+    dotnet new --install Umbraco.Templates::9.0.0
 
     Write-Host "Creating Umbraco 9 site"
     cd $Destination
     dotnet new umbraco --SqlCe -n v9
 
     cd "$Destination\v9"
+
+    dotnet add package Umbraco.TheStarterKit --version 9.0.0 --source https://api.nuget.org/v3/index.json
 
     dotnet build
 
