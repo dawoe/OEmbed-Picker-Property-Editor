@@ -69,8 +69,8 @@ For multiple embeds :
 
 ### 4.2.0
 
-- Make classes for configuration public ([#4](https://github.com/dawoe/OEmbed-Picker-Property-Editor/pull/15))
-- UI Improvements thanks to @TRexStark ([#5](https://github.com/dawoe/OEmbed-Picker-Property-Editor/pull/15))
+- Make classes for configuration public ([#4](https://github.com/dawoe/OEmbed-Picker-Property-Editor/pull/4))
+- UI Improvements thanks to @TRexStark ([#5](https://github.com/dawoe/OEmbed-Picker-Property-Editor/pull/5))
 
 ### 4.1.0
 
