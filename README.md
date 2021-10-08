@@ -64,6 +64,9 @@ For multiple embeds :
 
 ## Changelog
 
+### 4.3.0
+ - This release adds "edit" functionality to your embeds thanks to @bjarnef (#15)
+
 ### 4.2.0
 
 - Make classes for configuration public (#4)
