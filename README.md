@@ -64,10 +64,13 @@ For multiple embeds :
 
 ## Changelog
 
+### 4.3.0
+ - Add "edit" functionality to your embeds thanks to @bjarnef ([#15](https://github.com/dawoe/OEmbed-Picker-Property-Editor/pull/15))
+
 ### 4.2.0
 
-- Make classes for configuration public (#4)
-- UI Improvements thanks to @TRexStark (#5)
+- Make classes for configuration public ([#4](https://github.com/dawoe/OEmbed-Picker-Property-Editor/pull/4))
+- UI Improvements thanks to @TRexStark ([#5](https://github.com/dawoe/OEmbed-Picker-Property-Editor/pull/5))
 
 ### 4.1.0
 
@@ -107,7 +110,7 @@ This is can be a potentially breaking changes because the models will be generat
 
 ## Contact
 
-Feel free to contact me on twitter : @dawoe21
+Feel free to contact me on twitter : [@dawoe21](https://twitter.com/dawoe21)
 
 
 ## Support this package ##
