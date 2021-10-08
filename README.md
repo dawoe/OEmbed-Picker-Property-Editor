@@ -110,7 +110,7 @@ This is can be a potentially breaking changes because the models will be generat
 
 ## Contact
 
-Feel free to contact me on twitter : @dawoe21
+Feel free to contact me on twitter : [@dawoe21](https://twitter.com/dawoe21)
 
 
 ## Support this package ##
