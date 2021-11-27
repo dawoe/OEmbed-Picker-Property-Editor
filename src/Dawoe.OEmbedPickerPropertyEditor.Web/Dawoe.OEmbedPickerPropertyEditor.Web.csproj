@@ -17,7 +17,7 @@
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor\Dawoe.OEmbedPickerPropertyEditor.csproj" />
   </ItemGroup>
 
-  <ItemGroup  Condition="'$(TargetFramework)' == 'net5'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5'">
     <None Update="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\css\editor.styles.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
