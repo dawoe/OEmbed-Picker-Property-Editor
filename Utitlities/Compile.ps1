@@ -21,5 +21,5 @@ function Compile-Solution {
     & dotnet build $solution --configuration $Configuration
     if (-NOT $?) {
         throw 'The dotnet CLI returned an error code.';
-    }
+    }    
 }

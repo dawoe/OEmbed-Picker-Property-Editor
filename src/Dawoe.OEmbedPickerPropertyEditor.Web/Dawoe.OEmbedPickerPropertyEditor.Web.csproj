@@ -17,6 +17,21 @@
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor\Dawoe.OEmbedPickerPropertyEditor.csproj" />
   </ItemGroup>
 
+  <ItemGroup  Condition="'$(TargetFramework)' == 'net5'">
+    <None Update="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\css\editor.styles.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\package.manifest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\scripts\editor.controller.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\views\editor.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <Target Name="RemoveLuceneAnalyzer" BeforeTargets="CoreCompile">
     <ItemGroup>
       <Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Lucene.Net.CodeAnalysis.CSharp'" />

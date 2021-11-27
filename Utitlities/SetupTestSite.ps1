@@ -81,4 +81,11 @@ Create-V9-Site $Destination
 
 . $CurrentDir\Compile.ps1
 
-Compile-Solution -RootDir $RootDir -Configurartion Debug
+Compile-Solution -RootDir $RootDir -Configuration Debug
+
+ cd "$Destination\v9"
+
+ dotnet add reference ../../src/Dawoe.OEmbedPickerPropertyEditor/Dawoe.OEmbedPickerPropertyEditor.csproj
+ dotnet add reference ../../src/Dawoe.OEmbedPickerPropertyEditor.Web/Dawoe.OEmbedPickerPropertyEditor.Web.csproj
+ dotnet build
+    cd $CurrentDir

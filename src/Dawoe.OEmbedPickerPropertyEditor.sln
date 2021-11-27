@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{
 		..\Utitlities\SetupTestSite.ps1 = ..\Utitlities\SetupTestSite.ps1
 		..\Utitlities\StartTestSiteV8.ps1 = ..\Utitlities\StartTestSiteV8.ps1
 		..\Utitlities\StartTestSiteV9.ps1 = ..\Utitlities\StartTestSiteV9.ps1
+		..\Utitlities\UpdateTestSites.ps1 = ..\Utitlities\UpdateTestSites.ps1
 	EndProjectSection
 EndProject
 Global
