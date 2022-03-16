@@ -14,6 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright &amp;#169; Dave Woestenborghs and contributors.</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeContentInPack>true</IncludeContentInPack>
   </PropertyGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'net472'">    
@@ -25,19 +26,18 @@
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5'">
-    <None Update="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\css\editor.styles.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\package.manifest">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\scripts\editor.controller.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\views\editor.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+  <ItemGroup>
+    <None Remove="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\css\editor.styles.css" />
+    <None Remove="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\package.manifest" />
+    <None Remove="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\scripts\editor.controller.js" />
+    <None Remove="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\views\editor.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\css\editor.styles.css" />
+    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\package.manifest" />
+    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\scripts\editor.controller.js" />
+    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\views\editor.html" />
   </ItemGroup>
 
   <ItemGroup>
