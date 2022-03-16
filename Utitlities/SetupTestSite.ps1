@@ -59,6 +59,16 @@ function Create-V9-Site {
 
     dotnet build
 
+    # load project file xml
+    $xml = New-Object System.Xml.XmlDocument
+    $xml.Load("$Destination\v9\v9.csproj")
+
+    $propertyGroup = Select-XML -Xml $xml -XPath '//PropertyGroup[1]'
+    $newNode = $xml.CreateElement('RestoreAdditionalProjectSources')
+    $newNode.InnerText = '../Nuget'
+    $propertyGroup.Node.AppendChild($newNode)  
+    $xml.Save("$Destination\v9\v9.csproj")
+
     cd $CurrentDir
 }
 
@@ -73,7 +83,7 @@ if (Test-Path -Path $Destination) {
     Remove-Item -LiteralPath $Destination -Force -Recurse
 }
 
- New-Item -Path $RootDir -Name "testsites" -ItemType "directory"
+New-Item -Path $RootDir -Name "testsites" -ItemType "directory"
 
 Create-V8-Site -RootDir $RootDir -Destination $Destination
 
@@ -83,9 +93,19 @@ Create-V9-Site $Destination
 
 Compile-Solution -RootDir $RootDir -Configuration Debug
 
- cd "$Destination\v9"
 
- dotnet add reference ../../src/Dawoe.OEmbedPickerPropertyEditor/Dawoe.OEmbedPickerPropertyEditor.csproj
- dotnet add reference ../../src/Dawoe.OEmbedPickerPropertyEditor.Web/Dawoe.OEmbedPickerPropertyEditor.Web.csproj
- dotnet build
-    cd $CurrentDir
+Write-Host "Create nuget packages"
+
+$dateTime = get-date -Format "ddMMyyyyHHmmss"
+
+Write-Host "Version suffix $dateTime"
+
+dotnet pack $RootDir\src\Dawoe.OEmbedPickerPropertyEditor.sln -c Debug -o $Destination\nuget --version-suffix "$dateTime" --no-build
+
+cd "$Destination\v9"
+
+dotnet add package Dawoe.OEmbedPickerPropertyEditor -v 5.0.0-$dateTime --no-restore
+
+dotnet build
+
+cd $CurrentDir
