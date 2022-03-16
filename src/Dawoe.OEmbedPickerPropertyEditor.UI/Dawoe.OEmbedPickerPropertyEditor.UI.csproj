@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright &amp;#169; Dave Woestenborghs and contributors.</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <ContentTargetFolders>.</ContentTargetFolders>
+   
   </PropertyGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'net472'">    
