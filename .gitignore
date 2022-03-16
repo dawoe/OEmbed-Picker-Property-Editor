@@ -39,3 +39,5 @@ src/packages/
 testsites/
 Packaging/NugetCoreBuild/
 tools/
+
+!/src/**/[Bb]uild

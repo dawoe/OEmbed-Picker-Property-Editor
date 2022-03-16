@@ -14,7 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright &amp;#169; Dave Woestenborghs and contributors.</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <IncludeContentInPack>true</IncludeContentInPack>
+    <ContentTargetFolders>.</ContentTargetFolders>
   </PropertyGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'net472'">    
@@ -27,17 +27,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\css\editor.styles.css" />
-    <None Remove="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\package.manifest" />
-    <None Remove="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\scripts\editor.controller.js" />
-    <None Remove="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\views\editor.html" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\css\editor.styles.css" />
-    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\package.manifest" />
-    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\scripts\editor.controller.js" />
-    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\views\editor.html" />
+    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\**\*.*">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <None Include="build\**\*.*">
+      <Pack>True</Pack>
+      <PackagePath>buildTransitive</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
