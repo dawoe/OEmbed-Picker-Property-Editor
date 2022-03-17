@@ -18,14 +18,17 @@
 	vertical-align: top
 }
 
+.Dawoe-OEmbedPicker .preview-item {
+  display: inline-block;
+}
 /*
 	Eliminate default unecessary space at the bottom
 	Make preview smaller at a size equivalent to an HD size (at a smaller scale)
 */
-.Dawoe-OEmbedPicker .preview-item span,
-.Dawoe-OEmbedPicker iframe {
-	height: 100px;
-}
+  .Dawoe-OEmbedPicker .preview-item span,
+  .Dawoe-OEmbedPicker iframe {
+    height: 100px;
+  }
 
 .Dawoe-OEmbedPicker iframe,
 .Dawoe-OEmbedPicker .add-link {
