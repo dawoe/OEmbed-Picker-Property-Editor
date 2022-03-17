@@ -1,45 +1,23 @@
-image: Visual Studio 2017
+image: Visual Studio 2019
 
 # Version format
-version: 4.4.0.{build}
+version: 5.0.0.{build}
 
 branches:
   only:
     - develop
-    - master
-
-init:
-  - set UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta 
-
-assembly_info:
-  patch: true
-  file: AssemblyInfo.*
-  assembly_version: "{version}"
-  assembly_file_version: "{version}"
-  assembly_informational_version: "{version}"
-
-cache:
-  - src\packages -> **\packages.config   # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+    - master   
 
 platform: Any CPU
 
 configuration: Release
 
-before_build:
-    - nuget restore src
-
-build:
-  parallel: true                  
-  project: src\Dawoe.OEmbedPickerPropertyEditor.sln
-  verbosity: minimal
-
-after_build:
-  - cd Packaging
-  - build-appveyor.bat
+build_script: 
+  - ps: .\Packaging\BuildPackage.ps1 beta
 
 artifacts:
-  - path: artifacts\*.nupkg
-  - path: artifacts\*.zip
+  - path: dist\*.nupkg
+  - path: dist\*.zip
   
 
 
@@ -68,7 +46,7 @@ deploy:
   - provider: NuGet
     server:
     api_key:
-      secure: f5ijMJdo8hygOHm+RRD4pCBcRqj6uw4AWqDgG4MvA1x5sgdmcuRxvdtN1Cn2NB6I
+      secure: sYcQ+cM92ahNwBrZW4//jqeMtDFxKy51Z0FThvNSIG97cbUkocK/RF4OXEVjf2Ii
     artifact: /.*\.nupkg/
     on:
       branch: master

@@ -1,0 +1,81 @@
+/* Removes default spacing between inline-block items */
+.Dawoe-OEmbedPicker {
+	font-size: 0 
+}
+
+.Dawoe-OEmbedPicker .umb-sortable-thumbnails,
+.Dawoe-OEmbedPicker .items-container,
+.Dawoe-OEmbedPicker .picker-btn {
+	display: inline-block;
+	margin-bottom: 15px
+}
+
+.Dawoe-OEmbedPicker .umb-sortable-thumbnails,
+.Dawoe-OEmbedPicker .picker-btn {
+	border: 1px solid #d8d7d9;
+	margin-right: 30px;
+	padding: 20px;
+	vertical-align: top
+}
+
+.Dawoe-OEmbedPicker .preview-item {
+  display: inline-block;
+}
+/*
+	Eliminate default unecessary space at the bottom
+	Make preview smaller at a size equivalent to an HD size (at a smaller scale)
+*/
+  .Dawoe-OEmbedPicker .preview-item span,
+  .Dawoe-OEmbedPicker iframe {
+    height: 100px;
+  }
+
+.Dawoe-OEmbedPicker iframe,
+.Dawoe-OEmbedPicker .add-link {
+	width: 178px;
+}
+
+.Dawoe-OEmbedPicker .preview-item span { 
+	display: block;
+}
+
+/* Re-position and style action buttons */
+.Dawoe-OEmbedPicker .umb-sortable-thumbnails {
+	position: relative
+}
+
+.Dawoe-OEmbedPicker .sort-icon {
+	cursor: move;
+	font-size: 16px;
+	left: 0;
+	padding: 4px;
+	position: absolute;
+	top: 0
+}
+
+.Dawoe-OEmbedPicker .umb-sortable-thumbnails__actions {
+	position: absolute;
+	right: -18px;
+	top: -12px;
+}
+
+.Dawoe-OEmbedPicker .umb-node-preview__action {
+	background: #fff;
+	border-radius: 100%;
+	box-shadow: 0 1px 2px rgba(0,0,0,.25);
+	font-size: 16px;
+	height: 25px;
+	line-height: 26px;
+	text-align: center;
+	text-decoration: none;
+	width: 25px;
+}
+
+.Dawoe-OEmbedPicker .umb-node-preview__action.umb-node-preview__action--red {
+	color: #d42054;
+}
+
+/* Overwrite default margin */
+.Dawoe-OEmbedPicker.umb-mediapicker .add-link-square {
+	margin: 0
+}

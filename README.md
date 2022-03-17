@@ -64,7 +64,12 @@ For multiple embeds :
 
 ## Changelog
 
+### 5.0.0
+- Support for Umbraco V9
+- Fixes #17
+
 ### 4.3.0
+
  - Add "edit" functionality to your embeds thanks to @bjarnef ([#15](https://github.com/dawoe/OEmbed-Picker-Property-Editor/pull/15))
 
 ### 4.2.0
@@ -118,5 +123,4 @@ Feel free to contact me on twitter : [@dawoe21](https://twitter.com/dawoe21)
 If you like this package and use it in your website, consider becoming a patreon to support ongoing maintenance
 
 [https://www.patreon.com/dawoe](https://t.co/TBsvTMnOLB)
-
 

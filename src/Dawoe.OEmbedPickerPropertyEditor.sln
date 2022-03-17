@@ -1,11 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dawoe.OEmbedPickerPropertyEditor.Web", "Dawoe.OEmbedPickerPropertyEditor.Web\Dawoe.OEmbedPickerPropertyEditor.Web.csproj", "{209C4CE7-6A8B-4773-AD86-D7B22199C980}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dawoe.OEmbedPickerPropertyEditor.UI", "Dawoe.OEmbedPickerPropertyEditor.UI\Dawoe.OEmbedPickerPropertyEditor.UI.csproj", "{209C4CE7-6A8B-4773-AD86-D7B22199C980}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dawoe.OEmbedPickerPropertyEditor", "Dawoe.OEmbedPickerPropertyEditor\Dawoe.OEmbedPickerPropertyEditor.csproj", "{7FB02755-B331-4068-B2AB-2AD341E08536}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dawoe.OEmbedPickerPropertyEditor.Core", "Dawoe.OEmbedPickerPropertyEditor.Core\Dawoe.OEmbedPickerPropertyEditor.Core.csproj", "{7FB02755-B331-4068-B2AB-2AD341E08536}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BADEFC53-AC3A-4D50-BB15-8DFE7AF383D2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		stylecop.json = stylecop.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{45071A92-DB5C-4CEF-BAF5-8E428FBD5F27}"
+	ProjectSection(SolutionItems) = preProject
+		..\Utilities\Compile.ps1 = ..\Utilities\Compile.ps1
+		..\Utilities\Prepare.ps1 = ..\Utilities\Prepare.ps1
+		..\Utilities\SetupTestSite.ps1 = ..\Utilities\SetupTestSite.ps1
+		..\Utilities\StartTestSiteV8.ps1 = ..\Utilities\StartTestSiteV8.ps1
+		..\Utilities\StartTestSiteV9.ps1 = ..\Utilities\StartTestSiteV9.ps1
+		..\Utilities\UpdateTestSites.ps1 = ..\Utilities\UpdateTestSites.ps1
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dawoe.OEmbedPickerPropertyEditor", "Dawoe.OEmbedPickerPropertyEditor\Dawoe.OEmbedPickerPropertyEditor.csproj", "{4EDE7985-3AFB-40F7-9196-F1DB0CC7A35E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packaging", "Packaging", "{FBB35EC3-7739-4EF4-ACE3-C30BE2DA722C}"
+	ProjectSection(SolutionItems) = preProject
+		..\Packaging\BuildPackage.ps1 = ..\Packaging\BuildPackage.ps1
+		..\Packaging\manifest-umbraco.xml = ..\Packaging\manifest-umbraco.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +46,17 @@ Global
 		{7FB02755-B331-4068-B2AB-2AD341E08536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FB02755-B331-4068-B2AB-2AD341E08536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FB02755-B331-4068-B2AB-2AD341E08536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EDE7985-3AFB-40F7-9196-F1DB0CC7A35E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EDE7985-3AFB-40F7-9196-F1DB0CC7A35E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EDE7985-3AFB-40F7-9196-F1DB0CC7A35E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EDE7985-3AFB-40F7-9196-F1DB0CC7A35E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45071A92-DB5C-4CEF-BAF5-8E428FBD5F27} = {BADEFC53-AC3A-4D50-BB15-8DFE7AF383D2}
+		{FBB35EC3-7739-4EF4-ACE3-C30BE2DA722C} = {BADEFC53-AC3A-4D50-BB15-8DFE7AF383D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3BCB0C24-5B53-4CC2-81D5-C2721108CB39}
