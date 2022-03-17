@@ -7,13 +7,16 @@ branches:
   only:
     - develop
     - master
+    
+init:
+  - set UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta-{build} 
 
 platform: Any CPU
 
 configuration: Release
 
 build_script: 
-  - ps: .\Packaging\BuildPackage.ps1 "beta-{build}"
+  - ps: .\Packaging\BuildPackage.ps1 $(UMBRACO_PACKAGE_PRERELEASE_SUFFIX)
 
 artifacts:
   - path: dist\*.nupkg
