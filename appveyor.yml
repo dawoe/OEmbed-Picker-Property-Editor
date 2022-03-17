@@ -6,17 +6,14 @@ version: 5.0.0.{build}
 branches:
   only:
     - develop
-    - master
-    
-init:
-  - set UMBRACO_PACKAGE_PRERELEASE_SUFFIX=beta-{build} 
+    - master   
 
 platform: Any CPU
 
 configuration: Release
 
 build_script: 
-  - ps: .\Packaging\BuildPackage.ps1 $(UMBRACO_PACKAGE_PRERELEASE_SUFFIX)
+  - ps: .\Packaging\BuildPackage.ps1 beta-$(APPVEYOR_BUILD_VERSION)
 
 artifacts:
   - path: dist\*.nupkg
