@@ -13,7 +13,7 @@ platform: Any CPU
 configuration: Release
 
 build_script: 
-  - ps: .\Packaging\BuildPackage.ps1 beta-$(APPVEYOR_BUILD_VERSION)
+  - ps: .\Packaging\BuildPackage.ps1 beta
 
 artifacts:
   - path: dist\*.nupkg
