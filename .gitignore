@@ -41,3 +41,4 @@ Packaging/NugetCoreBuild/
 tools/
 
 !/src/**/[Bb]uild
+dist/
