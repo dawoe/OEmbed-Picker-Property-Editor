@@ -2,6 +2,7 @@ image: Visual Studio 2019
 
 # Version format
 version: 5.0.0.{build}
+versionSuffix: beta-{build}
 
 branches:
   only:
@@ -13,7 +14,7 @@ platform: Any CPU
 configuration: Release
 
 build_script: 
-  - ps: .\Packaging\BuildPackage.ps1 beta-{build}
+  - ps: .\Packaging\BuildPackage.ps1 "{versionSuffix}"
 
 artifacts:
   - path: dist\*.nupkg
