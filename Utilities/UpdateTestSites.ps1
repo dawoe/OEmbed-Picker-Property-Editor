@@ -12,7 +12,7 @@ $buildFolder = Join-Path -Path $RootDir -ChildPath 'build';
 Copy-Item -Path "$buildFolder\App_Plugins" -Destination "$RootDir\testsites\v8" -Recurse -Force
 
 #Copy bin folder
-Copy-Item -Path "$buildFolder\bin\net472\*.*" -Destination "$RootDir\testsites\v8\bin" -Force
+Copy-Item -Path "$buildFolder\bin\*.*" -Destination "$RootDir\testsites\v8\bin" -Force
 
 Write-Host "Create nuget packages"
 
