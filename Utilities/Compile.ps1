@@ -14,7 +14,11 @@ function Compile-Solution {
 
     # Build the VS project
     Write-Host 'Cleaning Visual Studio solution.';
-    Remove-Item -Recurse -Force "$projectDir\obj";
+
+    if(Test-Path -Path "$projectDir\obj")
+    {
+        Remove-Item -Recurse -Force "$projectDir\obj";
+    }   
     & dotnet clean $solution;
 
     Write-Host 'Compiling Visual Studio solution.';
