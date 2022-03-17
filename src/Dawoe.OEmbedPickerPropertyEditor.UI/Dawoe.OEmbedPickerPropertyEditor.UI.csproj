@@ -1,31 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net472;net5</TargetFrameworks>
-    <VersionPrefix>5.0.0</VersionPrefix>
-    <Authors>Dave Woestenborghs</Authors>
-    <Company />
-    <PackageProjectUrl>https://github.com/dawoe/OEmbed-Picker-Property-Editor</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/dawoe/OEmbed-Picker-Property-Editor</RepositoryUrl>
-    <PackageIcon>icon.png</PackageIcon>
-    <PackageIconUrl />
-    <Description>This package implements a property editor that allows you to easily insert items that support the oEmbed protocol</Description>
-    <PackageTags>umbraco</PackageTags>
-    <RepositoryType>git</RepositoryType>
-    <Copyright>Copyright &amp;#169; Dave Woestenborghs and contributors.</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-   
-  </PropertyGroup>
-  
-  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">    
-    <PackageReference Include="UmbracoCms.Web" Version="8.1.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5'">
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
-  </ItemGroup>
-
   <ItemGroup>
     <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\**\*.*">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -36,18 +10,5 @@
       <PackagePath>buildTransitive</PackagePath>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\Images\icon.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-
-  <Target Name="RemoveLuceneAnalyzer" BeforeTargets="CoreCompile">
-    <ItemGroup>
-      <Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Lucene.Net.CodeAnalysis.CSharp'" />
-    </ItemGroup>
-  </Target>
 
 </Project>
