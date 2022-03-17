@@ -26,6 +26,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dawoe.OEmbedPickerPropertyEditor", "Dawoe.OEmbedPickerPropertyEditor\Dawoe.OEmbedPickerPropertyEditor.csproj", "{4EDE7985-3AFB-40F7-9196-F1DB0CC7A35E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packaging", "Packaging", "{FBB35EC3-7739-4EF4-ACE3-C30BE2DA722C}"
+	ProjectSection(SolutionItems) = preProject
+		..\Packaging\BuildPackage.ps1 = ..\Packaging\BuildPackage.ps1
+		..\Packaging\manifest-umbraco.xml = ..\Packaging\manifest-umbraco.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +56,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{45071A92-DB5C-4CEF-BAF5-8E428FBD5F27} = {BADEFC53-AC3A-4D50-BB15-8DFE7AF383D2}
+		{FBB35EC3-7739-4EF4-ACE3-C30BE2DA722C} = {BADEFC53-AC3A-4D50-BB15-8DFE7AF383D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3BCB0C24-5B53-4CC2-81D5-C2721108CB39}

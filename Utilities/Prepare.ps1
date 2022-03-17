@@ -25,10 +25,7 @@ function Prepare-Solution {
     $binFolder = Join-Path -Path $buildFolder -ChildPath "bin";
     if (!(Test-Path -Path $binFolder)) {New-Item -Path $binFolder -Type Directory;}
 
-    $binFolder472 = Join-Path -Path $binFolder -ChildPath "net472";
-    if (!(Test-Path -Path $binFolder472)) {New-Item -Path $binFolder472 -Type Directory;}    
-
-    Copy-Item -Path "${RootDir}\src\Dawoe.OEmbedPickerPropertyEditor\bin\${Configuration}\net472\Dawoe*" -Destination $binFolder472;
+    Copy-Item -Path "${RootDir}\src\Dawoe.OEmbedPickerPropertyEditor\bin\${Configuration}\net472\Dawoe*" -Destination $binFolder;
 
     #Copy UI to build folder
     Copy-Item -Path  "${RootDir}\src\Dawoe.OEmbedPickerPropertyEditor.UI\App_Plugins\" -Destination $buildFolder -Recurse -Force
