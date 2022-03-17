@@ -27,9 +27,9 @@ Write-Host "Create nuget packages"
 
 if(-Not([string]::IsNullOrEmpty($versionSuffix)))
 {
-    if(-Not([string]::IsNullOrEmpty($env:APPVEYOR_BUILD_VERSION)))
+    if(-Not([string]::IsNullOrEmpty($env:APPVEYOR_BUILD_NUMBER)))
     {
-        $VersionSuffix = "$VersionSuffix-$env:APPVEYOR_BUILD_VERSION"
+        $VersionSuffix = "$VersionSuffix-$env:APPVEYOR_BUILD_NUMBER"
     }
     dotnet pack $SolutionFile -c Release -o $DistDir --version-suffix $VersionSuffix --no-build
 }
