@@ -3,11 +3,13 @@
 // </copyright>
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Dawoe.OEmbedPickerPropertyEditor.Configuration;
 using Dawoe.OEmbedPickerPropertyEditor.Models;
 using Newtonsoft.Json;
+using Umbraco.Core;
 
 #if NET472
 using Umbraco.Core.Models.PublishedContent;
@@ -15,6 +17,7 @@ using Umbraco.Core.PropertyEditors;
 #else
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
+using Umbraco.Extensions;
 #endif
 
 namespace Dawoe.OEmbedPickerPropertyEditor.ValueConverters
@@ -53,21 +56,37 @@ namespace Dawoe.OEmbedPickerPropertyEditor.ValueConverters
             object inter,
             bool preview)
         {
-            var allowMultiple = propertyType.DataType.ConfigurationAs<OEmbedPickerConfiguration>().AllowMultiple;
+            var isMultiple = this.IsMultipleDataType(propertyType.DataType);
 
-            if (string.IsNullOrWhiteSpace(inter?.ToString()))
+            var sourceString = inter?.ToString();
+
+            if (string.IsNullOrWhiteSpace(sourceString))
             {
-                return allowMultiple ? Enumerable.Empty<OEmbedItem>() : null;
+                return isMultiple ? Enumerable.Empty<OEmbedItem>() : null;
             }
 
-            var items = JsonConvert.DeserializeObject<List<OEmbedItem>>(inter.ToString() ?? string.Empty);
-
-            if (allowMultiple)
+            if (sourceString.DetectIsJson())
             {
-                return items;
+                try
+                {
+                    var items = JsonConvert.DeserializeObject<List<OEmbedItem>>(sourceString);
+
+                    return isMultiple ? items : this.FirstOrDefault(items);
+                }
+                catch
+                {
+                }
             }
 
-            return items?.FirstOrDefault();
+            return isMultiple ? Enumerable.Empty<OEmbedItem>() : null;
         }
+
+        private bool IsMultipleDataType(PublishedDataType dataType)
+        {
+            var config = ConfigurationEditor.ConfigurationAs<OEmbedPickerConfiguration>(dataType.Configuration);
+            return config.AllowMultiple;
+        }
+
+        private object FirstOrDefault(IList items) => items.Count == 0 ? null : items[0];
     }
 }
