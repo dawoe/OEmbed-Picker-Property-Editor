@@ -1,9 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor.Core\Dawoe.OEmbedPickerPropertyEditor.Core.csproj" />
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor.UI\Dawoe.OEmbedPickerPropertyEditor.UI.csproj" />
   </ItemGroup>
-
-  
 </Project>

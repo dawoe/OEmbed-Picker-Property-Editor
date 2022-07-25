@@ -3,9 +3,9 @@
 // </copyright>
 
 using System.Text.RegularExpressions;
-using Dawoe.OEmbedPickerPropertyEditor.Models;
+using Dawoe.OEmbedPickerPropertyEditor.Core.Models;
 
-namespace Dawoe.OEmbedPickerPropertyEditor.Extensions
+namespace Dawoe.OEmbedPickerPropertyEditor.Core.Extensions
 {
     /// <summary>
     /// Represents the extension methods for the <see cref="OEmbedItem"/>.

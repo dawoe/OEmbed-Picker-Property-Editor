@@ -1,17 +1,18 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net5</TargetFrameworks>
+    <TargetFrameworks>net6</TargetFrameworks>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
-    <PackageReference Include="UmbracoCms.Web" Version="8.1.1" />
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[10.0.0,11.0.0)" />
+    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[10.0.0,11.0.0)" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5'">
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
+  <ItemGroup>
+    <AdditionalFiles Include="..\stylecop.json" />
   </ItemGroup>
+
 
   <PropertyGroup>
       <Authors>Dave Woestenborghs</Authors>
@@ -26,9 +27,9 @@
       <RepositoryType>git</RepositoryType>
       <Copyright>Copyright &amp;#169; Dave Woestenborghs and contributors.</Copyright>
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
-      <AssemblyVersion>5.2.0</AssemblyVersion>
-      <VersionPrefix>5.2.0</VersionPrefix>
-      <InformationalVersion>5.2.0</InformationalVersion>
+      <AssemblyVersion>10.0.0</AssemblyVersion>
+      <VersionPrefix>10.0.0</VersionPrefix>
+      <InformationalVersion>10.0.0</InformationalVersion>
     </PropertyGroup>
 
 

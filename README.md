@@ -48,25 +48,25 @@ The package comes with a property value convertor for easy use in your views. Th
 For a single embed :
 
  ```
- @using Dawoe.OEmbedPickerPropertyEditor.Models;
+ @using Dawoe.OEmbedPickerPropertyEditor.Core.Models;
  @Model.Value<OEmbedItem>("propalias").EmbedCode
  ```
 
 For multiple embeds : 
 
  ```
- @using Dawoe.OEmbedPickerPropertyEditor.Models;
+ @using Dawoe.OEmbedPickerPropertyEditor.Core.Models;
  @foreach(var item in Model.Value<IEnumerable<OEmbedItem>>("propalias")) 
  {
      <div>@item.EmbedCode</div>
  }
  ```
 
-When you only need the source url of the iframe in the embed code you can do the following from version 5.1.0
+When you only need the source url of the iframe in the embed code you can do the following
 
 ```
-@using Dawoe.OEmbedPickerPropertyEditor.Models
-@using Dawoe.OEmbedPickerPropertyEditor.Extensions
+@using Dawoe.OEmbedPickerPropertyEditor.Core.Models
+@using Dawoe.OEmbedPickerPropertyEditor.Core.Extensions
 
 @Model.Value<OEmbedItem>("propAlias").GetEmbedSrc()
 ```
@@ -74,6 +74,12 @@ When you only need the source url of the iframe in the embed code you can do the
 
 
 ## Changelog
+
+### 10.0.0
+
+- Support for Umbraco 10
+- Converted UI project to razor class library
+- Breaking change :  Moved classes in Dawoe.OEmbedPropertyEditor namespace to Dawoe.OEmbedPropertyEditor.Core namespace.
 
 ### 5.1.0
 
@@ -128,16 +134,17 @@ This is can be a potentially breaking changes because the models will be generat
 ### 1.0.0
 - Initial release
 
+## Setting up a test site
 
+The repository only contains the package code and not test website. However a test site can be set up by running the script SetupTestSite.ps1 from the Utilities folder.
+
+For starting the test site you can run StartTestSite.ps1
+
+To deploy new changes made in the source code you can run UpdateTestSite.ps1.
 
 ## Contact
 
 Feel free to contact me on twitter : [@dawoe21](https://twitter.com/dawoe21)
 
 
-## Support this package ##
-
-If you like this package and use it in your website, consider becoming a patreon to support ongoing maintenance
-
-[https://www.patreon.com/dawoe](https://t.co/TBsvTMnOLB)
 

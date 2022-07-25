@@ -1,7 +1,7 @@
-image: Visual Studio 2019
+image: Visual Studio 2022
 
 # Version format
-version: 5.1.0.{build}
+version: 10.0.0.{build}
 
 branches:
   only:
@@ -17,8 +17,6 @@ build_script:
 
 artifacts:
   - path: dist\*.nupkg
-  - path: dist\*.zip
-  
 
 
 deploy:
@@ -35,7 +33,7 @@ deploy:
   - provider: GitHub
     auth_token:
       secure: 2NNEN9lVF0/cA40PZrm64BMMK34Y26A8xK22eUdWcN/7Nn5KyyRH2+THumy91tcV
-    artifact: /.*\.zip/            # upload all Zip packages to release assets
+    artifact: /.*\.nupkg/            # upload all nget packages to release assets
     draft: false
     prerelease: false
     on:
