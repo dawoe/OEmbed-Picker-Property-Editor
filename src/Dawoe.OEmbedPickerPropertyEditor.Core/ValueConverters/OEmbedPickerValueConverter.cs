@@ -6,15 +6,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Dawoe.OEmbedPickerPropertyEditor.Configuration;
-using Dawoe.OEmbedPickerPropertyEditor.Models;
+using Dawoe.OEmbedPickerPropertyEditor.Core.Configuration;
+using Dawoe.OEmbedPickerPropertyEditor.Core.Models;
 using Newtonsoft.Json;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 using Umbraco.Extensions;
 
-
-namespace Dawoe.OEmbedPickerPropertyEditor.ValueConverters
+namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
 {
     /// <summary>
     /// Represents a the property value converter for the OEmbed picker.

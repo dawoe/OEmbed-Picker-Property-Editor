@@ -5,7 +5,7 @@
 using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
 
-namespace Dawoe.OEmbedPickerPropertyEditor.Models
+namespace Dawoe.OEmbedPickerPropertyEditor.Core.Models
 {
     /// <summary>
     /// Represents a item picked in the editor.

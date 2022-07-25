@@ -5,7 +5,7 @@
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Dawoe.OEmbedPickerPropertyEditor.Configuration
+namespace Dawoe.OEmbedPickerPropertyEditor.Core.Configuration
 {
     /// <summary>
     /// Represents the OEmbed picker data editor.
