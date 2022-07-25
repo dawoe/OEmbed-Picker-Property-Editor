@@ -5,7 +5,10 @@
 		[string] $Destination,  
         
         [Parameter()]
-		[string] $ProjectName
+		[string] $ProjectName,
+
+        [Parameter()]
+		[string] $CmsVersion
 	)
 
     $CurrentDir = Get-Location
@@ -17,11 +20,11 @@
 
     Write-Host "Creating Umbraco site"
     cd $Destination
-    dotnet new umbraco -n $ProjectName --development-database-type SQLite --version 10.0.0
+    dotnet new umbraco -n $ProjectName --development-database-type SQLite --version $CmsVersion
 
     cd "$Destination\$ProjectName"
 
-    dotnet add package Umbraco.TheStarterKit --version 10.0.0 --source https://api.nuget.org/v3/index.json
+    dotnet add package Umbraco.TheStarterKit --version $CmsVersion --source https://api.nuget.org/v3/index.json
 
     dotnet build
 
@@ -41,19 +44,22 @@
 
 $CurrentDir = Split-Path $MyInvocation.MyCommand.Path
 $RootDir = Split-Path -Path $CurrentDir -Parent
-$Destination= "$RootDir\testsites"
+$TestSitesFolderName = "testsites"
+$TestSitesFolder = "$RootDir\$TestSitesFolderName"
 $TestProjectName = "OEmbedPickerSite"
 $PackageName = "Dawoe.OEmbedPickerPropertyEditor"
+$SourceDir = "$RootDir\src"
+$UmbracoVersion = "10.0.0"
 
 Write-Host "Cleaning up existing test site"
 
-if (Test-Path -Path $Destination) {
-    Remove-Item -LiteralPath $Destination -Force -Recurse
+if (Test-Path -Path $TestSitesFolder) {
+    Remove-Item -LiteralPath $TestSitesFolder -Force -Recurse
 }
 
-New-Item -Path $RootDir -Name "testsites" -ItemType "directory"
+New-Item -Path $RootDir -Name $TestSitesFolderName -ItemType "directory"
 
-Create-Test-Site $Destination $TestProjectName
+Create-Test-Site $TestSitesFolder $TestProjectName $UmbracoVersion
 
 Write-Host "Create nuget packages"
 
@@ -61,11 +67,11 @@ $dateTime = get-date -Format "ddMMyyyyHHmmss"
 
 Write-Host "Version suffix $dateTime"
 
-dotnet pack $RootDir\src\$PackageName.sln -c Debug -o $Destination\nuget --version-suffix "$dateTime" --no-build
+dotnet pack $SourceDir\$PackageName.sln -c Debug -o $TestSitesFolder\nuget --version-suffix "$dateTime"
 
-cd "$Destination\$TestProjectName"
+cd "$TestSitesFolder\$TestProjectName"
 
-dotnet add package $PackageName -v 10.0.0-$dateTime --no-restore
+dotnet add package $PackageName -v 10.0.0-$dateTime
 
 dotnet build
 
