@@ -2,30 +2,26 @@
 // Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
 // </copyright>
 
-#if NET472
-using Umbraco.Core.PropertyEditors;
-#else
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
-#endif
+using Umbraco.Cms.Core.Services;
 
-namespace Dawoe.OEmbedPickerPropertyEditor.Configuration
+namespace Dawoe.OEmbedPickerPropertyEditor.Core.Configuration
 {
     /// <summary>
     /// Represents the configuration editor for the OEmbed picker.
     /// </summary>
     public class OEmbedPickerConfigurationEditor : ConfigurationEditor<OEmbedPickerConfiguration>
     {
-#if NETCOREAPP
         /// <summary>
         /// Initializes a new instance of the <see cref="OEmbedPickerConfigurationEditor"/> class.
         /// </summary>
-        /// <param name="ioHelper">A IO Helper.</param>
-        public OEmbedPickerConfigurationEditor(IIOHelper ioHelper)
-            : base(ioHelper)
+        /// <param name="ioHelper">A <see cref="IIOHelper"/></param>
+        /// <param name="editorConfigurationParser">A <see cref="IEditorConfigurationParser"/>.</param>
+        public OEmbedPickerConfigurationEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser)
+            : base(ioHelper, editorConfigurationParser)
         {
         }
-#endif
 
         /// <summary>
         /// Gets the default configuration object.
