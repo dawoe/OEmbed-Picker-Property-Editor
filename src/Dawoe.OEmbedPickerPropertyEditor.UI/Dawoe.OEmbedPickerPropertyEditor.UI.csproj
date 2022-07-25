@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
+  <PropertyGroup>
+    <StaticWebAssetBasePath>App_Plugins/Dawoe.OEmbedPickerPropertyEditor</StaticWebAssetBasePath>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\**\*.*">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
