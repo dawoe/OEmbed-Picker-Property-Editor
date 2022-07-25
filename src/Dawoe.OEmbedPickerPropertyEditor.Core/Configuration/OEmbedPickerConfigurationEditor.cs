@@ -4,6 +4,7 @@
 
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
+using Umbraco.Cms.Core.Services;
 
 namespace Dawoe.OEmbedPickerPropertyEditor.Core.Configuration
 {
@@ -12,13 +13,13 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.Configuration
     /// </summary>
     public class OEmbedPickerConfigurationEditor : ConfigurationEditor<OEmbedPickerConfiguration>
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="OEmbedPickerConfigurationEditor"/> class.
         /// </summary>
-        /// <param name="ioHelper">A IO Helper.</param>
-        public OEmbedPickerConfigurationEditor(IIOHelper ioHelper)
-            : base(ioHelper)
+        /// <param name="ioHelper">A <see cref="IIOHelper"/></param>
+        /// <param name="editorConfigurationParser">A <see cref="IEditorConfigurationParser"/>.</param>
+        public OEmbedPickerConfigurationEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser)
+            : base(ioHelper, editorConfigurationParser)
         {
         }
 
