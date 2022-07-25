@@ -3,14 +3,5 @@
   <PropertyGroup>
     <StaticWebAssetBasePath>App_Plugins/Dawoe.OEmbedPickerPropertyEditor</StaticWebAssetBasePath>
   </PropertyGroup>
-
-  <ItemGroup>
-   
-    <None Include="build\**\*.*">
-      <Pack>True</Pack>
-      <PackagePath>buildTransitive</PackagePath>
-    </None>
-  </ItemGroup>
-
  
 </Project>
