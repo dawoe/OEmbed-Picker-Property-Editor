@@ -12,4 +12,4 @@ dotnet pack $SourceDir\$PackageName.sln -c Debug -o $TestSitesFolder\nuget --ver
 
 cd "$TestSitesFolder\$TestProjectName"
 
-dotnet add package $PackageName -v $version-$dateTime
+dotnet add package $PackageName -v "$($version)-$dateTime".trim()
