@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{45071A92-DB5C-4CEF-BAF5-8E428FBD5F27}"
 	ProjectSection(SolutionItems) = preProject
+		..\Utilities\CreateNugetPackages.ps1 = ..\Utilities\CreateNugetPackages.ps1
 		..\Utilities\SetupTestSite.ps1 = ..\Utilities\SetupTestSite.ps1
 		..\Utilities\StartTestSite.ps1 = ..\Utilities\StartTestSite.ps1
 		..\Utilities\UpdateTestSites.ps1 = ..\Utilities\UpdateTestSites.ps1

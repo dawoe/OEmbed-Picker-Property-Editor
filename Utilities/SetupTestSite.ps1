@@ -55,17 +55,7 @@ New-Item -Path $RootDir -Name $TestSitesFolderName -ItemType "directory"
 
 Create-Test-Site $TestSitesFolder $TestProjectName $UmbracoVersion
 
-Write-Host "Create nuget packages"
-
-$dateTime = get-date -Format "ddMMyyyyHHmmss"
-
-Write-Host "Version suffix $dateTime"
-
-dotnet pack $SourceDir\$PackageName.sln -c Debug -o $TestSitesFolder\nuget --version-suffix "$dateTime"
-
-cd "$TestSitesFolder\$TestProjectName"
-
-dotnet add package $PackageName -v 10.0.0-$dateTime
+Invoke-Expression "$CurrentDir\CreateNugetPackages.ps1"
 
 dotnet build
 
