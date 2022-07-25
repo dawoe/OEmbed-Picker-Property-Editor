@@ -24,7 +24,7 @@ dotnet pack $RootDir\src\Dawoe.OEmbedPickerPropertyEditor.sln -c Debug -o $RootD
 
 cd  "$RootDir\testsites\v9"
 
-dotnet add package Dawoe.OEmbedPickerPropertyEditor -v 5.0.0-$dateTime --no-restore
+dotnet add package Dawoe.OEmbedPickerPropertyEditor -v 5.1.0-$dateTime --no-restore
 dotnet build
 
 cd $CurrentDir
