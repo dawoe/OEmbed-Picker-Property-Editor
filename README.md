@@ -62,9 +62,26 @@ For multiple embeds :
  }
  ```
 
+When you only need the source url of the iframe in the embed code you can do the following from version 5.1.0
+
+```
+@using Dawoe.OEmbedPickerPropertyEditor.Models
+@using Dawoe.OEmbedPickerPropertyEditor.Extensions
+
+@Model.Value<OEmbedItem>("propAlias").GetEmbedSrc()
+```
+
+
+
 ## Changelog
 
+### 5.1.0
+
+- Fix for deserializing property value when editor was a different property editor previously. Thanks to @bjarnef for the PR (#23)
+- Added extension method to solve issues like (#20)
+
 ### 5.0.0
+
 - Support for Umbraco V9
 - Fixes #17
 
