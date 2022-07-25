@@ -5,14 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="App_Plugins\Dawoe.OEmbedPickerPropertyEditor\**\*.*">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
-    </Content>
+   
     <None Include="build\**\*.*">
       <Pack>True</Pack>
       <PackagePath>buildTransitive</PackagePath>
     </None>
   </ItemGroup>
 
+ 
 </Project>
