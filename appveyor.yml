@@ -5,8 +5,8 @@ version: 5.1.0.{build}
 
 branches:
   only:
-    - develop
-    - master   
+    - v5/develop
+    - v5/master   
 
 platform: Any CPU
 
