@@ -9,16 +9,10 @@ using System.Linq;
 using Dawoe.OEmbedPickerPropertyEditor.Configuration;
 using Dawoe.OEmbedPickerPropertyEditor.Models;
 using Newtonsoft.Json;
-using Umbraco.Core;
-
-#if NET472
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Core.PropertyEditors;
-#else
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 using Umbraco.Extensions;
-#endif
+
 
 namespace Dawoe.OEmbedPickerPropertyEditor.ValueConverters
 {

@@ -2,11 +2,7 @@
 // Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
 // </copyright>
 
-#if NET472
-using System.Web;
-#else
 using Microsoft.AspNetCore.Html;
-#endif
 using Newtonsoft.Json;
 
 namespace Dawoe.OEmbedPickerPropertyEditor.Models
@@ -38,11 +34,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Models
         /// Gets the embed code.
         /// </summary>
         [JsonIgnore]
-#if NET472
-        public IHtmlString EmbedCode => new HtmlString(this.Preview);
-#else
         public IHtmlContent EmbedCode => new HtmlString(this.Preview);
-#endif
 
         /// <summary>
         /// Gets or sets the preview.

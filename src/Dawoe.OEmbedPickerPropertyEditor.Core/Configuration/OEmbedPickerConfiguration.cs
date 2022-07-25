@@ -2,11 +2,7 @@
 // Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
 // </copyright>
 
-#if NET472
-using Umbraco.Core.PropertyEditors;
-#else
 using Umbraco.Cms.Core.PropertyEditors;
-#endif
 
 namespace Dawoe.OEmbedPickerPropertyEditor.Configuration
 {
