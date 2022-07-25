@@ -1,4 +1,3 @@
-$TestSitesFolder$CurrentDir = Split-Path $MyInvocation.MyCommand.Path
 $RootDir = Split-Path -Path $CurrentDir -Parent
 $TestSitesFolderName = "testsites"
 $TestSitesFolder = "$RootDir\$TestSitesFolderName"

@@ -43,13 +43,7 @@
 
 
 $CurrentDir = Split-Path $MyInvocation.MyCommand.Path
-$RootDir = Split-Path -Path $CurrentDir -Parent
-$TestSitesFolderName = "testsites"
-$TestSitesFolder = "$RootDir\$TestSitesFolderName"
-$TestProjectName = "OEmbedPickerSite"
-$PackageName = "Dawoe.OEmbedPickerPropertyEditor"
-$SourceDir = "$RootDir\src"
-$UmbracoVersion = "10.0.0"
+. $CurrentDir\Variables.ps1
 
 Write-Host "Cleaning up existing test site"
 
