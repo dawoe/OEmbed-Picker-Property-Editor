@@ -33,7 +33,7 @@ deploy:
   - provider: GitHub
     auth_token:
       secure: 2NNEN9lVF0/cA40PZrm64BMMK34Y26A8xK22eUdWcN/7Nn5KyyRH2+THumy91tcV
-    artifact: /.*\.zip/            # upload all Zip packages to release assets
+    artifact: /.*\.nupkg/            # upload all nget packages to release assets
     draft: false
     prerelease: false
     on:
