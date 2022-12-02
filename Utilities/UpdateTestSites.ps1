@@ -3,6 +3,4 @@ $CurrentDir = Split-Path $MyInvocation.MyCommand.Path
 
 Invoke-Expression "$CurrentDir\CreateNugetPackages.ps1"
 
-dotnet build
-
 cd $CurrentDir

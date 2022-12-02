@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packaging", "Packaging", "{
 	ProjectSection(SolutionItems) = preProject
 		..\appveyor.yml = ..\appveyor.yml
 		..\Packaging\BuildPackage.ps1 = ..\Packaging\BuildPackage.ps1
+		..\umbraco-marketplace.json = ..\umbraco-marketplace.json
 	EndProjectSection
 EndProject
 Global

@@ -3,4 +3,8 @@
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor.Core\Dawoe.OEmbedPickerPropertyEditor.Core.csproj" />
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor.UI\Dawoe.OEmbedPickerPropertyEditor.UI.csproj" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <PackageTags>umbraco, umbraco-marketplace</PackageTags>
+  </PropertyGroup>
 </Project>

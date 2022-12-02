@@ -1,0 +1,35 @@
+{
+  "AuthorDetails": {
+    "Name": "Dave Woestenborghs",
+    "Description": "Umbraco MVP, contributor and package creator from Belgium",
+    "Url": "https://github.com/dawoe",
+    "ImageUrl": "https://github.com/dawoe.png",
+    "Contributors": [
+      {
+        "Name": "Bjarne Fyrstenborg",
+        "Url": "https://github.com/bjarnef"
+      },
+      {
+        "Name": "TRexStark",
+        "Url": "https://github.com/TRexStark"
+      },
+      {
+        "Name": "ribsdigital",
+        "Url": "https://github.com/ribsdigital"
+      },
+      {
+        "Name": "Jan van Helvoort",
+        "Url": "https://github.com/janvanhelvoort"
+      }
+    ]
+  },
+  "Category": "Editor Tools",
+  "DiscussionForumUrl": "https://our.umbraco.com/packages/backoffice-extensions/oembed-picker-property-editor/",
+  "DocumentationUrl": "https://github.com/dawoe/OEmbed-Picker-Property-Editor/blob/develop/README.md",
+  "LicenseTypes": [ "Free" ],
+  "IssueTrackerUrl": "https://github.com/dawoe/OEmbed-Picker-Property-Editor/issues",
+  "PackageType": "Package",
+  "PackagesByAuthor": [ "Our.Umbraco.MultilanguageTextbox" ],  
+  "Tags": [ "embed", "media" ],
+  "Title": "OEmbed Picker Property Editorv"
+}
