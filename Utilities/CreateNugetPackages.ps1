@@ -4,7 +4,7 @@ $directoryBuildProps = [xml](Get-Content -Path "$SourceDir\Directory.Build.props
 $version = $directoryBuildProps.Project.PropertyGroup.VersionPrefix;
 Write-Host "Package version: $version";
 
-$dateTime = get-date -Format "ddMMyyyyHHmmss"
+$dateTime = get-date -Format "yyyyMMddhhmmss"
 
 Write-Host "Version suffix $dateTime"
 
