@@ -16,7 +16,7 @@
     Write-Host $CurrentDir
 
     Write-Host "Installing Umbraco templates"
-    dotnet new install Umbraco.Templates
+    dotnet new --install Umbraco.Templates
 
     Write-Host "Creating Umbraco site"
     cd $Destination
@@ -24,7 +24,7 @@
 
     cd "$Destination\$ProjectName"
 
-    dotnet add package Umbraco.TheStarterKit --version $CmsVersion --source https://api.nuget.org/v3/index.json
+    dotnet add package Umbraco.TheStarterKit --version $StarterKitVersion --source https://api.nuget.org/v3/index.json
 
     dotnet build
 
@@ -37,7 +37,7 @@
     $newNode.InnerText = '../Nuget'
     $propertyGroup.Node.AppendChild($newNode)  
     $xml.Save("$Destination\$ProjectName\$ProjectName.csproj")
-
+    
     cd $CurrentDir
 }
 
@@ -47,8 +47,10 @@ $CurrentDir = Split-Path $MyInvocation.MyCommand.Path
 
 Write-Host "Cleaning up existing test site"
 
-if (Test-Path -Path $TestSitesFolder) {
-    Remove-Item -LiteralPath $TestSitesFolder -Force -Recurse
+$TestSitePath = "$TestSitesFolder\$TestProjectName"
+
+if (Test-Path -Path $TestSitePath) {
+    Remove-Item -LiteralPath $TestSitePath -Force -Recurse
 }
 
 New-Item -Path $RootDir -Name $TestSitesFolderName -ItemType "directory"
