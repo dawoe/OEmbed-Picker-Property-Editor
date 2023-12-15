@@ -16,11 +16,12 @@
     Write-Host $CurrentDir
 
     Write-Host "Installing Umbraco templates"
-    dotnet new --install Umbraco.Templates
+    dotnet new -i Umbraco.Templates::$UmbracoVersion --force
 
     Write-Host "Creating Umbraco site"
     cd $Destination
-    dotnet new umbraco -n $ProjectName --development-database-type SQLite --version $CmsVersion --friendly-name "Test admin" --email "admin@example.com" --password "1234567890"
+
+    dotnet new umbraco -n $ProjectName --development-database-type SQLite --version $CmsVersion --friendly-name "Admin" --email "admin@example.com" --password "1234567890"
 
     cd "$Destination\$ProjectName"
 
@@ -34,7 +35,7 @@
 
     $propertyGroup = Select-XML -Xml $xml -XPath '//PropertyGroup[1]'
     $newNode = $xml.CreateElement('RestoreAdditionalProjectSources')
-    $newNode.InnerText = '../Nuget'
+    $newNode.InnerText = '../nuget'
     $propertyGroup.Node.AppendChild($newNode)  
     $xml.Save("$Destination\$ProjectName\$ProjectName.csproj")
     
@@ -53,7 +54,7 @@ if (Test-Path -Path $TestSitePath) {
     Remove-Item -LiteralPath $TestSitePath -Force -Recurse
 }
 
-New-Item -Path $RootDir -Name $TestSitesFolderName -ItemType "directory"
+New-Item -Path $RootDir -Name "$TestSitesFolder\$TestProjectName" -ItemType "directory"
 
 Create-Test-Site $TestSitesFolder $TestProjectName $UmbracoVersion
 
