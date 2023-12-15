@@ -18,14 +18,5 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.Models
         /// </summary>
         [JsonIgnore]
         public IHtmlContent EmbedCode => new HtmlString(this.Preview);
-
-        /// <summary>
-        /// Gets or sets the preview.
-        /// </summary>
-        [JsonProperty(PropertyName = "preview")]
-        internal string Preview { get; set; }
-
-        /// <inheritdoc />
-        public override string ToString() => this.Preview;
     }
 }

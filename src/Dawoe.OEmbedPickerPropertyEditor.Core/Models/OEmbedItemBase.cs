@@ -28,5 +28,14 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.Models
         /// </summary>
         [JsonProperty(PropertyName = "height")]
         public int Height { get; set; }
+
+        /// <summary>
+        /// Gets or sets the preview.
+        /// </summary>
+        [JsonProperty(PropertyName = "preview")]
+        internal string Preview { get; set; }
+
+        /// <inheritdoc />
+        public override string ToString() => this.Preview;
     }
 }
