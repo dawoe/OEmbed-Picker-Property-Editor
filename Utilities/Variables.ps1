@@ -1,7 +1,9 @@
 $RootDir = Split-Path -Path $CurrentDir -Parent
 $TestSitesFolderName = "testsites"
 $TestSitesFolder = "$RootDir\$TestSitesFolderName"
-$TestProjectName = "OEmbedPickerSite"
+$TestProjectName = "V10"
 $PackageName = "Dawoe.OEmbedPickerPropertyEditor"
+$SolutionName = "Dawoe.OEmbedPickerPropertyEditor"
 $SourceDir = "$RootDir\src"
 $UmbracoVersion = "10.0.0"
+$StarterKitVersion = "10.0.0"
