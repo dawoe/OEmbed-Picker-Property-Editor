@@ -3,6 +3,7 @@
 // </copyright>
 
 using System.Collections.Generic;
+using System.Reflection;
 using Umbraco.Cms.Core.Manifest;
 
 namespace Dawoe.OEmbedPickerPropertyEditor.UI
@@ -17,6 +18,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.UI
             manifests.Add(new()
             {
                 PackageName = "Dawoe.OEmbedPickerPropertyEditor",
+                Version = Assembly.GetEntryAssembly().GetName().Version.ToString(),
                 Scripts = new[]
                 {
                     "/App_Plugins/Dawoe.OEmbedPickerPropertyEditor/scripts/editor.controller.js",
