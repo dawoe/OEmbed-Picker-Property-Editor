@@ -1,7 +1,7 @@
 image: Visual Studio 2022
 
 # Version format
-version: 12.0.0.{build}
+version: 13.0.0.{build}
 
 branches:
   only:
@@ -44,7 +44,7 @@ deploy:
   - provider: NuGet
     server:
     api_key:
-      secure: sYcQ+cM92ahNwBrZW4//jqeMtDFxKy51Z0FThvNSIG97cbUkocK/RF4OXEVjf2Ii
+      secure: jGBXo3OViKTOrtG7HM8mNCdtBCuYipyMjW5DaNV08WkecP0iKJpmzwyZui/KTcYb
     artifact: /.*\.nupkg/
     on:
       branch: master

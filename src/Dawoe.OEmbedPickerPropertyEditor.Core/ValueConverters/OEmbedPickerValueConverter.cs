@@ -11,6 +11,7 @@ using Dawoe.OEmbedPickerPropertyEditor.Core.Models;
 using Newtonsoft.Json;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
+using Umbraco.Cms.Core.PropertyEditors.DeliveryApi;
 using Umbraco.Extensions;
 
 namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
@@ -18,7 +19,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
     /// <summary>
     /// Represents a the property value converter for the OEmbed picker.
     /// </summary>
-    public class OEmbedPickerValueConverter : PropertyValueConverterBase
+    public class OEmbedPickerValueConverter : PropertyValueConverterBase, IDeliveryApiPropertyValueConverter
     {
         /// <inheritdoc />
         public override bool IsConverter(IPublishedPropertyType propertyType) =>
@@ -26,12 +27,15 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
 
         /// <inheritdoc />
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) =>
-            propertyType.DataType.ConfigurationAs<OEmbedPickerConfiguration>().AllowMultiple
+            this.IsMultipleDataType(propertyType.DataType)
                 ? typeof(IEnumerable<OEmbedItem>)
                 : typeof(OEmbedItem);
 
         /// <inheritdoc />
         public override bool? IsValue(object value, PropertyValueLevel level) => value?.ToString() != "[]";
+
+        /// <inheritdoc/>
+        public override PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType) => PropertyCacheLevel.Element;
 
         /// <inheritdoc />
         public override object ConvertSourceToIntermediate(
@@ -47,7 +51,42 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
             IPublishedPropertyType propertyType,
             PropertyCacheLevel referenceCacheLevel,
             object inter,
-            bool preview)
+            bool preview) =>
+            this.ConvertDataToIntermediate<OEmbedItem>(propertyType, inter);
+
+        /// <inheritdoc />
+        public PropertyCacheLevel GetDeliveryApiPropertyCacheLevel(IPublishedPropertyType propertyType) =>
+            PropertyCacheLevel.Element;
+
+        /// <inheritdoc/>
+        public Type GetDeliveryApiPropertyValueType(IPublishedPropertyType propertyType) =>
+            this.IsMultipleDataType(propertyType.DataType)
+                ? typeof(IEnumerable<OEmbedItemApi>)
+                : typeof(OEmbedItemApi);
+
+        /// <inheritdoc/>
+        public object ConvertIntermediateToDeliveryApiObject(
+            IPublishedElement owner,
+            IPublishedPropertyType propertyType,
+            PropertyCacheLevel referenceCacheLevel,
+            object inter,
+            bool preview,
+            bool expanding) =>
+            this.ConvertDataToIntermediate<OEmbedItemApi>(propertyType, inter);
+
+        private bool IsMultipleDataType(PublishedDataType dataType)
+        {
+            var config = ConfigurationEditor.ConfigurationAs<OEmbedPickerConfiguration>(dataType.Configuration);
+
+            return config is not null && config.AllowMultiple;
+        }
+
+        private object FirstOrDefault(IList items) => items.Count == 0 ? null : items[0];
+
+        private object ConvertDataToIntermediate<T>(
+            IPublishedPropertyType propertyType,
+            object inter)
+        where T : OEmbedItemBase
         {
             var isMultiple = this.IsMultipleDataType(propertyType.DataType);
 
@@ -55,14 +94,14 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
 
             if (string.IsNullOrWhiteSpace(sourceString))
             {
-                return isMultiple ? Enumerable.Empty<OEmbedItem>() : null;
+                return isMultiple ? Enumerable.Empty<T>() : null;
             }
 
             if (sourceString.DetectIsJson())
             {
                 try
                 {
-                    var items = JsonConvert.DeserializeObject<List<OEmbedItem>>(sourceString);
+                    var items = JsonConvert.DeserializeObject<List<T>>(sourceString);
 
                     return isMultiple ? items : this.FirstOrDefault(items);
                 }
@@ -71,15 +110,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
                 }
             }
 
-            return isMultiple ? Enumerable.Empty<OEmbedItem>() : null;
+            return isMultiple ? Enumerable.Empty<T>() : null;
         }
-
-        private bool IsMultipleDataType(PublishedDataType dataType)
-        {
-            var config = ConfigurationEditor.ConfigurationAs<OEmbedPickerConfiguration>(dataType.Configuration);
-            return config.AllowMultiple;
-        }
-
-        private object FirstOrDefault(IList items) => items.Count == 0 ? null : items[0];
     }
 }

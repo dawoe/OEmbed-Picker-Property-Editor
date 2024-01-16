@@ -75,6 +75,15 @@ When you only need the source url of the iframe in the embed code you can do the
 
 ## Changelog
 
+### 13.0.0
+
+- Support for Umbraco 12
+
+### 12.1.0
+
+- Fixes (#31)
+- Better Delivery API support
+
 ### 12.0.0
 
 - Support for Umbraco 12
