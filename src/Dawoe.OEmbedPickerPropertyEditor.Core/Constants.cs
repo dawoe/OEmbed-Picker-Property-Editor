@@ -13,6 +13,5 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core
         /// The data editor alias.
         /// </summary>
         public const string DataEditorAlias = "Dawoe.OEmbedPickerPropertyEditor";
-
     }
 }
