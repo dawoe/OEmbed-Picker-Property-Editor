@@ -1,7 +1,7 @@
 image: Visual Studio 2022
 
 # Version format
-version: 12.1.0.{build}
+version: 13.0.0.{build}
 
 branches:
   only:
