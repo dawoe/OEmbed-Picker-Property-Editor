@@ -13,7 +13,7 @@ platform: Any CPU
 configuration: Release
 
 build_script: 
-  - ps: .\Packaging\BuildPackage.ps1 beta
+  - ps: .\Packaging\BuildPackage.ps1
 
 artifacts:
   - path: dist\*.nupkg
