@@ -42,3 +42,6 @@ tools/
 
 !/src/**/[Bb]uild
 dist/
+
+
+.vs/
