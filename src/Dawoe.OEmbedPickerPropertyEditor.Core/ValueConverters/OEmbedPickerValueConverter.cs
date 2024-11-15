@@ -76,7 +76,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
 
         private bool IsMultipleDataType(PublishedDataType dataType)
         {
-            var config = ConfigurationEditor.ConfigurationAs<OEmbedPickerConfiguration>(dataType.Configuration);
+            var config = dataType.ConfigurationAs<OEmbedPickerConfiguration>();
 
             return config is not null && config.AllowMultiple;
         }

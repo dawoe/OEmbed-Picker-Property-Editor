@@ -1,0 +1,30 @@
+{
+  "$schema": "../../umbraco-package-schema.json",
+  "name": "My Dashboard",
+  "version": "0.1.0",
+  "extensions": [
+    {
+      "type": "propertyEditorUi",
+      "alias": "Dawoe.OEmbedPickerPropertyEditor",
+      "name": "OEmbed Picker",
+      "element": "/App_Plugins/Dawoe.OEmbedPickerPropertyEditor/client.js",
+      "elementName": "dawaoe-oembed-picker",
+      "meta": {
+        "label": "OEmbed Picker",
+        "icon": "icon-list",
+        "group": "common",
+        "propertyEditorSchemaAlias": "Umbraco.Plain.String",
+        "settings": {
+          "properties": [
+            {
+              "alias": "allowMultiple",
+              "label": "Allow multiple",
+              "description": "Allow adding multiple items",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.Toggle"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

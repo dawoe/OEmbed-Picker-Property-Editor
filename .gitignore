@@ -36,6 +36,7 @@ artifacts/
 Packaging/UmbracoBuild/
 src/.vs/
 src/packages/
+src/TestProject
 testsites/
 Packaging/NugetCoreBuild/
 tools/

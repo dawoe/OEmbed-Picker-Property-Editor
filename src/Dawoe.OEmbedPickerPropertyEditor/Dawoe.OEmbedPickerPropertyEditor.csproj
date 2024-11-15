@@ -1,4 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[14.0.0,15.0.0)" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net9.0' ">
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[15.0.0,16.0.0)" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor.Core\Dawoe.OEmbedPickerPropertyEditor.Core.csproj" />
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor.UI\Dawoe.OEmbedPickerPropertyEditor.UI.csproj" />
