@@ -7,7 +7,7 @@ export default class DawoeOembedPicker extends LitElement implements UmbProperty
   public value = "";
 
   render() {
-    return html`I'm a property editor!`;
+    return html`I'm a property editor! <dawoe-input-ombed></dawoe-input-ombed> test test test`;
   }
 }
 
