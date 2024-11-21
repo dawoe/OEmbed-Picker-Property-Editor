@@ -7,6 +7,7 @@ import {
 	property,
 	repeat,
 	state,
+	unsafeHTML,
 } from '@umbraco-cms/backoffice/external/lit';
 import { splitStringToArray } from '@umbraco-cms/backoffice/utils';
 import { UmbChangeEvent } from '@umbraco-cms/backoffice/event';
@@ -17,7 +18,7 @@ import { UMB_WORKSPACE_MODAL } from '@umbraco-cms/backoffice/modal';
 import { UmbFormControlMixin } from '@umbraco-cms/backoffice/validation';
 
 import {
-    UMB_MODAL_MANAGER_CONTEXT,
+	UMB_MODAL_MANAGER_CONTEXT,
 } from "@umbraco-cms/backoffice/modal";
 
 import { UMB_EMBEDDED_MEDIA_MODAL, UmbEmbeddedMediaModalValue } from "@umbraco-cms/backoffice/modal"
@@ -27,12 +28,12 @@ import '@umbraco-cms/backoffice/imaging';
 const elementName = 'dawoe-input-ombed';
 @customElement(elementName)
 export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefined, typeof UmbLitElement>(UmbLitElement) {
-	#sorter = new UmbSorterController<string>(this, {
+	#sorter = new UmbSorterController<UmbEmbeddedMediaModalValue>(this, {
 		getUniqueOfElement: (element) => {
 			return element.getAttribute('detail');
 		},
 		getUniqueOfModel: (modelEntry) => {
-			return modelEntry;
+			return modelEntry.url;
 		},
 		identifier: 'Umb.SorterIdentifier.InputMedia',
 		itemSelector: 'uui-card-media',
@@ -40,20 +41,20 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 		/** TODO: This component probably needs some grid-like logic for resolve placement... [LI] */
 		resolvePlacement: () => false,
 		onChange: ({ model }) => {
-			// this.selection = model;
-			// this.#sortCards(model);
-			// this.dispatchEvent(new UmbChangeEvent());
+			this.selection = model;
+			this.#sortCards(model);
+			this.dispatchEvent(new UmbChangeEvent());
 		},
 	});
 
-	#sortCards(model: Array<string>) {
-		const idToIndexMap: { [unique: string]: number } = {};
+	#sortCards(model: Array<UmbEmbeddedMediaModalValue>) {
+		const idToIndexMap: { [url: string]: number } = {};
 		model.forEach((item, index) => {
-			idToIndexMap[item] = index;
+			idToIndexMap[item.url] = index;
 		});
 
 		const cards = [...this._cards];
-		// this._cards = cards.sort((a, b) => idToIndexMap[a.unique] - idToIndexMap[b.unique]);
+		this._cards = cards.sort((a, b) => idToIndexMap[a.url] - idToIndexMap[b.url]);
 	}
 
 	/**
@@ -102,30 +103,19 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 	@property({ type: String, attribute: 'max-message' })
 	maxMessage = 'This field exceeds the allowed amount of items';
 
-	public set selection(ids: Array<string>) {
-		// this.#pickerContext.setSelection(ids);
-		// this.#sorter.setModel(ids);
+	public set selection(ids: Array<UmbEmbeddedMediaModalValue>) {
+		this._cards = ids;
 	}
-	public get selection(): Array<string> {
-        return [];
-		// return this.#pickerContext.getSelection();
+	public get selection(): Array<UmbEmbeddedMediaModalValue> {
+		return this._cards;
 	}
-
-	@property({ type: Array })
-	allowedContentTypeIds?: string[] | undefined;
-
-	@property({ type: Boolean })
-	showOpenButton?: boolean;
-
-	@property({ type: String })
-	startNode = '';
 
 	@property({ type: String })
 	public override set value(selectionString: string | undefined) {
-		this.selection = splitStringToArray(selectionString);
+		this.selection = selectionString ? JSON.parse(selectionString) : [];
 	}
 	public override get value(): string | undefined {
-		return this.selection.length > 0 ? this.selection.join(',') : undefined;
+		return this.selection.length > 0 ? JSON.stringify(this.selection) : undefined;
 	}
 
 	/**
@@ -157,15 +147,15 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 
 	// #pickerContext = new UmbMediaPickerInputContext(this);
 
-    #modalManagerContext?: typeof UMB_MODAL_MANAGER_CONTEXT.TYPE;
+	#modalManagerContext?: typeof UMB_MODAL_MANAGER_CONTEXT.TYPE;
 
 	constructor() {
 		super();
 
-        this.consumeContext(UMB_MODAL_MANAGER_CONTEXT, (instance) => {
-            this.#modalManagerContext = instance;
-            // modalManagerContext is now ready to be used.
-        });
+		this.consumeContext(UMB_MODAL_MANAGER_CONTEXT, (instance) => {
+			this.#modalManagerContext = instance;
+			// modalManagerContext is now ready to be used.
+		});
 
 		// new UmbModalRouteRegistrationController(this, UMB_WORKSPACE_MODAL)
 		// 	.addAdditionalPath('media')
@@ -176,7 +166,7 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 		// 		this._editMediaPath = routeBuilder({});
 		// 	});
 
-		// this.observe(this.#pickerContext.selection, (selection) => (this.value = selection.join(',')));
+		//this.observe(this._cards, (selection) => (this.value = selection.join(',')));
 
 		// this.observe(this.#pickerContext.selectedItems, async (selectedItems) => {
 		// 	const missingCards = selectedItems.filter((item) => !this._cards.find((card) => card.unique === item.unique));
@@ -206,19 +196,21 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 
 	#openPicker() {
 		const modalContext = this.#modalManagerContext?.open(this, UMB_EMBEDDED_MEDIA_MODAL);
-        modalContext
-        ?.onSubmit()
-        .then((value) => {
-            alert(value);
-        })
-        .catch(() => undefined);
+		modalContext
+			?.onSubmit()
+			.then((value) => {
+				console.log(value);
+				this._cards = [...this._cards, value];
+				this.dispatchEvent(new UmbChangeEvent());
+			})
+			.catch(() => undefined);
 	}
 
-	// async #onRemove(item: UmbEmbeddedMediaModalValue) {
-    //     alert("remove");
-	// 	// await this.#pickerContext.requestRemoveItem(item.unique);
-	// 	// this._cards = this._cards.filter((x) => x.unique !== item.unique);
-	// }
+	async #onRemove(item: UmbEmbeddedMediaModalValue) {
+		alert("remove");
+		// await this.#pickerContext.requestRemoveItem(item.unique);
+		// this._cards = this._cards.filter((x) => x.unique !== item.unique);
+	}
 
 	override render() {
 		return html`TEST<div class="container">${this.#renderItems()} ${this.#renderAddButton()}</div>`;
@@ -228,10 +220,10 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 		if (!this._cards?.length) return nothing;
 		return html`
 			${repeat(
-				this._cards,
-				(item) => "",
-				(item) => this.#renderItem(item),
-			)}
+			this._cards,
+			(item) => item.url,
+			(item) => this.#renderItem(item),
+		)}
 		`;
 	}
 
@@ -257,18 +249,22 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 
 	#renderItem(item: UmbEmbeddedMediaModalValue) {
 		return html`
-			${item.markup}
+		<uui-card-media class="preview-item"
+				?readonly=${this.readonly}>
+				${unsafeHTML(item.markup)}
+				<uui-action-bar slot="actions"> ${this.#renderRemoveAction(item)}</uui-action-bar>
+			</uui-card-media>
 		`;
 	}
 
-	// #renderRemoveAction(item: UmbEmbeddedMediaModalValue) {
-	// 	if (this.readonly) return nothing;
-	// 	return html`
-	// 		<uui-button label=${this.localize.term('general_remove')} look="secondary" @click=${() => this.#onRemove(item)}>
-	// 			<uui-icon name="icon-trash"></uui-icon>
-	// 		</uui-button>
-	// 	`;
-	// }
+	#renderRemoveAction(item: UmbEmbeddedMediaModalValue) {
+		if (this.readonly) return nothing;
+		return html`
+			<uui-button label=${this.localize.term('general_remove')} look="secondary" @click=${() => this.#onRemove(item)}>
+				<uui-icon name="icon-trash"></uui-icon>
+			</uui-button>
+		`;
+	}
 
 	// #renderIsTrashed(item: any) {
 	// 	if (!item.isTrashed) return nothing;
@@ -286,7 +282,7 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 			}
 			.container {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 				grid-auto-rows: 150px;
 				gap: var(--uui-size-space-5);
 			}
@@ -294,6 +290,7 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 			#btn-add {
 				text-align: center;
 				height: 100%;
+				aspect-ratio: 16/9;
 			}
 
 			uui-icon {
@@ -312,6 +309,16 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 				background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill-opacity=".1"><path d="M50 0h50v50H50zM0 50h50v50H0z"/></svg>');
 				background-size: 10px 10px;
 				background-repeat: repeat;
+			}
+
+			.preview-item{
+
+				aspect-ratio: 16/9;
+			}
+
+			.preview-item iframe{
+				width: 100%;
+				height: auto;
 			}
 		`,
 	];
