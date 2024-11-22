@@ -4,6 +4,7 @@ import { UmbChangeEvent } from '@umbraco-cms/backoffice/event';
 import './dawoe-input-oembed';
 import { UmbLitElement } from "@umbraco-cms/backoffice/lit-element";
 import { UmbEmbeddedMediaModalValue } from "@umbraco-cms/backoffice/modal"
+import { UmbPropertyValueChangeEvent } from "@umbraco-cms/backoffice/property-editor";
 
 @customElement('dawaoe-oembed-picker')
 export default class DawoeOembedPicker extends UmbLitElement implements UmbPropertyEditorUiElement {
@@ -24,28 +25,32 @@ export default class DawoeOembedPicker extends UmbLitElement implements UmbPrope
 		return this.#selection;
 	}
 
-	@property({ type: String })
-	public set value(selectionString: string | undefined) {
-		this.#selection = selectionString ? JSON.parse(selectionString) : [];
+	@property({ type: Array<UmbEmbeddedMediaModalValue> })
+	public set value(selectionString: Array<UmbEmbeddedMediaModalValue> | undefined) {
+		this.#selection = selectionString ?? [];
 	}
-	public get value(): string | undefined {
-		return this.#selection.length > 0 ? this.#selection.join(',') : undefined;
+	public get value(): Array<UmbEmbeddedMediaModalValue> | undefined {
+		return this.#selection;
 	}
 
 	#onChange(event: CustomEvent & { target: { selection: UmbEmbeddedMediaModalValue[] | undefined } }) {
 		this.#selection = event.target.selection ?? [];
-		this.value = JSON.stringify(this.#selection);
-		this.dispatchEvent(new UmbChangeEvent());
+		this.value = this.#selection;
+		console.log("selection", this.#selection);
+		console.log("value", this.value);
+		this.dispatchEvent(new UmbPropertyValueChangeEvent());
 	}
 
 	#selection: Array<UmbEmbeddedMediaModalValue> = [];
 
 	render() {
-		return html`${JSON.stringify(this.value)} <dawoe-input-ombed 
-													.selection=${this.#selection} 
-													?readonly=${this.readonly}
-													@change=${this.#onChange}>
-										</dawoe-input-ombed> test test test`;
+		return html`<pre>${JSON.stringify(this.value)}</pre> 
+		<dawoe-input-ombed 
+			.selection=${this.#selection} 
+			?readonly=${this.readonly}
+			@change=${this.#onChange}>
+		</dawoe-input-ombed> 
+		test test test`;
 	}
 }
 
