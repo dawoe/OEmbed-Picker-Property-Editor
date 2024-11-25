@@ -37,6 +37,7 @@ Packaging/UmbracoBuild/
 src/.vs/
 src/packages/
 src/TestProject
+src/TestProject_v15
 testsites/
 Packaging/NugetCoreBuild/
 tools/
