@@ -13,7 +13,7 @@
         "label": "OEmbed Picker",
         "icon": "icon-tv",
         "group": "common",
-        "propertyEditorSchemaAlias": "Umbraco.Plain.String",
+        "propertyEditorSchemaAlias": "Umbraco.Plain.Json",
         "settings": {
           "properties": [
             {

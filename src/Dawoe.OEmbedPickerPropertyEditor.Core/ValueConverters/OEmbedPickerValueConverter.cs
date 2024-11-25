@@ -23,7 +23,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
     {
         /// <inheritdoc />
         public override bool IsConverter(IPublishedPropertyType propertyType) =>
-            Constants.DataEditorAlias.Equals(propertyType.EditorAlias);
+            Constants.DataEditorAlias.Equals(propertyType.EditorUiAlias);
 
         /// <inheritdoc />
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) =>
@@ -76,9 +76,12 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
 
         private bool IsMultipleDataType(PublishedDataType dataType)
         {
-            var config = dataType.ConfigurationAs<OEmbedPickerConfiguration>();
-
-            return config is not null && config.AllowMultiple;
+            if (dataType.ConfigurationObject is Dictionary<string, object> dict &&
+                dict.TryGetValue("allowMultiple", out var value) && value is bool b)
+            {
+                return b;
+            }
+            return false;
         }
 
         private object FirstOrDefault(IList items) => items.Count == 0 ? null : items[0];
