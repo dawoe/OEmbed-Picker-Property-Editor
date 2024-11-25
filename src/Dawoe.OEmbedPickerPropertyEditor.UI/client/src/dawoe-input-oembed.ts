@@ -24,18 +24,19 @@ import {
 import { UMB_EMBEDDED_MEDIA_MODAL, UmbEmbeddedMediaModalValue } from "@umbraco-cms/backoffice/modal"
 
 import '@umbraco-cms/backoffice/imaging';
+import { OEmbedPickerValue } from './oembedvalue';
 
 const elementName = 'dawoe-input-ombed';
 @customElement(elementName)
 export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefined, typeof UmbLitElement>(UmbLitElement) {
-	#sorter = new UmbSorterController<UmbEmbeddedMediaModalValue>(this, {
+	#sorter = new UmbSorterController<OEmbedPickerValue>(this, {
 		getUniqueOfElement: (element) => {
 			return element.getAttribute('detail');
 		},
 		getUniqueOfModel: (modelEntry) => {
 			return modelEntry.url;
 		},
-		identifier: 'Umb.SorterIdentifier.InputMedia',
+		identifier: 'Dawoe.SorterIdentifier.InputOembed',
 		itemSelector: 'uui-card-media',
 		containerSelector: '.container',
 		/** TODO: This component probably needs some grid-like logic for resolve placement... [LI] */
@@ -47,7 +48,7 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 		},
 	});
 
-	#sortCards(model: Array<UmbEmbeddedMediaModalValue>) {
+	#sortCards(model: Array<OEmbedPickerValue>) {
 		const idToIndexMap: { [url: string]: number } = {};
 		model.forEach((item, index) => {
 			idToIndexMap[item.url] = index;
@@ -58,55 +59,19 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 	}
 
 	/**
-	 * This is a minimum amount of selected items in this input.
-	 * @type {number}
-	 * @attr
-	 * @default
-	 */
-	// @property({ type: Number })
-	// public set min(value: number) {
-	// 	this.#pickerContext.min = value;
-	// }
-	// public get min(): number {
-	// 	return this.#pickerContext.min;
-	// }
-
-	/**
-	 * Min validation message.
-	 * @type {boolean}
-	 * @attr
-	 * @default
-	 */
-	@property({ type: String, attribute: 'min-message' })
-	minMessage = 'This field need more items';
-
-	/**
 	 * This is a maximum amount of selected items in this input.
-	 * @type {number}
-	 * @attr
-	 * @default
-	 */
-	// @property({ type: Number })
-	// public set max(value: number) {
-	// 	this.#pickerContext.max = value;
-	// }
-	// public get max(): number {
-	// 	return this.#pickerContext.max;
-	// }
-
-	/**
-	 * Max validation message.
 	 * @type {boolean}
 	 * @attr
 	 * @default
 	 */
-	@property({ type: String, attribute: 'max-message' })
-	maxMessage = 'This field exceeds the allowed amount of items';
+	@property({ type: Boolean })
+	allowMultiple: boolean | undefined = false;
 
-	public set selection(ids: Array<UmbEmbeddedMediaModalValue>) {
+	public set selection(ids: Array<OEmbedPickerValue>) {
 		this._cards = ids;
+		this.#sorter.setModel(this._cards);
 	}
-	public get selection(): Array<UmbEmbeddedMediaModalValue> {
+	public get selection(): Array<OEmbedPickerValue> {
 		return this._cards;
 	}
 
@@ -140,12 +105,7 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 	#readonly = false;
 
 	@state()
-	private _editMediaPath = '';
-
-	@state()
-	private _cards: Array<UmbEmbeddedMediaModalValue> = [];
-
-	// #pickerContext = new UmbMediaPickerInputContext(this);
+	private _cards: Array<OEmbedPickerValue> = [];
 
 	#modalManagerContext?: typeof UMB_MODAL_MANAGER_CONTEXT.TYPE;
 
@@ -156,43 +116,8 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 			this.#modalManagerContext = instance;
 			// modalManagerContext is now ready to be used.
 		});
-
-		// new UmbModalRouteRegistrationController(this, UMB_WORKSPACE_MODAL)
-		// 	.addAdditionalPath('media')
-		// 	.onSetup(() => {
-		// 		return { data: { entityType: 'media', preset: {} } };
-		// 	})
-		// 	.observeRouteBuilder((routeBuilder) => {
-		// 		this._editMediaPath = routeBuilder({});
-		// 	});
-
-		//this.observe(this._cards, (selection) => (this.value = selection.join(',')));
-
-		// this.observe(this.#pickerContext.selectedItems, async (selectedItems) => {
-		// 	const missingCards = selectedItems.filter((item) => !this._cards.find((card) => card.unique === item.unique));
-		// 	if (selectedItems?.length && !missingCards.length) return;
-
-		// 	this._cards = selectedItems ?? [];
-		// });
-
-		// this.addValidator(
-		// 	'rangeUnderflow',
-		// 	() => this.minMessage,
-		// 	() => !!this.min && this.selection.length < this.min,
-		// );
-		// this.addValidator(
-		// 	'rangeOverflow',
-		// 	() => this.maxMessage,
-		// 	() => !!this.max && this.selection.length > this.max,
-		// );
 	}
 
-	// #pickableFilter = (item: UmbMediaItemModel): boolean => {
-	// 	if (this.allowedContentTypeIds && this.allowedContentTypeIds.length > 0) {
-	// 		return this.allowedContentTypeIds.includes(item.mediaType.unique);
-	// 	}
-	// 	return true;
-	// };
 
 	#openPicker() {
 		const modalContext = this.#modalManagerContext?.open(this, UMB_EMBEDDED_MEDIA_MODAL);
@@ -200,20 +125,27 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 			?.onSubmit()
 			.then((value) => {
 				console.log(value);
-				this._cards = [...this._cards, value];
+				this._cards = [...this._cards, 
+					{
+						url: value.url,
+						preview: value.markup,
+						width: value.width,
+						height: value.height
+					}
+				];
+				this.#sorter.setModel(this._cards);
 				this.dispatchEvent(new UmbChangeEvent());
 			})
 			.catch(() => undefined);
 	}
 
-	async #onRemove(item: UmbEmbeddedMediaModalValue) {
-		alert("remove");
-		// await this.#pickerContext.requestRemoveItem(item.unique);
-		// this._cards = this._cards.filter((x) => x.unique !== item.unique);
+	async #onRemove(item: OEmbedPickerValue) {
+		this._cards = this._cards.filter((x) => x.url !== item.url);
+		this.dispatchEvent(new UmbChangeEvent());
 	}
 
 	override render() {
-		return html`TEST<div class="container">${this.#renderItems()} ${this.#renderAddButton()}</div>`;
+		return html`<div class="container">${this.#renderItems()} ${this.#renderAddButton()}</div>`;
 	}
 
 	#renderItems() {
@@ -230,7 +162,7 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 	#renderAddButton() {
 		// TODO: Stop preventing adding more, instead implement proper validation for user feedback. [NL]
 		//if (this._cards && this.max && this._cards.length >= this.max) return nothing;
-		if (this.readonly && this._cards.length > 0) {
+		if ((this.readonly && this._cards.length > 0) || (!this.allowMultiple && this._cards.length > 0)) {
 			return nothing;
 		} else {
 			return html`
@@ -247,17 +179,19 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 		}
 	}
 
-	#renderItem(item: UmbEmbeddedMediaModalValue) {
+	#renderItem(item: OEmbedPickerValue) {
 		return html`
 		<uui-card-media class="preview-item"
+				name=${item.url}
+				detail=${item.url}
 				?readonly=${this.readonly}>
-				${unsafeHTML(item.markup)}
+				${unsafeHTML(item.preview)}
 				<uui-action-bar slot="actions"> ${this.#renderRemoveAction(item)}</uui-action-bar>
 			</uui-card-media>
 		`;
 	}
 
-	#renderRemoveAction(item: UmbEmbeddedMediaModalValue) {
+	#renderRemoveAction(item: OEmbedPickerValue) {
 		if (this.readonly) return nothing;
 		return html`
 			<uui-button label=${this.localize.term('general_remove')} look="secondary" @click=${() => this.#onRemove(item)}>
@@ -265,15 +199,6 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 			</uui-button>
 		`;
 	}
-
-	// #renderIsTrashed(item: any) {
-	// 	if (!item.isTrashed) return nothing;
-	// 	return html`
-	// 		<uui-tag size="s" slot="tag" color="danger">
-	// 			<umb-localize key="mediaPicker_trashed">Trashed</umb-localize>
-	// 		</uui-tag>
-	// 	`;
-	// }
 
 	static override styles = [
 		css`
@@ -319,6 +244,7 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 			.preview-item iframe{
 				width: 100%;
 				height: auto;
+				pointer-events: none;
 			}
 		`,
 	];

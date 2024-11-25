@@ -11,7 +11,7 @@
       "elementName": "dawaoe-oembed-picker",
       "meta": {
         "label": "OEmbed Picker",
-        "icon": "icon-list",
+        "icon": "icon-tv",
         "group": "common",
         "propertyEditorSchemaAlias": "Umbraco.Plain.String",
         "settings": {

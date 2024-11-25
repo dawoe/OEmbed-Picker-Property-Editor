@@ -1,10 +1,13 @@
-import { LitElement, html, customElement, property } from "@umbraco-cms/backoffice/external/lit";
+import { LitElement, html, customElement, property, state } from "@umbraco-cms/backoffice/external/lit";
 import type { UmbPropertyEditorUiElement } from '@umbraco-cms/backoffice/extension-registry';
 import { UmbChangeEvent } from '@umbraco-cms/backoffice/event';
 import './dawoe-input-oembed';
 import { UmbLitElement } from "@umbraco-cms/backoffice/lit-element";
 import { UmbEmbeddedMediaModalValue } from "@umbraco-cms/backoffice/modal"
 import { UmbPropertyValueChangeEvent } from "@umbraco-cms/backoffice/property-editor";
+import { type UmbPropertyEditorConfigCollection } from "@umbraco-cms/backoffice/property-editor";
+import { OEmbedPickerValue } from "./oembedvalue";
+
 
 @customElement('dawaoe-oembed-picker')
 export default class DawoeOembedPicker extends UmbLitElement implements UmbPropertyEditorUiElement {
@@ -17,40 +20,46 @@ export default class DawoeOembedPicker extends UmbLitElement implements UmbPrope
 	@property({ type: Boolean, reflect: true })
 	readonly = false;
 
+	@state()
+	private _allowMultiple?: boolean;
+
+	@property({ attribute: false })
+	public set config(config: UmbPropertyEditorConfigCollection) {
+		this._allowMultiple = config.getValueByAlias("allowMultiple");
+	}
+
 	@property({ type: Array })
-	public set selection(values: Array<UmbEmbeddedMediaModalValue>) {
+	public set selection(values: Array<OEmbedPickerValue>) {
 		this.#selection = values ?? [];
 	}
-	public get selection(): Array<UmbEmbeddedMediaModalValue> {
+	public get selection(): Array<OEmbedPickerValue> {
 		return this.#selection;
 	}
 
-	@property({ type: Array<UmbEmbeddedMediaModalValue> })
-	public set value(selectionString: Array<UmbEmbeddedMediaModalValue> | undefined) {
+	@property({ type: Array<OEmbedPickerValue> })
+	public set value(selectionString: Array<OEmbedPickerValue> | undefined) {
 		this.#selection = selectionString ?? [];
 	}
-	public get value(): Array<UmbEmbeddedMediaModalValue> | undefined {
+	public get value(): Array<OEmbedPickerValue> | undefined {
 		return this.#selection;
 	}
 
-	#onChange(event: CustomEvent & { target: { selection: UmbEmbeddedMediaModalValue[] | undefined } }) {
+	#onChange(event: CustomEvent & { target: { selection: OEmbedPickerValue[] | undefined } }) {
 		this.#selection = event.target.selection ?? [];
 		this.value = this.#selection;
-		console.log("selection", this.#selection);
-		console.log("value", this.value);
 		this.dispatchEvent(new UmbPropertyValueChangeEvent());
 	}
 
-	#selection: Array<UmbEmbeddedMediaModalValue> = [];
+	#selection: Array<OEmbedPickerValue> = [];
 
 	render() {
-		return html`<pre>${JSON.stringify(this.value)}</pre> 
+		return html`
 		<dawoe-input-ombed 
 			.selection=${this.#selection} 
 			?readonly=${this.readonly}
+			.allowMultiple=${this._allowMultiple}
 			@change=${this.#onChange}>
-		</dawoe-input-ombed> 
-		test test test`;
+		</dawoe-input-ombed>`;
 	}
 }
 
