@@ -207,7 +207,6 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 			.container {
 				display: grid;
 				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-				grid-auto-rows: 150px;
 				gap: var(--uui-size-space-5);
 			}
 
@@ -242,7 +241,7 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 
 			.preview-item iframe{
 				width: 100%;
-				height: auto;
+				height: 100%;
 				pointer-events: none;
 			}
 		`,
