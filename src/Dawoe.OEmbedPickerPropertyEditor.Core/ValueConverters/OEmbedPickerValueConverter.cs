@@ -23,11 +23,11 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
     {
         /// <inheritdoc />
         public override bool IsConverter(IPublishedPropertyType propertyType) =>
-            Constants.DataEditorAlias.Equals(propertyType.EditorUiAlias);
+            propertyType.EditorAlias.InvariantEquals(Constants.DataEditorAlias);
 
         /// <inheritdoc />
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) =>
-            this.IsMultipleDataType(propertyType.DataType)
+            IsMultipleDataType(propertyType.DataType)
                 ? typeof(IEnumerable<OEmbedItem>)
                 : typeof(OEmbedItem);
 
@@ -60,7 +60,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
 
         /// <inheritdoc/>
         public Type GetDeliveryApiPropertyValueType(IPublishedPropertyType propertyType) =>
-            this.IsMultipleDataType(propertyType.DataType)
+            IsMultipleDataType(propertyType.DataType)
                 ? typeof(IEnumerable<OEmbedItemApi>)
                 : typeof(OEmbedItemApi);
 
@@ -74,13 +74,13 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
             bool expanding) =>
             this.ConvertDataToIntermediate<OEmbedItemApi>(propertyType, inter);
 
-        private bool IsMultipleDataType(PublishedDataType dataType)
+        private static bool IsMultipleDataType(PublishedDataType dataType)
         {
-            if (dataType.ConfigurationObject is Dictionary<string, object> dict &&
-                dict.TryGetValue("allowMultiple", out var value) && value is bool b)
+            if (dataType.ConfigurationObject is OEmbedPickerConfiguration config)
             {
-                return b;
+                return config.AllowMultiple;
             }
+
             return false;
         }
 
@@ -91,7 +91,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
             object inter)
         where T : OEmbedItemBase
         {
-            var isMultiple = this.IsMultipleDataType(propertyType.DataType);
+            var isMultiple = IsMultipleDataType(propertyType.DataType);
 
             var sourceString = inter?.ToString();
 

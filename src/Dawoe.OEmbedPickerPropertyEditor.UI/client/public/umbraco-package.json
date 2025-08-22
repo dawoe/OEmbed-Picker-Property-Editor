@@ -13,7 +13,25 @@
         "label": "OEmbed Picker",
         "icon": "icon-tv",
         "group": "common",
-        "propertyEditorSchemaAlias": "Umbraco.Plain.Json",
+        "propertyEditorSchemaAlias": "Dawoe.OEmbedPickerPropertyEditor",
+        "settings": {
+          "properties": [
+            {
+              "alias": "allowMultiple",
+              "label": "Allow multiple",
+              "description": "Allow adding multiple items",
+              "propertyEditorUiAlias": "Umb.PropertyEditorUi.Toggle"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "propertyEditorSchema",
+      "alias": "Dawoe.OEmbedPickerPropertyEditor",
+      "name": "OEmbed Picker",
+      "meta": {
+        "defaultPropertyEditorUiAlias": "Dawoe.OEmbedPickerPropertyEditor",
         "settings": {
           "properties": [
             {
