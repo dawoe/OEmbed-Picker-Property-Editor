@@ -5,6 +5,7 @@ $CurrentDir = Split-Path $MyInvocation.MyCommand.Path
 $RootDir = Split-Path -Path $CurrentDir -Parent
 $DistDir = "$RootDir\dist"
 $SrcDir = "$RootDir\src"
+$ClientDir = "$SrcDir\Dawoe.OEmbedPickerPropertyEditor.UI\client"
 $SolutionFile = "$SrcDir\Dawoe.OEmbedPickerPropertyEditor.sln"
 
 #Remove dist folder
@@ -14,6 +15,10 @@ if(Test-Path -Path $DistDir)
 }
 
 Write-Host "Preparing solution"
+
+cd $ClientDir
+npm install
+npm run build
 
 Write-Host "Create nuget packages"
 
