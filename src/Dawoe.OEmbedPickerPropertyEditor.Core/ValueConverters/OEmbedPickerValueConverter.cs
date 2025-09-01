@@ -23,11 +23,11 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
     {
         /// <inheritdoc />
         public override bool IsConverter(IPublishedPropertyType propertyType) =>
-            Constants.DataEditorAlias.Equals(propertyType.EditorAlias);
+            propertyType.EditorAlias.InvariantEquals(Constants.DataEditorAlias);
 
         /// <inheritdoc />
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) =>
-            this.IsMultipleDataType(propertyType.DataType)
+            IsMultipleDataType(propertyType.DataType)
                 ? typeof(IEnumerable<OEmbedItem>)
                 : typeof(OEmbedItem);
 
@@ -60,7 +60,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
 
         /// <inheritdoc/>
         public Type GetDeliveryApiPropertyValueType(IPublishedPropertyType propertyType) =>
-            this.IsMultipleDataType(propertyType.DataType)
+            IsMultipleDataType(propertyType.DataType)
                 ? typeof(IEnumerable<OEmbedItemApi>)
                 : typeof(OEmbedItemApi);
 
@@ -74,11 +74,14 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
             bool expanding) =>
             this.ConvertDataToIntermediate<OEmbedItemApi>(propertyType, inter);
 
-        private bool IsMultipleDataType(PublishedDataType dataType)
+        private static bool IsMultipleDataType(PublishedDataType dataType)
         {
-            var config = ConfigurationEditor.ConfigurationAs<OEmbedPickerConfiguration>(dataType.Configuration);
+            if (dataType.ConfigurationObject is OEmbedPickerConfiguration config)
+            {
+                return config.AllowMultiple;
+            }
 
-            return config is not null && config.AllowMultiple;
+            return false;
         }
 
         private object FirstOrDefault(IList items) => items.Count == 0 ? null : items[0];
@@ -88,7 +91,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
             object inter)
         where T : OEmbedItemBase
         {
-            var isMultiple = this.IsMultipleDataType(propertyType.DataType);
+            var isMultiple = IsMultipleDataType(propertyType.DataType);
 
             var sourceString = inter?.ToString();
 

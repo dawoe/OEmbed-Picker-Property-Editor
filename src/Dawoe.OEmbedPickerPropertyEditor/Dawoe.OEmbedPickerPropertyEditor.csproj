@@ -1,4 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net9.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[16.0.0,17.0.0)" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor.Core\Dawoe.OEmbedPickerPropertyEditor.Core.csproj" />
     <ProjectReference Include="..\Dawoe.OEmbedPickerPropertyEditor.UI\Dawoe.OEmbedPickerPropertyEditor.UI.csproj" />

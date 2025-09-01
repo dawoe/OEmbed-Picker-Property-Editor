@@ -14,7 +14,6 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.Configuration
         /// <summary>
         /// Gets or sets a value indicating whether multiple items are allowed to be picked.
         /// </summary>
-        [ConfigurationField("allowmultiple", "Allow picking of multiple items", "boolean")]
         public bool AllowMultiple { get; set; }
     }
 }

@@ -36,9 +36,14 @@ artifacts/
 Packaging/UmbracoBuild/
 src/.vs/
 src/packages/
+src/TestProject
+src/TestProject_v16
 testsites/
 Packaging/NugetCoreBuild/
 tools/
 
 !/src/**/[Bb]uild
 dist/
+
+
+.vs/

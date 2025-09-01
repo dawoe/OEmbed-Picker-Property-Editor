@@ -1,13 +1,6 @@
 <Project>
 
-  <PropertyGroup>
-    <TargetFrameworks>net8</TargetFrameworks>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[13.0.0,14.0.0)" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.0,14.0.0)" />
-  </ItemGroup>
+  
 
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" />
@@ -27,9 +20,9 @@
       <RepositoryType>git</RepositoryType>
       <Copyright>Copyright &amp;#169; Dave Woestenborghs and contributors.</Copyright>
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
-      <AssemblyVersion>13.0.0</AssemblyVersion>
-      <VersionPrefix>13.0.0</VersionPrefix>
-      <InformationalVersion>13.0.0</InformationalVersion>
+      <AssemblyVersion>16.0.0</AssemblyVersion>
+      <VersionPrefix>16.0.0</VersionPrefix>
+      <InformationalVersion>16.0.0</InformationalVersion>
     </PropertyGroup>
 
 
