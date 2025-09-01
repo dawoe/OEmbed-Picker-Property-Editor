@@ -30,18 +30,7 @@ deploy:
       secure: xuhyqGpLpjeK0tUansB6IVWy89Fw+yqGqCmCpVuAY1fnDjfYrxA/gVGNBh8oU0JA
     artifact: /.*\.nupkg/
     on:
-      branch: develop
-      
- # GitHub Deployment for releases
-  - provider: GitHub
-    auth_token:
-      secure: 2NNEN9lVF0/cA40PZrm64BMMK34Y26A8xK22eUdWcN/7Nn5KyyRH2+THumy91tcV
-    artifact: /.*\.nupkg/            # upload all nget packages to release assets
-    draft: false
-    prerelease: false
-    on:
-      branch: master
-      appveyor_repo_tag: true        # deploy on tag push only
+      branch: develop     
 
 # NuGet Deployment for releases
   - provider: NuGet
