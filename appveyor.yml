@@ -1,5 +1,8 @@
 image: Visual Studio 2022
 
+install:
+  - ps: Install-Product node 22
+
 # Version format
 version: 16.0.0.{build}
 
