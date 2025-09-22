@@ -4,7 +4,7 @@ install:
   - ps: Install-Product node 22
 
 # Version format
-version: 16.0.0.{build}
+version: 16.0.1.{build}
 
 branches:
   only:
