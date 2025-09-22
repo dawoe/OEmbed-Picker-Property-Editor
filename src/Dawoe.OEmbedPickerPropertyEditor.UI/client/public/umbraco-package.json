@@ -1,11 +1,11 @@
 {
   "$schema": "../../umbraco-package-schema.json",
-  "name": "My Dashboard",
-  "version": "0.1.0",
+  "name": "OEmbed Property Editor",
+  "version": "16.0.1",
   "extensions": [
     {
       "type": "propertyEditorUi",
-      "alias": "Dawoe.OEmbedPickerPropertyEditor",
+      "alias": "Dawoe.OEmbedPickerPropertyEditor.Ui",
       "name": "OEmbed Picker",
       "element": "/App_Plugins/Dawoe.OEmbedPickerPropertyEditor/client.js",
       "elementName": "dawaoe-oembed-picker",
@@ -31,7 +31,7 @@
       "alias": "Dawoe.OEmbedPickerPropertyEditor",
       "name": "OEmbed Picker",
       "meta": {
-        "defaultPropertyEditorUiAlias": "Dawoe.OEmbedPickerPropertyEditor",
+        "defaultPropertyEditorUiAlias": "Dawoe.OEmbedPickerPropertyEditor.Ui",
         "settings": {
           "properties": [
             {
