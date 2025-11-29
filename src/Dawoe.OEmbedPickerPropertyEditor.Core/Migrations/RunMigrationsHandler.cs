@@ -1,3 +1,7 @@
+// <copyright file="RunMigrationsHandler.cs" company="Umbraco community">
+// Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
+// </copyright>
+
 using System.Threading;
 using System.Threading.Tasks;
 using Umbraco.Cms.Core;

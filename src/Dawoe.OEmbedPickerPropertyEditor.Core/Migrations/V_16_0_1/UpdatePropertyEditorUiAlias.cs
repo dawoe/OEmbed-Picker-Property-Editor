@@ -1,3 +1,7 @@
+// <copyright file="UpdatePropertyEditorUiAlias.cs" company="Umbraco community">
+// Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
+// </copyright>
+
 using System.Threading.Tasks;
 using Umbraco.Cms.Infrastructure.Migrations;
 using Umbraco.Cms.Infrastructure.Persistence.Dtos;
@@ -6,7 +10,8 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.Migrations.V_16_0_1
 {
     internal sealed class UpdatePropertyEditorUiAlias : AsyncMigrationBase
     {
-        public UpdatePropertyEditorUiAlias(IMigrationContext context) : base(context)
+        public UpdatePropertyEditorUiAlias(IMigrationContext context)
+            : base(context)
         {
         }
 
