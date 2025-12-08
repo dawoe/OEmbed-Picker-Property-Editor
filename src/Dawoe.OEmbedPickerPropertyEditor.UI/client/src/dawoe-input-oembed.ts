@@ -138,8 +138,8 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 			.catch(() => undefined);
 	}
 
-	async #onRemove(item: OEmbedPickerValue) {
-		this._cards = this._cards.filter((x) => x.url !== item.url);
+	async #onRemove(index:number) {
+		this._cards = this._cards.splice(index,1);
 		this.dispatchEvent(new UmbChangeEvent());
 	}
 
@@ -152,8 +152,8 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 		return html`
 			${repeat(
 			this._cards,
-			(item) => item.url,
-			(item) => this.#renderItem(item),
+			(item, index) => item.url,
+			(item, index) => this.#renderItem(item, index),
 		)}
 		`;
 	}
@@ -178,22 +178,22 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 		}
 	}
 
-	#renderItem(item: OEmbedPickerValue) {
+	#renderItem(item: OEmbedPickerValue, index:number) {
 		return html`
 		<uui-card-media class="preview-item"
 				name=${item.url}
 				detail=${item.url}
 				?readonly=${this.readonly}>
 				${unsafeHTML(item.preview)}
-				<uui-action-bar slot="actions">${this.#renderActions(item)}</uui-action-bar>
+				<uui-action-bar slot="actions">${this.#renderActions(item, index)}</uui-action-bar>
 			</uui-card-media>
 		`;
 	}
 
-	#renderActions(item: OEmbedPickerValue) {
+	#renderActions(item: OEmbedPickerValue, index:number) {
 		if (this.readonly) return nothing;
 		return html`
-			<uui-button label=${this.localize.term('general_remove')} look="secondary" @click=${() => this.#onRemove(item)}>
+			<uui-button label=${this.localize.term('general_remove')} look="secondary" @click=${() => this.#onRemove(index)}>
 				<uui-icon name="icon-trash"></uui-icon>
 			</uui-button>
       <uui-button label=${this.localize.term('general_edit')} look="secondary">
