@@ -8,8 +8,8 @@ version: 16.1.0.{build}
 
 branches:
   only:
-    - develop
-    - master   
+    - v16/develop
+    - v16/master   
 
 platform: Any CPU
 
@@ -30,7 +30,7 @@ deploy:
       secure: xuhyqGpLpjeK0tUansB6IVWy89Fw+yqGqCmCpVuAY1fnDjfYrxA/gVGNBh8oU0JA
     artifact: /.*\.nupkg/
     on:
-      branch: develop     
+      branch: v16/develop     
 
 # NuGet Deployment for releases
   - provider: NuGet
@@ -39,6 +39,6 @@ deploy:
       secure: wRH2CWUraB7KX/JhTAMlaMklO2RWZdRt7jVFbE+viu48r03iV8pgJdj4aMOPAnvq
     artifact: /.*\.nupkg/
     on:
-      branch: master
+      branch: v16/master
       appveyor_repo_tag: true
 
