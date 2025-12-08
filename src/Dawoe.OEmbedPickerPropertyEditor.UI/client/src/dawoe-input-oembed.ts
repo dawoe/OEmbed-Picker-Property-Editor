@@ -15,7 +15,7 @@ import { UmbLitElement } from '@umbraco-cms/backoffice/lit-element';
 import { UmbModalRouteRegistrationController } from '@umbraco-cms/backoffice/router';
 import { UmbSorterController } from '@umbraco-cms/backoffice/sorter';
 import { UmbFormControlMixin } from '@umbraco-cms/backoffice/validation';
-import { UMB_EMBEDDED_MEDIA_MODAL } from '@umbraco-cms/backoffice/embedded-media';
+import { UMB_EMBEDDED_MEDIA_MODAL, UmbEmbeddedMediaModalData } from '@umbraco-cms/backoffice/embedded-media';
 
 import {
 	UMB_MODAL_MANAGER_CONTEXT,
@@ -122,8 +122,7 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 		const modalContext = this.#modalManagerContext?.open(this, UMB_EMBEDDED_MEDIA_MODAL);
 		modalContext
 			?.onSubmit()
-			.then((value) => {
-				console.log(value);
+			.then((value) => {				
 				this._cards = [...this._cards, 
 					{
 						url: value.url,
@@ -136,12 +135,45 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 				this.dispatchEvent(new UmbChangeEvent());
 			})
 			.catch(() => undefined);
-	}
+  }
+
+  #openEditPicker(index:number) {
+    let card = this._cards[index];
+    let data: UmbEmbeddedMediaModalData = {
+      url: card.url,
+      height: card.height,
+      width: card.width, 
+    };
+    const modalContext = this.#modalManagerContext?.open(this, UMB_EMBEDDED_MEDIA_MODAL, { data });
+    
+    modalContext
+      ?.onSubmit()
+      .then((value) => {
+        let items = [...this._cards];
+
+        items[index] = {
+          url: value.url,
+          preview: value.markup,
+          width: value.width,
+          height: value.height
+        };
+                       
+        this._cards = [...items];
+        
+        this.#sorter.setModel(this._cards);
+        this.dispatchEvent(new UmbChangeEvent());
+      })
+      .catch(() => undefined);
+  }
 
 	async #onRemove(index:number) {
 		this._cards = this._cards.splice(index,1);
 		this.dispatchEvent(new UmbChangeEvent());
-	}
+  }
+
+  async #onEdit(index: number) {
+    this.#openEditPicker(index);
+  }
 
 	override render() {
 		return html`<div class="container">${this.#renderItems()} ${this.#renderAddButton()}</div>`;
@@ -192,13 +224,13 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 
 	#renderActions(item: OEmbedPickerValue, index:number) {
 		if (this.readonly) return nothing;
-		return html`
-			<uui-button label=${this.localize.term('general_remove')} look="secondary" @click=${() => this.#onRemove(index)}>
-				<uui-icon name="icon-trash"></uui-icon>
-			</uui-button>
-      <uui-button label=${this.localize.term('general_edit')} look="secondary">
+    return html`
+      <uui-button label=${this.localize.term('general_edit')} look="secondary" @click=${() => this.#onEdit(index)}>
         <uui-icon name="icon-edit"></uui-icon>
       </uui-button>
+			<uui-button label=${this.localize.term('general_remove')} look="secondary" @click=${() => this.#onRemove(index)}>
+				<uui-icon name="icon-trash"></uui-icon>
+			</uui-button>     
 		`;
 	}
 
