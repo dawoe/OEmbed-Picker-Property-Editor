@@ -185,17 +185,20 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
 				detail=${item.url}
 				?readonly=${this.readonly}>
 				${unsafeHTML(item.preview)}
-				<uui-action-bar slot="actions"> ${this.#renderRemoveAction(item)}</uui-action-bar>
+				<uui-action-bar slot="actions">${this.#renderActions(item)}</uui-action-bar>
 			</uui-card-media>
 		`;
 	}
 
-	#renderRemoveAction(item: OEmbedPickerValue) {
+	#renderActions(item: OEmbedPickerValue) {
 		if (this.readonly) return nothing;
 		return html`
 			<uui-button label=${this.localize.term('general_remove')} look="secondary" @click=${() => this.#onRemove(item)}>
 				<uui-icon name="icon-trash"></uui-icon>
 			</uui-button>
+      <uui-button label=${this.localize.term('general_edit')} look="secondary">
+        <uui-icon name="icon-edit"></uui-icon>
+      </uui-button>
 		`;
 	}
 
