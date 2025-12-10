@@ -12,7 +12,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <Target Name="PrepareAssets" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm run build" WorkingDirectory="client" />
-  </Target>
 </Project>
