@@ -33,7 +33,11 @@ jobs:
           
       - name: NPM install
         run:  npm ci
-        working-directory: src/Dawoe.OEmbedPickerPropertyEditor.UI/client          
+        working-directory: src/Dawoe.OEmbedPickerPropertyEditor.UI/client
+
+      - name: NPM build
+        run:  npm run build
+        working-directory: src/Dawoe.OEmbedPickerPropertyEditor.UI/client        
       
       - name: Restore
         run: dotnet restore 
