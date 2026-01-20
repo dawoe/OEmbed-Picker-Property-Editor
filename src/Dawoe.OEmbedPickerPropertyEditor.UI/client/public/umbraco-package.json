@@ -1,7 +1,7 @@
 {
   "$schema": "../../umbraco-package-schema.json",
   "name": "OEmbed Property Editor",
-  "version": "17.0.1",
+  "version": "17.0.2",
   "extensions": [
     {
       "type": "propertyEditorUi",
@@ -13,17 +13,7 @@
         "label": "OEmbed Picker",
         "icon": "icon-tv",
         "group": "common",
-        "propertyEditorSchemaAlias": "Dawoe.OEmbedPickerPropertyEditor",
-        "settings": {
-          "properties": [
-            {
-              "alias": "allowMultiple",
-              "label": "Allow multiple",
-              "description": "Allow adding multiple items",
-              "propertyEditorUiAlias": "Umb.PropertyEditorUi.Toggle"
-            }
-          ]
-        }
+        "propertyEditorSchemaAlias": "Dawoe.OEmbedPickerPropertyEditor"
       }
     },
     {
