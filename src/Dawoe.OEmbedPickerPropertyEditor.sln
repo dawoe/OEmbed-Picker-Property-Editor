@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32616.157
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dawoe.OEmbedPickerPropertyEditor.UI", "Dawoe.OEmbedPickerPropertyEditor.UI\Dawoe.OEmbedPickerPropertyEditor.UI.csproj", "{209C4CE7-6A8B-4773-AD86-D7B22199C980}"
 EndProject
@@ -27,7 +27,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dawoe.OEmbedPickerPropertyE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packaging", "Packaging", "{FBB35EC3-7739-4EF4-ACE3-C30BE2DA722C}"
 	ProjectSection(SolutionItems) = preProject
-		..\appveyor.yml = ..\appveyor.yml
 		..\Packaging\BuildPackage.ps1 = ..\Packaging\BuildPackage.ps1
 		..\umbraco-marketplace.json = ..\umbraco-marketplace.json
 	EndProjectSection
