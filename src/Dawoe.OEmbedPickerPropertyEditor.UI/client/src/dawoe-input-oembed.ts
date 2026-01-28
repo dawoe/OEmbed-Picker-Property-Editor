@@ -167,7 +167,8 @@ export class DawoeInputOmbedElement extends UmbFormControlMixin<string | undefin
   }
 
 	async #onRemove(index:number) {
-		this._cards = this._cards.splice(index,1);
+		this._cards = this._cards.filter((_, i) => i !== index);
+		this.#sorter.setModel(this._cards);
 		this.dispatchEvent(new UmbChangeEvent());
   }
 
