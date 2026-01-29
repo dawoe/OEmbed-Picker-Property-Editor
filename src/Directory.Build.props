@@ -20,9 +20,9 @@
       <RepositoryType>git</RepositoryType>
       <Copyright>Copyright &amp;#169; Dave Woestenborghs and contributors.</Copyright>
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
-      <AssemblyVersion>17.0.2</AssemblyVersion>
-      <VersionPrefix>17.0.2</VersionPrefix>
-      <InformationalVersion>17.0.2</InformationalVersion>
+      <AssemblyVersion>17.0.3</AssemblyVersion>
+      <VersionPrefix>17.0.3</VersionPrefix>
+      <InformationalVersion>17.0.3</InformationalVersion>
     </PropertyGroup>
 
 
