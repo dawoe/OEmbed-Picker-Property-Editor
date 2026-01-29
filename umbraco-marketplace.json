@@ -21,10 +21,14 @@
         "Name": "Jan van Helvoort",
         "Url": "https://github.com/janvanhelvoort"
       },
-      {
-        "Name": "Asbjørn Riis-Knudsen",
-        "Url": "https://github.com/arknu"
-      }
+        {
+            "Name": "Asbjørn Riis-Knudsen",
+            "Url": "https://github.com/arknu"
+        },
+        {
+            "Name": "ben-umble",
+            "Url": "https://github.com/ben-umble"
+        }
     ]
   },
   "Category": "Editor Tools",
