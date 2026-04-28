@@ -6,7 +6,7 @@ using Umbraco.Cms.Core.PropertyEditors;
 namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters;
 
 [DataEditor(Constants.DataEditorAlias, ValueType = ValueTypes.Json)]
-public class OEmbedPickerPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper)
+public class OEmbedPickerPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper, IOEmbedPropertyIndexValueFactory oEmbedPropertyIndexValueFactory)
     : DataEditor(dataValueEditorFactory)
 {
     /// <inheritdoc />
@@ -16,5 +16,5 @@ public class OEmbedPickerPropertyEditor(IDataValueEditorFactory dataValueEditorF
     protected override IConfigurationEditor CreateConfigurationEditor() => new OEmbedPickerConfigurationEditor(ioHelper);
 
     /// <inheritdoc />
-    public override IPropertyIndexValueFactory PropertyIndexValueFactory => new OEmbedPickerPropertyIndexValueFactory();
+    public override IPropertyIndexValueFactory PropertyIndexValueFactory => oEmbedPropertyIndexValueFactory;
 }

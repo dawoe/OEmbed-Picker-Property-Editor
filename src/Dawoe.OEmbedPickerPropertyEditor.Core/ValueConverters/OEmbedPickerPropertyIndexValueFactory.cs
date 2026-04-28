@@ -1,28 +1,66 @@
-// <copyright file="OEmbedPickerPropertyIndexValueFactory.cs" company="Umbraco community">
-// Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
-// </copyright>
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.Options;
+using Umbraco.Cms.Core.Configuration.Models;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.PropertyEditors;
+using Umbraco.Cms.Core.Serialization;
 
 namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters;
 
 /// <summary>
 /// Provides index values for the OEmbed Picker property editor.
 /// </summary>
-public class OEmbedPickerPropertyIndexValueFactory : IPropertyIndexValueFactory
+public class OEmbedPickerPropertyIndexValueFactory : JsonPropertyIndexValueFactoryBase<OEmbedIndexItem[]>, IOEmbedPropertyIndexValueFactory
 {
     private static readonly Regex IframeTitleRegex = new Regex(
-        @"title\s*=\s*[""']?([^""'\s>]+)[""']?",
-        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    @"title\s*=\s*[""']([^""']+)[""']",
+    RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private readonly IJsonSerializer _jsonSerializer;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OEmbedPickerPropertyIndexValueFactory"/> class.
+    /// </summary>
+    /// <param name="jsonSerializer">The JSON serializer.</param>
+    /// <param name="indexingSettings">The indexing settings.</param>
+    public OEmbedPickerPropertyIndexValueFactory(
+        IJsonSerializer jsonSerializer,
+        IOptionsMonitor<IndexingSettings> indexingSettings)
+        : base(jsonSerializer, indexingSettings)
+    {
+        _jsonSerializer = jsonSerializer;
+    }
+
+    public override IEnumerable<IndexValue> GetIndexValues(
+    IProperty property,
+    string? culture,
+    string? segment,
+    bool published,
+    IEnumerable<string> availableCultures,
+    IDictionary<Guid, IContentType> contentTypeDictionary)
+    {
+        // Manually pull the value to ensure we aren't being filtered out
+        var val = property.GetValue(culture, segment, published);
+
+        if (val is string json && !string.IsNullOrWhiteSpace(json))
+        {
+            var deserialized = _jsonSerializer.Deserialize<OEmbedIndexItem[]>(json);
+            if (deserialized != null)
+            {
+                // Call your Handle method
+                return Handle(deserialized, property, culture, segment, published, availableCultures, contentTypeDictionary);
+            }
+        }
+
+        return Array.Empty<IndexValue>();
+    }
 
     /// <inheritdoc />
-    public IEnumerable<IndexValue> GetIndexValues(
+    protected override IEnumerable<IndexValue> Handle(
+        OEmbedIndexItem[] deserializedPropertyValue,
         IProperty property,
         string? culture,
         string? segment,
@@ -30,57 +68,53 @@ public class OEmbedPickerPropertyIndexValueFactory : IPropertyIndexValueFactory
         IEnumerable<string> availableCultures,
         IDictionary<Guid, IContentType> contentTypeDictionary)
     {
-        var propertyValue = property.GetValue(culture, segment, published);
-
-        if (propertyValue == null)
-        {
-            return [];
-        }
-
-        // The property value is JSON - try to extract titles from all embeds
         var titles = new List<string>();
 
-        if (propertyValue is string jsonString && !string.IsNullOrWhiteSpace(jsonString))
+        foreach (var item in deserializedPropertyValue ?? Array.Empty<OEmbedIndexItem>())
         {
-            try
+            if (!string.IsNullOrWhiteSpace(item.Preview))
             {
-                // The JSON is an array of OEmbed items
-                using var doc = JsonDocument.Parse(jsonString);
-                if (doc.RootElement.ValueKind == JsonValueKind.Array)
+                var match = IframeTitleRegex.Match(item.Preview);
+                if (match.Success)
                 {
-                    foreach (var element in doc.RootElement.EnumerateArray())
-                    {
-                        if (element.TryGetProperty("preview", out var previewElement))
-                        {
-                            var preview = previewElement.GetString();
-                            if (!string.IsNullOrWhiteSpace(preview))
-                            {
-                                // Extract title from the iframe tag
-                                var match = IframeTitleRegex.Match(preview);
-                                if (match.Success)
-                                {
-                                    titles.Add(match.Groups[1].Value);
-                                }
-                            }
-                        }
-                    }
+                    titles.Add(match.Groups[1].Value);
                 }
-            }
-            catch
-            {
-                // If JSON parsing fails, ignore
             }
         }
 
-        // Return a single combined field with all titles (if any found)
-        return
-        [
-            new IndexValue
-            {
-                Culture = culture,
-                FieldName = property.Alias,
-                Values = titles.Count > 0 ? titles.ToArray() : []
-            }
-        ];
+        if (titles.Count == 0)
+        {
+            yield break; // Don't add anything to the index if no titles found
+        }
+
+        yield return new IndexValue
+        {
+            Culture = culture,
+            FieldName = property.Alias,
+            Values = titles,
+        };
     }
+
+
+}
+
+/// <summary>
+/// DTO for deserializing OEmbed items from the property value JSON.
+/// </summary>
+public class OEmbedIndexItem
+{
+    public string? Url { get; set; }
+
+    public string? Preview { get; set; }
+}
+
+/// <summary>
+///     Represents a property index value factory specifically for OEmbed properties.
+/// </summary>
+/// <remarks>
+///     This marker interface allows for specialized indexing of OEmbed values,
+///     enabling proper handling of multiple Oembed values per property.
+/// </remarks>
+public interface IOEmbedPropertyIndexValueFactory : IPropertyIndexValueFactory
+{
 }
