@@ -14,4 +14,7 @@ public class OEmbedPickerPropertyEditor(IDataValueEditorFactory dataValueEditorF
 
     /// <inheritdoc />
     protected override IConfigurationEditor CreateConfigurationEditor() => new OEmbedPickerConfigurationEditor(ioHelper);
+
+    /// <inheritdoc />
+    public override IPropertyIndexValueFactory PropertyIndexValueFactory => new OEmbedPickerPropertyIndexValueFactory();
 }
