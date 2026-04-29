@@ -10,11 +10,11 @@ public class OEmbedPickerPropertyEditor(IDataValueEditorFactory dataValueEditorF
     : DataEditor(dataValueEditorFactory)
 {
     /// <inheritdoc />
+    public override IPropertyIndexValueFactory PropertyIndexValueFactory => oEmbedPropertyIndexValueFactory;
+
+    /// <inheritdoc />
     protected override IDataValueEditor CreateValueEditor() => this.DataValueEditorFactory.Create<OEmbedPickerPropertyValueEditor>(this.Attribute);
 
     /// <inheritdoc />
     protected override IConfigurationEditor CreateConfigurationEditor() => new OEmbedPickerConfigurationEditor(ioHelper);
-
-    /// <inheritdoc />
-    public override IPropertyIndexValueFactory PropertyIndexValueFactory => oEmbedPropertyIndexValueFactory;
 }
