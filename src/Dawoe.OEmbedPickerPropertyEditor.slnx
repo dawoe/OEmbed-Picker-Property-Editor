@@ -5,15 +5,7 @@
     <File Path="stylecop.json" />
   </Folder>
   <Folder Name="/Solution Items/Packaging/">
-    <File Path="../Packaging/BuildPackage.ps1" />
     <File Path="../umbraco-marketplace.json" />
-  </Folder>
-  <Folder Name="/Solution Items/Utilities/">
-    <File Path="../Utilities/CreateNugetPackages.ps1" />
-    <File Path="../Utilities/SetupTestSite.ps1" />
-    <File Path="../Utilities/StartTestSite.ps1" />
-    <File Path="../Utilities/UpdateTestSites.ps1" />
-    <File Path="../Utilities/Variables.ps1" />
   </Folder>
   <Project Path="../testsites/V17/V17.csproj">
     <Build Solution="Release|*" Project="false" />
