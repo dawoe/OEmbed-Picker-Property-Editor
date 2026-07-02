@@ -7,7 +7,7 @@
     <!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms" Version="17.0.1" />
+    <PackageReference Include="Umbraco.Cms" Version="17.4.0" />
     <PackageReference Include="Umbraco.TheStarterKit" Version="17.0.0" />
 	<PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="17.0.1" />
 	<PackageReference Include="Bergmania.OpenStreetMap" Version="7.0.0" />
