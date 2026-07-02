@@ -1,7 +1,7 @@
 {
   "$schema": "../../umbraco-package-schema.json",
   "name": "OEmbed Property Editor",
-  "version": "17.0.3",
+  "version": "18.0.0",
   "extensions": [
     {
       "type": "propertyEditorUi",
