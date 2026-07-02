@@ -8,7 +8,7 @@
       "alias": "Dawoe.OEmbedPickerPropertyEditor.Ui",
       "name": "OEmbed Picker",
       "element": "/App_Plugins/Dawoe.OEmbedPickerPropertyEditor/client.js",
-      "elementName": "dawaoe-oembed-picker",
+      "elementName": "dawoe-oembed-picker",
       "meta": {
         "label": "OEmbed Picker",
         "icon": "icon-tv",

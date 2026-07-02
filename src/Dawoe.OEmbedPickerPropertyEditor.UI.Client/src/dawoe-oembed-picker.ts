@@ -6,7 +6,7 @@ import { type UmbPropertyEditorConfigCollection } from "@umbraco-cms/backoffice/
 import { OEmbedPickerValue } from "./oembedvalue";
 
 
-@customElement('dawaoe-oembed-picker')
+@customElement('dawoe-oembed-picker')
 export default class DawoeOembedPicker extends UmbElementMixin(LitElement) {
 	/**
 		 * Sets the input to readonly mode, meaning value cannot be changed but still able to read and select its content.
@@ -62,6 +62,6 @@ export default class DawoeOembedPicker extends UmbElementMixin(LitElement) {
 
 declare global {
 	interface HTMLElementTagNameMap {
-		'dawaoe-oembed-picker': DawoeOembedPicker;
+		'dawoe-oembed-picker': DawoeOembedPicker;
 	}
 }
