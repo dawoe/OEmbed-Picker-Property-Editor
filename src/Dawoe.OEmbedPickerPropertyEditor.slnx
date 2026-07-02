@@ -8,7 +8,7 @@
   <Folder Name="/Solution Items/Packaging/">
     <File Path="../umbraco-marketplace.json" />
   </Folder>
-  <Project Path="../testsites/V17/V17.csproj">
+  <Project Path="../testsites/V18/V18.csproj">
     <Build Solution="Release|*" Project="false" />
   </Project>
   <Project Path="Dawoe.OEmbedPickerPropertyEditor.Core/Dawoe.OEmbedPickerPropertyEditor.Core.csproj" />
