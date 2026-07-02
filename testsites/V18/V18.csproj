@@ -10,7 +10,7 @@
     <PackageReference Include="Umbraco.Cms" Version="18.0.0" />
     <PackageReference Include="Umbraco.TheStarterKit" Version="18.0.0" />
 	<PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="18.0.0" />
-	<PackageReference Include="Bergmania.OpenStreetMap" Version="7.0.0" />
+	<PackageReference Include="Bergmania.OpenStreetMap" Version="8.1.1" />
   </ItemGroup>
   <ItemGroup>
     <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
