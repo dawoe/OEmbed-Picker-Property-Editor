@@ -7,7 +7,7 @@ export default defineConfig({
       entry: "src/dawoe-oembed-picker.ts", // your web component source file
       formats: ["es"],
     },
-    outDir: "../wwwroot/App_Plugins/Dawoe.OEmbedPickerPropertyEditor", // all compiled files will be placed here
+    outDir: "../Dawoe.OEmbedPickerPropertyEditor.UI/wwwroot/App_Plugins/Dawoe.OEmbedPickerPropertyEditor", // all compiled files will be placed here
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
