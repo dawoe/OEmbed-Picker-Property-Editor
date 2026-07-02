@@ -1,7 +1,7 @@
 import { LitElement, html, customElement, property, state } from "@umbraco-cms/backoffice/external/lit";
 import { UmbElementMixin } from '@umbraco-cms/backoffice/element-api';
 import './dawoe-input-oembed';
-import { UmbPropertyValueChangeEvent } from "@umbraco-cms/backoffice/property-editor";
+import { UmbChangeEvent  } from "@umbraco-cms/backoffice/event";
 import { type UmbPropertyEditorConfigCollection } from "@umbraco-cms/backoffice/property-editor";
 import { OEmbedPickerValue } from "./oembedvalue";
 
@@ -44,7 +44,7 @@ export default class DawoeOembedPicker extends UmbElementMixin(LitElement) {
 	#onChange(event: CustomEvent & { target: { selection: OEmbedPickerValue[] | undefined } }) {
 		this.#selection = event.target.selection ?? [];
 		this.value = this.#selection;
-		this.dispatchEvent(new UmbPropertyValueChangeEvent());
+		this.dispatchEvent(new UmbChangeEvent());
 	}
 
 	#selection: Array<OEmbedPickerValue> = [];

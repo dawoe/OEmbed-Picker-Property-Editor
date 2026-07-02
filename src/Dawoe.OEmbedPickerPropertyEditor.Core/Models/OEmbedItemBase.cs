@@ -2,7 +2,7 @@
 // Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
 // </copyright>
 
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Dawoe.OEmbedPickerPropertyEditor.Core.Models
 {
@@ -14,26 +14,26 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.Models
         /// <summary>
         /// Gets or sets the url.
         /// </summary>
-        [JsonProperty(PropertyName = "url")]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
 
         /// <summary>
         /// Gets or sets the width.
         /// </summary>
-        [JsonProperty(PropertyName = "width")]
+        [JsonPropertyName("width")]
         public int Width { get; set; }
 
         /// <summary>
         /// Gets or sets the height.
         /// </summary>
-        [JsonProperty(PropertyName = "height")]
+        [JsonPropertyName("height")]
         public int Height { get; set; }
 
         /// <summary>
         /// Gets or sets the preview.
         /// </summary>
-        [JsonProperty(PropertyName = "preview")]
-        internal string Preview { get; set; }
+        [JsonPropertyName("preview")]
+        public string Preview { get; set; }
 
         /// <inheritdoc />
         public override string ToString() => this.Preview;
