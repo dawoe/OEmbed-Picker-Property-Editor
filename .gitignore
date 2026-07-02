@@ -41,6 +41,6 @@ tools/
 
 !/src/**/[Bb]uild
 dist/
-
+node_modules/
 
 .vs/
