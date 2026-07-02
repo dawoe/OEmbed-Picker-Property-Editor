@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
+          node-version: '24.13.x'
 
       - name: Setup dotnet
         uses: actions/setup-dotnet@v3
@@ -28,7 +28,11 @@ jobs:
       
       - name: NPM install
         run:  npm ci
-        working-directory: src/Dawoe.OEmbedPickerPropertyEditor.UI/client
+        working-directory: src/Dawoe.OEmbedPickerPropertyEditor.UI.Client
+
+      - name: NPM build
+        run:  npm run build
+        working-directory: src/Dawoe.OEmbedPickerPropertyEditor.UI.Client    
         
       - name: Restore
         run: dotnet restore 

@@ -8,10 +8,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Dawoe.OEmbedPickerPropertyEditor.Core.Configuration;
 using Dawoe.OEmbedPickerPropertyEditor.Core.Models;
-using Newtonsoft.Json;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 using Umbraco.Cms.Core.PropertyEditors.DeliveryApi;
+using Umbraco.Cms.Core.Serialization;
 using Umbraco.Extensions;
 
 namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
@@ -19,7 +19,8 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
     /// <summary>
     /// Represents a the property value converter for the OEmbed picker.
     /// </summary>
-    public class OEmbedPickerValueConverter : PropertyValueConverterBase, IDeliveryApiPropertyValueConverter
+    public class OEmbedPickerValueConverter(IJsonSerializer jsonSerializer)
+        : PropertyValueConverterBase, IDeliveryApiPropertyValueConverter
     {
         /// <inheritdoc />
         public override bool IsConverter(IPublishedPropertyType propertyType) =>
@@ -104,7 +105,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.ValueConverters
             {
                 try
                 {
-                    var items = JsonConvert.DeserializeObject<List<T>>(sourceString);
+                    var items = jsonSerializer.Deserialize<List<T>>(sourceString);
 
                     return isMultiple ? items : this.FirstOrDefault(items);
                 }
