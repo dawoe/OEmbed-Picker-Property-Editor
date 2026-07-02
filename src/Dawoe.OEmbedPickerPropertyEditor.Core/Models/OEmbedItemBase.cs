@@ -33,7 +33,7 @@ namespace Dawoe.OEmbedPickerPropertyEditor.Core.Models
         /// Gets or sets the preview.
         /// </summary>
         [JsonPropertyName("preview")]
-        internal string Preview { get; set; }
+        public string Preview { get; set; }
 
         /// <inheritdoc />
         public override string ToString() => this.Preview;
