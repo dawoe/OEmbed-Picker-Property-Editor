@@ -2,9 +2,8 @@
 // Copyright (c) Dave Woestenborghs and contributors. Licensed under the MIT License. See LICENSE in the project root for license information.
 // </copyright>
 
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Html;
-using Newtonsoft.Json;
-using Umbraco.Cms.Core.Strings;
 
 namespace Dawoe.OEmbedPickerPropertyEditor.Core.Models
 {
