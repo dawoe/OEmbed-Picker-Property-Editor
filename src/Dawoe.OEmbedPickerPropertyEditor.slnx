@@ -15,6 +15,9 @@
     <File Path="../Utilities/UpdateTestSites.ps1" />
     <File Path="../Utilities/Variables.ps1" />
   </Folder>
+  <Project Path="../testsites/V17/V17.csproj">
+    <Build Solution="Release|*" Project="false" />
+  </Project>
   <Project Path="Dawoe.OEmbedPickerPropertyEditor.Core/Dawoe.OEmbedPickerPropertyEditor.Core.csproj" />
   <Project Path="Dawoe.OEmbedPickerPropertyEditor.UI/Dawoe.OEmbedPickerPropertyEditor.UI.csproj" />
   <Project Path="Dawoe.OEmbedPickerPropertyEditor/Dawoe.OEmbedPickerPropertyEditor.csproj" />
